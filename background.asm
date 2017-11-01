@@ -32,6 +32,45 @@
 		li $v0, 10
 		syscall
 		
+	# arguments:
+	drawVerticalLine:
+		#TODO
+	jr $ra
+	
+	# arguments:
+	drawHorizontalLine:
+		#TODO
+	jr $ra
+	
+	# arguments:
+	drawRectangle:
+		#TODO
+	jr $ra		
+		
+	drawVerticalTube:
+		#TODO
+	jr $ra
+	
+	drawHorizontalTube:
+		#TODO
+	jr $ra
+	
+	drawFirstTubeElbow:
+		#TODO
+	jr $ra
+	
+	drawSecondTubeElbow:
+		#TODO
+	jr $ra
+	
+	drawThirdTubeElbow:
+		#TODO
+	jr $ra
+	
+	drawFourthTubeElbow:
+		#TODO
+	jr $ra
+	
 	# arguments: line number, color
 	drawEntireLine:
 		move $t0, $a1						# save color in temp
@@ -75,45 +114,6 @@
 	
 	# arguments: 
 	drawEntireColumn:
-		#TODO
-	jr $ra
-	
-	# arguments:
-	drawVerticalLine:
-		#TODO
-	jr $ra
-	
-	# arguments:
-	drawHorizontalLine:
-		#TODO
-	jr $ra
-	
-	# arguments:
-	drawRectangle:
-		#TODO
-	jr $ra
-		
-	drawVerticalTube:
-		#TODO
-	jr $ra
-	
-	drawHorizontalTube:
-		#TODO
-	jr $ra
-	
-	drawFirstTubeElbow:
-		#TODO
-	jr $ra
-	
-	drawSecondTubeElbow:
-		#TODO
-	jr $ra
-	
-	drawThirdTubeElbow:
-		#TODO
-	jr $ra
-	
-	drawFourthTubeElbow:
 		#TODO
 	jr $ra
 	
