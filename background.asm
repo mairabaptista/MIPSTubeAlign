@@ -38,8 +38,8 @@
 	.end_macro
 	
 	.macro popFromStack(%x, %y)
-		lw  %y, 0($sp)						# restore register from stack
-		lw  %x, 4($sp)						# restore register from stack
+		lw  %x, 0($sp)						# restore register from stack
+		lw  %y, 4($sp)						# restore register from stack
 		add $sp, $sp, 8						# adjust $sp
 	.end_macro
 	
@@ -103,7 +103,7 @@
 		
 		jal getPositionFromBlock			# return Position to $v0
 		
-		popFromStack($t0, $ra)
+		popFromStack($ra, $t0)
 				
 		move $a0, $v0						# send Position to draw
 				
@@ -111,7 +111,7 @@
 				
 		jal getNumberOfBlocksInLine
 		
-		popFromStack($t0, $ra)				
+		popFromStack($ra, $t0)				
 		
 		move $a1, $v0						# send entire line to draw
 		la $a2, horizontal					# send horizontal line
@@ -146,7 +146,7 @@
 						
 		jal getSizeOfLine
 		
-		popFromStack($t1, $ra)	
+		popFromStack($ra, $t1)	
 		
 		move $t5, $v0
 		
