@@ -11,6 +11,12 @@
 	.eqv redColor		 	0xff0000
 	.eqv greenColor 		0x00ff00
 	.eqv blueColor 			0x0000ff
+	
+	#Orientation
+	.eqv horizontal			0
+	.eqv vertical			1
+	.eqv mainDiagonal		2
+	.eqv secondaryDiagonal	3
 
 .text
 	.globl main
@@ -21,16 +27,16 @@
 		li $a0, 8
 		la $a1, greenColor	
 		
-		jal drawLine
+		jal drawEntireLine
 	
 		li $v0, 10
 		syscall
 		
 	# arguments: line number, color
-	drawLine:
+	drawEntireLine:
 		move $t0, $a1						# save color in temp
 		
-		sub $sp, $sp, 8						# adjust to push temp
+		sub $sp, $sp, 8						# adjust to push $ra, temp
 		sw  $ra, 4($sp)						# push $ra in stack
 		sw  $t0, 0($sp)						# push $t0 in stack
 		
@@ -43,53 +49,50 @@
 		add $sp, $sp, 8						# adjust $sp
 				
 		move $a0, $v0						# send Position to draw
+				
+		sub $sp, $sp, 8						# adjust to push $ra, temp
+		sw  $ra, 0($sp)						# push $ra in stack
+		sw  $t0, 4($sp)						# push $t0 in stack
+				
+		jal getNumberOfBlocksInLine
 		
-		la $t1, screenWidth
-		la $t2, unitWidth
+		lw $t0, 4($sp)						# restore $t0 from stack
+		lw $ra, 0($sp)						# restore $ra from stack
+		add $sp, $sp, 8						# adjust $sp				
 		
-		div $t1, $t2						
-		mflo $t1				
+		move $a1, $v0						# send entire line to draw
+		la $a2, horizontal					# send horizontal line
+		move $a3, $t0						# send color
 		
-		move $a1, $t1						# send entire line to draw
-		move $a2, $t0						# send color
-		
-		sub $sp, $sp, 4						# adjust to push temp
+		sub $sp, $sp, 4						# adjust to push $ra
 		sw  $ra, 0($sp)						# push $ra in stack
 				  
-		jal drawHorizontaly
+		jal drawContinuosBlocks
 		
 		lw $ra, 0($sp)						# restore $ra from stack
 		add $sp, $sp, 4						# adjust $sp
 	jr $ra
-		
-	# arguments: position (of memory), sizeOfLine, color
-	drawHorizontaly:
-		la $t0, baseAddress					# base address
-		move $t1, $t0						# aux address
-						
-		move $t2, $a0						# initial		
-		add $t1, $t1, $t2					# base + initial
-						
-		li $t3, 0 							# i
-		move $t4, $a1						# length
-		
-		loop:								# draw horizontaly
-			sw $a2, 0($t1)
-			addi $t1, $t1, 4
-			addi $t3, $t3, 1
-			beq $t3, $t4, end_loop
-			j loop
-		end_loop:				
-	jr $ra
 	
-	drawVertically:
+	# arguments: 
+	drawEntireColumn:
 		#TODO
 	jr $ra
-		
+	
+	# arguments:
+	drawVerticalLine:
+		#TODO
+	jr $ra
+	
+	# arguments:
+	drawHorizontalLine:
+		#TODO
+	jr $ra
+	
+	# arguments:
 	drawRectangle:
 		#TODO
 	jr $ra
-	
+		
 	drawVerticalTube:
 		#TODO
 	jr $ra
@@ -114,21 +117,71 @@
 		#TODO
 	jr $ra
 	
+	# arguments: position (of memory), blocksToFill, orientation, color
+	drawContinuosBlocks:
+		la $t0, baseAddress					# base address
+		move $t1, $t0						# aux address
+						
+		move $t2, $a0						# initial		
+		add $t1, $t1, $t2					# base + initial
+						
+		li $t3, 0 							# i
+		move $t4, $a1						# length
+		
+		beq $a2, horizontal, if_horizontal
+				
+		sub $sp, $sp, 8						# adjust to push $ra, temp
+		sw  $ra, 0($sp)						# push $ra in stack
+		sw  $t1, 4($sp)						# push $t1 in stack
+				
+		jal getSizeOfLine
+		
+		lw $t1, 4($sp)						# restore $t1 from stack
+		lw $ra, 0($sp)						# restore $ra from stack
+		add $sp, $sp, 8						# adjust $sp
+		
+		move $t5, $v0
+		
+		beq $a2, vertical, loop		
+		beq $a2, mainDiagonal, if_main_diagonal
+		beq $a2, secondaryDiagonal, if_secondary_diagonal
+		
+		j end_loop
+		
+		if_horizontal:
+			li $t5, 4
+		j loop
+		
+		if_main_diagonal:			
+			addi $t5, $t5, 4
+		j loop
+		
+		if_secondary_diagonal:			
+			subi $t5, $t5, 4		
+		
+		loop:								# draw horizontaly
+			sw $a3, 0($t1)
+			add $t1, $t1, $t5				# add $t5 (orientation)
+			addi $t3, $t3, 1
+			beq $t3, $t4, end_loop
+			j loop
+		end_loop:				
+	jr $ra	
+	
 	# arguments: line, column
-	getPositionFromBlock:
+	getPositionFromBlock:		
+		sub $sp, $sp, 4						# adjust to push $ra
+		sw  $ra, 0($sp)						# push $ra in stack		
+				
+		jal getSizeOfLine		
+		
+		lw $ra, 0($sp)						# restore $ra from stack
+		add $sp, $sp, 4						# adjust $sp
+		
 		move $t0, $a0
 		subi $t0, $t0, 1
 		
-		la $t1, screenWidth
-		la $t2, unitWidth
-		
-		div $t1, $t2						# number of blocks
-		
-		mflo $t1
-		
-		mul $t1, $t1, 4						# block * 4
-		
-		mul $t0, $t0, $t1					# multiply lines
+		mul $t0, $t0, $v0					# multiply lines
 		
 		mul $t1, $a1, 4
 		subi $t0, $t0, 4
@@ -142,6 +195,31 @@
 		#TODO
 	jr $ra
 	
+	# no arguments
+	getNumberOfBlocksInLine:
+		la $t0, screenWidth
+		la $t1, unitWidth
+		
+		div $t0, $t1						# number of blocks
+		
+		mflo $t0
+				
+		move $v0, $t0						# return number of blocks in line
+	jr $ra
+	
+	# no arguments
+	getSizeOfLine:
+		sub $sp, $sp, 4						# adjust to push $ra
+		sw  $ra, 0($sp)						# push $ra in stack		
+				
+		jal getNumberOfBlocksInLine	
+		
+		lw $ra, 0($sp)						# restore $ra from stack
+		add $sp, $sp, 4						# adjust $sp
+			
+		mul $v0, $v0, 4						# return number of blocks * 4
+	jr $ra
+			
 	# void
 	fillBackgroundColor:
 		la $t0, screenWidth
