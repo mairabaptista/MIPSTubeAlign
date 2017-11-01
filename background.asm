@@ -20,7 +20,29 @@
 
 .text
 	.globl main
-
+	
+	.macro pushInStack(%x)
+		sub $sp, $sp, 4						# adjust to push in stack
+		sw  %x, 0($sp)						# push register in stack
+	.end_macro
+	
+	.macro pushInStack(%x, %y)
+		sub $sp, $sp, 8						# adjust to push in stack
+		sw  %x, 4($sp)						# push register in stack
+		sw  %y, 0($sp)						# push register in stack
+	.end_macro
+	
+	.macro popFromStack(%x)
+		lw  %x, 0($sp)						# restore register from stack
+		add $sp, $sp, 4						# adjust $sp
+	.end_macro
+	
+	.macro popFromStack(%x, %y)
+		lw  %y, 0($sp)						# restore register from stack
+		lw  %x, 4($sp)						# restore register from stack
+		add $sp, $sp, 8						# adjust $sp
+	.end_macro
+	
 	main:		
 		jal fillBackgroundColor
 				
@@ -74,42 +96,32 @@
 	# arguments: line number, color
 	drawEntireLine:
 		move $t0, $a1						# save color in temp
-		
-		sub $sp, $sp, 8						# adjust to push $ra, temp
-		sw  $ra, 4($sp)						# push $ra in stack
-		sw  $t0, 0($sp)						# push $t0 in stack
+			
+		pushInStack($ra, $t0)
 		
 		li $a1, 1							# column 1 (first column in line)
 		
 		jal getPositionFromBlock			# return Position to $v0
 		
-		lw $t0, 0($sp)						# restore $t0 from stack
-		lw $ra, 4($sp)						# restore $ra from stack
-		add $sp, $sp, 8						# adjust $sp
+		popFromStack($t0, $ra)
 				
 		move $a0, $v0						# send Position to draw
 				
-		sub $sp, $sp, 8						# adjust to push $ra, temp
-		sw  $ra, 0($sp)						# push $ra in stack
-		sw  $t0, 4($sp)						# push $t0 in stack
+		pushInStack($ra, $t0)
 				
 		jal getNumberOfBlocksInLine
 		
-		lw $t0, 4($sp)						# restore $t0 from stack
-		lw $ra, 0($sp)						# restore $ra from stack
-		add $sp, $sp, 8						# adjust $sp				
+		popFromStack($t0, $ra)				
 		
 		move $a1, $v0						# send entire line to draw
 		la $a2, horizontal					# send horizontal line
 		move $a3, $t0						# send color
 		
-		sub $sp, $sp, 4						# adjust to push $ra
-		sw  $ra, 0($sp)						# push $ra in stack
+		pushInStack($ra)
 				  
 		jal drawContinuosBlocks
 		
-		lw $ra, 0($sp)						# restore $ra from stack
-		add $sp, $sp, 4						# adjust $sp
+		popFromStack($ra)	
 	jr $ra
 	
 	# arguments: 
@@ -129,16 +141,12 @@
 		move $t4, $a1						# length
 		
 		beq $a2, horizontal, if_horizontal
-				
-		sub $sp, $sp, 8						# adjust to push $ra, temp
-		sw  $ra, 0($sp)						# push $ra in stack
-		sw  $t1, 4($sp)						# push $t1 in stack
-				
+						
+		pushInStack($ra, $t1)		
+						
 		jal getSizeOfLine
 		
-		lw $t1, 4($sp)						# restore $t1 from stack
-		lw $ra, 0($sp)						# restore $ra from stack
-		add $sp, $sp, 8						# adjust $sp
+		popFromStack($t1, $ra)	
 		
 		move $t5, $v0
 		
@@ -169,14 +177,13 @@
 	jr $ra	
 	
 	# arguments: line, column
-	getPositionFromBlock:		
-		sub $sp, $sp, 4						# adjust to push $ra
-		sw  $ra, 0($sp)						# push $ra in stack		
+	getPositionFromBlock:
+	
+		pushInStack($ra)
 				
 		jal getSizeOfLine		
 		
-		lw $ra, 0($sp)						# restore $ra from stack
-		add $sp, $sp, 4						# adjust $sp
+		popFromStack($ra)
 		
 		move $t0, $a0
 		subi $t0, $t0, 1
@@ -209,13 +216,12 @@
 	
 	# no arguments
 	getSizeOfLine:
-		sub $sp, $sp, 4						# adjust to push $ra
-		sw  $ra, 0($sp)						# push $ra in stack		
+		
+		pushInStack($ra)	
 				
 		jal getNumberOfBlocksInLine	
 		
-		lw $ra, 0($sp)						# restore $ra from stack
-		add $sp, $sp, 4						# adjust $sp
+		popFromStack($ra)
 			
 		mul $v0, $v0, 4						# return number of blocks * 4
 	jr $ra
