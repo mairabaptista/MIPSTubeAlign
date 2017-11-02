@@ -19,6 +19,7 @@
 		return_EXIT_SUCCESS
 	
 	# arguments: line, column
+	# return position of memory
 	getPositionFromBlock:
 	
 		pushInStack($ra)
@@ -39,7 +40,8 @@
 		move $v0, $t0
 	jr $ra
 	
-	# arguments: position
+	# arguments: position of memory
+	# return line, column
 	getBlockFromPosition:
 			
 		pushInStack($ra)
@@ -61,9 +63,9 @@
 		mflo $v1							# set division value in $v1
 		
 		addi $v1, $v1, 1					# column		
-	jr $ra
+	jr $ra	
 	
-	# no arguments
+	# return number of blocks in line
 	getNumberOfBlocksInLine:
 		la $t0, screenWidth
 		la $t1, unitWidth
@@ -75,7 +77,7 @@
 		move $v0, $t0						# return number of blocks in line
 	jr $ra
 	
-	# no arguments
+	# return number of blocks * 4
 	getSizeOfLine:
 	
 		pushInStack($ra)

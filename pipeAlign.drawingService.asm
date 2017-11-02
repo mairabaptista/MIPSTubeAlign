@@ -1,5 +1,5 @@
 .data
-	# data Segment	
+	# Data Segment	
 .text
 	# arguments:
 	drawVerticalLine:
@@ -15,27 +15,33 @@
 	drawRectangle:
 		#TODO
 	jr $ra		
-		
+	
+	# arguments:	
 	drawVerticalTube:
 		#TODO
 	jr $ra
 	
+	# arguments:
 	drawHorizontalTube:
 		#TODO
 	jr $ra
 	
+	# arguments:
 	drawFirstTubeElbow:
 		#TODO
 	jr $ra
 	
+	# arguments:
 	drawSecondTubeElbow:
 		#TODO
 	jr $ra
 	
+	# arguments:
 	drawThirdTubeElbow:
 		#TODO
 	jr $ra
 	
+	# arguments:
 	drawFourthTubeElbow:
 		#TODO
 	jr $ra
@@ -71,12 +77,12 @@
 		popFromStack($ra)	
 	jr $ra
 	
-	# arguments: 
+	# arguments: column number, color
 	drawEntireColumn:
 		#TODO
 	jr $ra
 	
-	# arguments: position (of memory), blocksToFill, orientation, color
+	# arguments: position of memory, blocksToFill, orientation, color
 	drawContinuosBlocks:
 		la $t0, baseAddress					# base address
 		move $t1, $t0						# aux address
@@ -123,7 +129,7 @@
 		end_loop:				
 	jr $ra
 	
-	# void
+	# no arguments
 	fillBackgroundColor:
 		la $t0, screenWidth
 		la $t1, screenHeight
