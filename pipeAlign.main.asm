@@ -15,9 +15,8 @@
 		la $a1, greenColor
 		
 		jal drawEntireLine
-	
-		li $v0, 10
-		syscall
+					
+		return_EXIT_SUCCESS
 	
 	# arguments: line, column
 	getPositionFromBlock:

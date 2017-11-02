@@ -41,3 +41,8 @@
 		lw  %y, 4($sp)						# restore register from stack
 		add $sp, $sp, 8						# adjust $sp
 	.end_macro
+	
+	.macro return_EXIT_SUCCESS
+		li $v0, 10
+		syscall
+	.end_macro
