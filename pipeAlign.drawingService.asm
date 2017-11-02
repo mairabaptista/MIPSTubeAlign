@@ -1,59 +1,6 @@
 .data
-	#Screen 
-	.eqv screenWidth		1024
-	.eqv screenHeight		512
-	.eqv unitWidth			8
-	.eqv unitHeight			8
-	.eqv baseAddress 		0x10010000
-	
-	#Colors	
-	.eqv backgroundColor	0x0000ff
-	.eqv redColor		 	0xff0000
-	.eqv greenColor 		0x00ff00
-	.eqv blueColor 			0x0000ff
-	
-	#Orientation
-	.eqv horizontal			0
-	.eqv vertical			1
-	.eqv mainDiagonal		2
-	.eqv secondaryDiagonal	3
-
+	# data Segment	
 .text
-	.globl main
-	
-	.macro pushInStack(%x)
-		sub $sp, $sp, 4						# adjust to push in stack
-		sw  %x, 0($sp)						# push register in stack
-	.end_macro
-	
-	.macro pushInStack(%x, %y)
-		sub $sp, $sp, 8						# adjust to push in stack
-		sw  %x, 4($sp)						# push register in stack
-		sw  %y, 0($sp)						# push register in stack
-	.end_macro
-	
-	.macro popFromStack(%x)
-		lw  %x, 0($sp)						# restore register from stack
-		add $sp, $sp, 4						# adjust $sp
-	.end_macro
-	
-	.macro popFromStack(%x, %y)
-		lw  %x, 0($sp)						# restore register from stack
-		lw  %y, 4($sp)						# restore register from stack
-		add $sp, $sp, 8						# adjust $sp
-	.end_macro
-	
-	main:		
-		jal fillBackgroundColor
-				
-		li $a0, 8
-		la $a1, greenColor	
-		
-		jal drawEntireLine
-	
-		li $v0, 10
-		syscall
-		
 	# arguments:
 	drawVerticalLine:
 		#TODO
@@ -174,58 +121,8 @@
 			beq $t3, $t4, end_loop
 			j loop
 		end_loop:				
-	jr $ra	
-	
-	# arguments: line, column
-	getPositionFromBlock:
-	
-		pushInStack($ra)
-				
-		jal getSizeOfLine		
-		
-		popFromStack($ra)
-		
-		move $t0, $a0
-		subi $t0, $t0, 1
-		
-		mul $t0, $t0, $v0					# multiply lines
-		
-		mul $t1, $a1, 4
-		subi $t0, $t0, 4
-		add $t0, $t0, $t1					# add columns
-		
-		move $v0, $t0
 	jr $ra
 	
-	# arguments: position
-	getBlockFromPosition:
-		#TODO
-	jr $ra
-	
-	# no arguments
-	getNumberOfBlocksInLine:
-		la $t0, screenWidth
-		la $t1, unitWidth
-		
-		div $t0, $t1						# number of blocks
-		
-		mflo $t0
-				
-		move $v0, $t0						# return number of blocks in line
-	jr $ra
-	
-	# no arguments
-	getSizeOfLine:
-		
-		pushInStack($ra)	
-				
-		jal getNumberOfBlocksInLine	
-		
-		popFromStack($ra)
-			
-		mul $v0, $v0, 4						# return number of blocks * 4
-	jr $ra
-			
 	# void
 	fillBackgroundColor:
 		la $t0, screenWidth
