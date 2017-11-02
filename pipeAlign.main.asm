@@ -8,7 +8,7 @@
 .text
 	.globl main
 			
-	main:
+	main:		
 		jal fillBackgroundColor
 				
 		li $a0, 8		
@@ -41,7 +41,26 @@
 	
 	# arguments: position
 	getBlockFromPosition:
-		#TODO
+			
+		pushInStack($ra)
+		
+		jal getSizeOfLine
+		
+		popFromStack($ra)		
+		
+		div $a0, $v0
+				
+		mflo $v0							# division value is a line - 1
+		addi $v0, $v0, 1					# line
+		
+		mfhi $v1							# remainder of division is a column * 4 - 1
+		
+		li $t0, 4							# load 4 in $t0
+		div $v1, $t0						# $v1 / 4
+		
+		mflo $v1							# set division value in $v1
+		
+		addi $v1, $v1, 1					# column		
 	jr $ra
 	
 	# no arguments
