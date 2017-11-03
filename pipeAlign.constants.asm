@@ -37,8 +37,8 @@
 	.end_macro
 	
 	.macro popFromStack(%x, %y)
-		lw  %x, 0($sp)						# restore register from stack
-		lw  %y, 4($sp)						# restore register from stack
+		lw  %y, 0($sp)						# restore register from stack
+		lw  %x, 4($sp)						# restore register from stack
 		add $sp, $sp, 8						# adjust $sp
 	.end_macro
 	

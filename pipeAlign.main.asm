@@ -10,11 +10,13 @@
 			
 	main:		
 		jal fillBackgroundColor
-				
-		li $a0, 8		
-		la $a1, greenColor
+			
+		li $a0, 8	
+		li $a1, 1		
+		li $a2, 128
+		la $a3, greenColor	
 		
-		jal drawEntireLine
+		jal drawHorizontalLine
 					
 		return_EXIT_SUCCESS
 	
@@ -87,4 +89,19 @@
 		popFromStack($ra)
 			
 		mul $v0, $v0, 4						# return number of blocks * 4
+	jr $ra
+
+	# arguments register_1, register_2
+	# return min in $v0, max in $v1
+	getMinMax:		
+		blt $a0, $a1, isLess
+		
+		move $v0, $a1
+		move $v1, $a0
+		
+		jr $ra
+		
+		isLess:
+			move $v0, $a0
+			move $v1, $a1
 	jr $ra

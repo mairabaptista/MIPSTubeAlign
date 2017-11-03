@@ -1,16 +1,80 @@
 .data
 	# Data Segment	
 .text
-	# arguments:
-	drawVerticalLine:
-		#TODO
-	jr $ra
-	
-	# arguments:
+	# arguments: line number, initial block, final block, color
 	drawHorizontalLine:
-		#TODO
+		move $t0, $a0						# line number
+	
+		move $a0, $a1
+		move $a1, $a2
+		
+		pushInStack($ra)
+		
+		jal getMinMax			
+		
+		popFromStack($ra)
+	
+		move $t1, $v0						# new initial block
+		move $t2, $v1						# new final block
+		
+		move $a0, $t0						# send line number
+		move $a1, $t1						# send initial block
+	
+		pushInStack($ra, $t1)
+		
+		jal getPositionFromBlock			# return Position to $v0
+		
+		popFromStack($ra, $t1)
+		
+		move $a0, $v0						# position start
+		
+		sub $a1, $t2, $t1					
+		addi $a1, $a1, 1					# number of blocks to draw
+		
+		la $a2, horizontal
+		
+		pushInStack($ra)
+				  
+		jal drawContinuosBlocks
+		
+		popFromStack($ra)		
 	jr $ra
 	
+	# arguments: initial line, final line, block number, color
+	drawVerticalLine:
+	
+		pushInStack($ra)
+		
+		jal getMinMax			
+		
+		popFromStack($ra)
+	
+		move $t1, $v0						# new initial line
+		move $t2, $v1						# new final line
+		
+		move $a0, $t1						# send line number
+		move $a1, $a2						# send block number
+	
+		pushInStack($ra, $t1)
+		
+		jal getPositionFromBlock			# return Position to $v0
+		
+		popFromStack($ra, $t1)
+		
+		move $a0, $v0						# position start
+		
+		sub $a1, $t2, $t1					
+		addi $a1, $a1, 1					# number of blocks to draw
+		
+		la $a2, vertical
+		
+		pushInStack($ra)
+				  
+		jal drawContinuosBlocks
+		
+		popFromStack($ra)			
+	jr $ra
+		
 	# arguments:
 	drawRectangle:
 		#TODO
