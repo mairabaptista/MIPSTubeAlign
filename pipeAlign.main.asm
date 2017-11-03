@@ -10,11 +10,8 @@
 			
 	main:		
 		jal fillBackgroundColor
-			
-		li $a0, 8	
-		li $a1, 1		
-		li $a2, 128
-		la $a3, greenColor	
+					
+		sendParameters(8, 1, 128, greenColor)
 		
 		jal drawHorizontalLine
 					

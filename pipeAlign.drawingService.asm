@@ -3,10 +3,9 @@
 .text
 	# arguments: line number, initial block, final block, color
 	drawHorizontalLine:
-		move $t0, $a0						# line number
-	
-		move $a0, $a1
-		move $a1, $a2
+		move $t0, $a0							# line number
+		
+		sendParameters($a1, $a2)
 		
 		pushInStack($ra)
 		
@@ -14,24 +13,21 @@
 		
 		popFromStack($ra)
 	
-		move $t1, $v0						# new initial block
-		move $t2, $v1						# new final block
-		
-		move $a0, $t0						# send line number
-		move $a1, $t1						# send initial block
+		move $t1, $v0							# new initial block
+		move $t2, $v1							# new final block
+					
+		sendParameters($t0, $t1)				# send line number, initial block
 	
 		pushInStack($ra, $t1)
 		
-		jal getPositionFromBlock			# return Position to $v0
+		jal getPositionFromBlock				# return Position to $v0
 		
 		popFromStack($ra, $t1)
+				
+		sub $t3, $t2, $t1					
+		addi $t3, $t3, 1						# number of blocks to draw
 		
-		move $a0, $v0						# position start
-		
-		sub $a1, $t2, $t1					
-		addi $a1, $a1, 1					# number of blocks to draw
-		
-		la $a2, horizontal
+		sendParameters($v0, $t3, horizontal)	# send position, blocks to draw, orientation
 		
 		pushInStack($ra)
 				  
@@ -49,24 +45,21 @@
 		
 		popFromStack($ra)
 	
-		move $t1, $v0						# new initial line
-		move $t2, $v1						# new final line
+		move $t1, $v0							# new initial line
+		move $t2, $v1							# new final line
 		
-		move $a0, $t1						# send line number
-		move $a1, $a2						# send block number
-	
+		sendParameters($t1, $a2)				# send line number, initial block
+				
 		pushInStack($ra, $t1)
 		
-		jal getPositionFromBlock			# return Position to $v0
+		jal getPositionFromBlock				# return Position to $v0
 		
 		popFromStack($ra, $t1)
-		
-		move $a0, $v0						# position start
-		
-		sub $a1, $t2, $t1					
-		addi $a1, $a1, 1					# number of blocks to draw
-		
-		la $a2, vertical
+				
+		sub $t3, $t2, $t1					
+		addi $t3, $t3, 1						# number of blocks to draw
+	
+		sendParameters($v0, $t3, vertical)		# send position, blocks to draw, orientation
 		
 		pushInStack($ra)
 				  
@@ -75,7 +68,7 @@
 		popFromStack($ra)			
 	jr $ra
 		
-	# arguments:
+	# arguments: 
 	drawRectangle:
 		#TODO
 	jr $ra		
@@ -112,27 +105,25 @@
 	
 	# arguments: line number, color
 	drawEntireLine:
-		move $t0, $a1						# save color in temp
+		move $t0, $a1								# save color in temp
 			
 		pushInStack($ra, $t0)
+				
+		sendParameters($a0, 1)						# column 1 (first column in line)
 		
-		li $a1, 1							# column 1 (first column in line)
-		
-		jal getPositionFromBlock			# return Position to $v0
+		jal getPositionFromBlock					# return Position to $v0
 		
 		popFromStack($ra, $t0)
 				
-		move $a0, $v0						# send Position to draw
-				
+		sendParameters($v0)							# send Position to drawContinuosBlocks
+						
 		pushInStack($ra, $t0)
 				
 		jal getNumberOfBlocksInLine
 		
 		popFromStack($ra, $t0)				
-		
-		move $a1, $v0						# send entire line to draw
-		la $a2, horizontal					# send horizontal line
-		move $a3, $t0						# send color
+				
+		sendParameters($a0, $v0, horizontal, $t0)	# send: position, entire line, horizontal line, color
 		
 		pushInStack($ra)
 				  
@@ -148,14 +139,14 @@
 	
 	# arguments: position of memory, blocksToFill, orientation, color
 	drawContinuosBlocks:
-		la $t0, baseAddress					# base address
-		move $t1, $t0						# aux address
+		la $t0, baseAddress							# base address
+		move $t1, $t0								# aux address
 						
-		move $t2, $a0						# initial		
-		add $t1, $t1, $t2					# base + initial
+		move $t2, $a0								# initial		
+		add $t1, $t1, $t2							# base + initial
 						
-		li $t3, 0 							# i
-		move $t4, $a1						# length
+		li $t3, 0 									# i
+		move $t4, $a1								# length
 		
 		beq $a2, horizontal, if_horizontal
 						
@@ -184,9 +175,9 @@
 		if_secondary_diagonal:			
 			subi $t5, $t5, 4		
 		
-		loop:								# draw horizontaly
+		loop:										# draw horizontaly
 			sw $a3, 0($t1)
-			add $t1, $t1, $t5				# add $t5 (orientation)
+			add $t1, $t1, $t5						# add $t5 (orientation)
 			addi $t3, $t3, 1
 			beq $t3, $t4, end_loop
 			j loop
@@ -201,22 +192,22 @@
 		la $t2, unitWidth
 		la $t3, unitHeight
 		
-		mul $t4, $t0, $t1					# pixels in screen
-		mul $t5, $t2, $t3					# size of unit
+		mul $t4, $t0, $t1							# pixels in screen
+		mul $t5, $t2, $t3							# size of unit
 						
 		div $t4, $t5							
-		mflo $t4							# number of units in screen
+		mflo $t4									# number of units in screen
 						
-		mul $t4, $t4, 4						# 4 bytes / word
+		mul $t4, $t4, 4								# 4 bytes / word
 						
-		la $t0, baseAddress					# base address for display
-		add  $t4, $t4, $t0  				# last unit address
+		li $t0, baseAddress							# base address for display
+		add  $t4, $t4, $t0  						# last unit address
 				
-		la $t1, backgroundColor
+		li $t1, backgroundColor
 		
 		fillLoop:
 			beq $t0, $t4, exit_fillloop	
-			sw $t1, 0($t0) 					# fill unit
+			sw $t1, 0($t0) 							# fill unit
 			addiu $t0, $t0, 4
 			j fillLoop
 		exit_fillloop:		
