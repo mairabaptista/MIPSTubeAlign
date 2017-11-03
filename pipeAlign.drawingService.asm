@@ -37,8 +37,7 @@
 	jr $ra
 	
 	# arguments: initial line, final line, block number, color
-	drawVerticalLine:
-	
+	drawVerticalLine:	
 		pushInStack($ra)
 		
 		jal getMinMax			

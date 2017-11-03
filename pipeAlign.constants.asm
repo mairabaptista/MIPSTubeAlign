@@ -16,67 +16,59 @@
 	.eqv horizontal			0
 	.eqv vertical			1
 	.eqv mainDiagonal		2
-	.eqv secondaryDiagonal	3
-	
+	.eqv secondaryDiagonal	3	
 .text
 	#Macros
 	.macro pushInStack(%x)
-		sub $sp, $sp, 4						# adjust to push in stack
-		sw  %x, 0($sp)						# push register in stack
+		sub $sp, $sp, 4								# adjust to push in stack
+		sw  %x, 0($sp)								# push register in stack
 	.end_macro
 	
 	.macro pushInStack(%x, %y)
-		sub $sp, $sp, 8						# adjust to push in stack
-		sw  %x, 4($sp)						# push register in stack
-		sw  %y, 0($sp)						# push register in stack
+		sub $sp, $sp, 8								# adjust to push in stack
+		sw  %x, 4($sp)								# push register in stack
+		sw  %y, 0($sp)								# push register in stack
 	.end_macro
 	
 	.macro popFromStack(%x)
-		lw  %x, 0($sp)						# restore register from stack
-		add $sp, $sp, 4						# adjust $sp
+		lw  %x, 0($sp)								# restore register from stack
+		add $sp, $sp, 4								# adjust $sp
 	.end_macro
 	
 	.macro popFromStack(%x, %y)
-		lw  %y, 0($sp)						# restore register from stack
-		lw  %x, 4($sp)						# restore register from stack
-		add $sp, $sp, 8						# adjust $sp
+		lw  %y, 0($sp)								# restore register from stack
+		lw  %x, 4($sp)								# restore register from stack
+		add $sp, $sp, 8								# adjust $sp
 	.end_macro
 	
-	.macro sendParameters(%x)		
+	.macro sendParameters(%x)						
 		add $a0, $zero, %x	
 	.end_macro
 	
-	.macro sendParameters(%x, %y)		
+	.macro sendParameters(%x, %y)					
 		sendParameters(%x)
-		
 		add $a1, $zero, %y	
 	.end_macro
 	
-	.macro sendParameters(%x, %y, %z)	
-		sendParameters(%x, %y)		
-		
+	.macro sendParameters(%x, %y, %z)				
+		sendParameters(%x, %y)
 		add $a2, $zero, %z	
 	.end_macro
 	
-	.macro sendParameters(%x, %y, %z, %w)
-		sendParameters(%x, %y, %z)		
-		
+	.macro sendParameters(%x, %y, %z, %w)			
+		sendParameters(%x, %y, %z)
 		add $a3, $zero, %w		
 	.end_macro
 	
-	.macro sendParameters(%x, %y, %z, %w, %f)
-		sendParameters(%x, %y, %z, %w)	
-				
-		add $t8, $zero, %f
-		
+	.macro sendParameters(%x, %y, %z, %w, %f)		
+		sendParameters(%x, %y, %z, %w)					
+		add $t8, $zero, %f		
 		pushInStack($t8)
 	.end_macro
 	
 	.macro sendParameters(%x, %y, %z, %w, %f, %g)
-		sendParameters(%x, %y, %z, %w, %f)	
-				
-		add $t9, $zero, %g
-		
+		sendParameters(%x, %y, %z, %w, %f)					
+		add $t9, $zero, %g		
 		pushInStack($t9)
 	.end_macro
 	
