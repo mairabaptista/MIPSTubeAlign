@@ -10,7 +10,7 @@
 	main:		
 		jal fillBackgroundColor		
 					
-		sendParameters(3, 3, 62, 126, BLUE_COLOR, NOT_FILLED)		# start in (2,2) and finish in (63,127)		
+		sendParameters(3, 3, 62, 126, BLUE_COLOR, NOT_FILLED)		# start in (3,3) and finish in (62,126)		
 		jal drawRectangle
 		
 		# draw L
@@ -36,5 +36,5 @@
 		# draw O
 		sendParameters(6, 29, 10, 32, BLUE_COLOR, NOT_FILLED)		# start in (6,29) and finish in (10,32)		
 		jal drawRectangle
-								
+										
 	return_EXIT_SUCCESS
