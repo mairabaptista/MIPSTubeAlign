@@ -1,22 +1,22 @@
 .data
 	#Screen 
-	.eqv screenWidth		1024
-	.eqv screenHeight		512
-	.eqv unitWidth			8
-	.eqv unitHeight			8
-	.eqv baseAddress 		0x10010000
+	.eqv SCREEN_WIDTH 			1024
+	.eqv SCREEN_HEIGHT			512
+	.eqv UNIT_WIDTH				8
+	.eqv UNIT_HEIGHT			8
+	.eqv BASE_ADDRESS 			0x10010000
 	
 	#Colors	
-	.eqv backgroundColor	0x0000ff
-	.eqv redColor		 	0xff0000
-	.eqv greenColor 		0x00ff00
-	.eqv blueColor 			0x0000ff
+	.eqv BACKGROUND_COLOR		0x0000ff
+	.eqv RED_COLOR		 		0xff0000
+	.eqv GREEN_COLOR 			0x00ff00
+	.eqv BLUE_COLOR				0x0000ff
 	
 	#Orientation
-	.eqv horizontal			0
-	.eqv vertical			1
-	.eqv mainDiagonal		2
-	.eqv secondaryDiagonal	3	
+	.eqv HORIZONTAL				0
+	.eqv VERTICAL				1
+	.eqv MAIN_DIAGONAL			2
+	.eqv SECONDARY_DIAGONAL		3	
 .text
 	#Macros
 	.macro pushInStack(%x)

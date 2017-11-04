@@ -27,7 +27,7 @@
 		sub $t3, $t2, $t1								
 		addi $t3, $t3, 1									# number of blocks to draw
 					
-		sendParameters($v0, $t3, horizontal)				# send position, blocks to draw, orientation
+		sendParameters($v0, $t3, HORIZONTAL)				# send position, blocks to draw, orientation
 		
 		pushInStack($ra)
 				  
@@ -58,7 +58,7 @@
 		sub $t3, $t2, $t1								
 		addi $t3, $t3, 1									# number of blocks to draw
 				
-		sendParameters($v0, $t3, vertical)					# send position, blocks to draw, orientation
+		sendParameters($v0, $t3, VERTICAL)					# send position, blocks to draw, orientation
 		
 		pushInStack($ra)
 				  
@@ -122,7 +122,7 @@
 				
 		popFromStack($ra, $t0)						
 						
-		sendParameters($a0, $v0, horizontal, $t0)			# send: position, entire line, horizontal line, color
+		sendParameters($a0, $v0, HORIZONTAL, $t0)			# send: position, entire line, horizontal line, color
 		
 		pushInStack($ra)
 				  
@@ -138,7 +138,7 @@
 	
 	# arguments: position of memory, blocksToFill, orientation, color
 	drawContinuosBlocks:
-		la $t0, baseAddress									# base address
+		la $t0, BASE_ADDRESS								# base address
 		move $t1, $t0										# aux address
 								
 		move $t2, $a0										# initial		
@@ -147,7 +147,7 @@
 		li $t3, 0 											# i
 		move $t4, $a1										# length
 		
-		beq $a2, horizontal, if_horizontal
+		beq $a2, HORIZONTAL, if_horizontal
 						
 		pushInStack($ra, $t1)		
 						
@@ -157,9 +157,9 @@
 		
 		move $t5, $v0
 		
-		beq $a2, vertical, loop		
-		beq $a2, mainDiagonal, if_main_diagonal
-		beq $a2, secondaryDiagonal, if_secondary_diagonal
+		beq $a2, VERTICAL, loop		
+		beq $a2, MAIN_DIAGONAL, if_main_diagonal
+		beq $a2, SECONDARY_DIAGONAL, if_secondary_diagonal
 		
 		j end_loop
 		
@@ -185,11 +185,11 @@
 			
 	# no arguments		
 	fillBackgroundColor:		
-		la $t0, screenWidth		
-		la $t1, screenHeight		
+		la $t0, SCREEN_WIDTH		
+		la $t1, SCREEN_HEIGHT		
 				
-		la $t2, unitWidth		
-		la $t3, unitHeight		
+		la $t2, UNIT_WIDTH		
+		la $t3, UNIT_HEIGHT		
 				
 		mul $t4, $t0, $t1									# pixels in screen
 		mul $t5, $t2, $t3									# size of unit
@@ -199,10 +199,10 @@
 								
 		mul $t4, $t4, 4										# 4 bytes / word
 								
-		li $t0, baseAddress									# base address for display
+		li $t0, BASE_ADDRESS								# base address for display
 		add  $t4, $t4, $t0  								# last unit address
 						
-		li $t1, backgroundColor		
+		li $t1, BACKGROUND_COLOR		
 				
 		fillLoop:		
 			beq $t0, $t4, exit_fillloop			

@@ -1,7 +1,6 @@
 .data	
 	# Data Segment	
-.text	
-
+.text
 	# arguments: line, column
 	# return position of memory
 	getPositionFromBlock:	
@@ -49,8 +48,8 @@
 	
 	# return number of blocks in line
 	getNumberOfBlocksInLine:
-		la $t0, screenWidth
-		la $t1, unitWidth
+		la $t0, SCREEN_WIDTH
+		la $t1, UNIT_WIDTH
 		
 		div $t0, $t1										# number of blocks
 		
