@@ -7,16 +7,22 @@
 	.eqv BASE_ADDRESS 			0x10010000
 	
 	#Colors	
-	.eqv BACKGROUND_COLOR		0x0000ff
+	.eqv BACKGROUND_COLOR		0x00ff00
 	.eqv RED_COLOR		 		0xff0000
 	.eqv GREEN_COLOR 			0x00ff00
 	.eqv BLUE_COLOR				0x0000ff
+	.eqv BLACK_COLOR			0x000000
+	.eqv WHITE_COLOR			0xffffff
 	
 	#Orientation
 	.eqv HORIZONTAL				0
 	.eqv VERTICAL				1
 	.eqv MAIN_DIAGONAL			2
-	.eqv SECONDARY_DIAGONAL		3	
+	.eqv SECONDARY_DIAGONAL		3
+	
+	#Rectangule
+	.eqv FILLED					1
+	.eqv NOT_FILLED				0	
 .text
 	#Macros
 	.macro pushInStack(%x)
@@ -30,6 +36,21 @@
 		sw  %y, 0($sp)								# push register in stack
 	.end_macro
 	
+	.macro pushInStack(%x, %y, %z)
+		sub $sp, $sp, 12							# adjust to push in stack
+		sw  %x, 8($sp)								# push register in stack
+		sw  %y, 4($sp)								# push register in stack
+		sw  %z, 0($sp)								# push register in stack
+	.end_macro
+	
+	.macro pushInStack(%x, %y, %z, %w)
+		sub $sp, $sp, 16							# adjust to push in stack
+		sw  %x, 12($sp)								# push register in stack
+		sw  %y, 8($sp)								# push register in stack
+		sw  %z, 4($sp)								# push register in stack
+		sw  %w, 0($sp)								# push register in stack
+	.end_macro
+	
 	.macro popFromStack(%x)
 		lw  %x, 0($sp)								# restore register from stack
 		add $sp, $sp, 4								# adjust $sp
@@ -39,6 +60,21 @@
 		lw  %y, 0($sp)								# restore register from stack
 		lw  %x, 4($sp)								# restore register from stack
 		add $sp, $sp, 8								# adjust $sp
+	.end_macro
+	
+	.macro popFromStack(%x, %y, %z)
+		lw  %z, 0($sp)								# restore register from stack
+		lw  %y, 4($sp)								# restore register from stack
+		lw  %x, 8($sp)								# restore register from stack
+		add $sp, $sp, 12							# adjust $sp
+	.end_macro
+	
+	.macro popFromStack(%x, %y, %z, %w)
+		lw  %w, 0($sp)								# restore register from stack
+		lw  %z, 4($sp)								# restore register from stack
+		lw  %y, 8($sp)								# restore register from stack
+		lw  %x, 12($sp)								# restore register from stack
+		add $sp, $sp, 16							# adjust $sp
 	.end_macro
 	
 	.macro sendParameters(%x)						

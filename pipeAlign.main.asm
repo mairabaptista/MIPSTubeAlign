@@ -10,8 +10,8 @@
 	main:		
 		jal fillBackgroundColor
 					
-		sendParameters(8, GREEN_COLOR)		# send line number, color
+		sendParameters(3, 3, 62, 126, BLUE_COLOR, NOT_FILLED)		# start in (2,2) and finish in (63, 127)
 		
-		jal drawEntireLine
+		jal drawRectangle
 					
 	return_EXIT_SUCCESS

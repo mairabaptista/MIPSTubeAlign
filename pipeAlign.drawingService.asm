@@ -67,9 +67,79 @@
 		popFromStack($ra)			
 	jr $ra
 		
-	# arguments: 
+	# arguments: initial line, initial block, final line, final block, color, isFilled
 	drawRectangle:
-		#TODO
+		popFromStack($t0, $t1)								# $t0 = color, $t1 = isFilled
+	
+		pushInStack($a0, $a1)		
+		sendParameters($a0, $a2)
+		
+		pushInStack($ra)
+		jal getMinMax
+		popFromStack($ra)
+		
+		popFromStack($a0, $a1)	
+		
+		beq $v0, $a0, draw									# if in order, draw
+		
+		move $a0, $v0
+		move $a2, $v1
+		
+		move $t2, $a1										# if not in order, adjust arguments
+		move $a1, $a3
+		move $a3, $t2
+		
+		draw:
+			move $t6, $a0
+			addi $t6, $t6, 1								# $t6 start in a second line
+			pushInStack($a0, $a1, $a2, $a3)	
+									
+		draw_horizontal:
+			sendParameters($a0, $a1, $a3, $t0)				# line number, initial block, final block, color						
+			pushInStack($ra, $t0, $t1)		
+			jal drawHorizontalLine			
+			popFromStack($ra, $t0, $t1)			
+			popFromStack($a0, $a1, $a2, $a3)
+			
+			bgt $t6, $a2, end_draw_horizontal				# if $t6 == final line, end loop
+			
+			pushInStack($a0, $a1, $a2, $a3)
+						
+			beqz $t1, not_filled
+			
+			sendParameters($t6)								# draw horizontal lines
+			addi $t6, $t6, 1
+						
+			j draw_horizontal
+			
+			not_filled:				
+				move $t6, $a2				
+				sendParameters($t6)							# draw bottom line
+				addi $t6, $t6, 1
+			j draw_horizontal			
+		end_draw_horizontal:
+			
+			bnez $t1, end_draw_vertical						# dont need draw vertical if isFilled
+			
+			li $t6, 0		
+			pushInStack($a0, $a1, $a2, $a3)	
+			move $t2, $a1									# $a register are modified in sendParameters
+			
+		draw_vertical:												
+			sendParameters($a0, $a2, $t2, $t0)				# initial line, final line, block number, color						
+			pushInStack($ra, $t0, $t1)		
+			jal drawVerticalLine				
+			popFromStack($ra, $t0, $t1)			
+			popFromStack($a0, $a1, $a2, $a3)
+			
+			bnez $t6, end_draw_vertical
+			
+			pushInStack($a0, $a1, $a2, $a3)
+			move $t2, $a3									# draw right side
+			addi $t6, $t6, 1
+			j draw_vertical			
+		end_draw_vertical:
+								
 	jr $ra		
 	
 	# arguments:	
