@@ -9,32 +9,54 @@
 			
 	main:		
 		jal fillBackgroundColor		
-					
-		sendParameters(3, 3, 62, 126, BLUE_COLOR, NOT_FILLED)		# start in (3,3) and finish in (62,126)		
+				
+		# draw margin
+		sendParameters(12, 6, 126, 249, BLUE_COLOR, NOT_FILLED)		# start in (6,29) and finish in (10,32)		
+		jal drawRectangle
+		#
+		
+		# horizontal		
+		sendParameters(12, 6, 31, 33, BLUE_COLOR, NOT_FILLED)		# start in (6,29) and finish in (10,32)		
 		jal drawRectangle
 		
-		# draw L
-		sendParameters(6, 10, 20, BLUE_COLOR)						# initial line, final line, block number, color		
-		jal drawVerticalLine		
+		sendParameters(12, 33, 31, 60, BLUE_COLOR, NOT_FILLED)		# start in (6,29) and finish in (10,32)		
+		jal drawRectangle		
 		
-		sendParameters(10, 21, 22, BLUE_COLOR)						# line number, initial block, final block, color		
-		jal drawHorizontalLine										
-		
-		# draw E
-		sendParameters(6, 10, 24, BLUE_COLOR)						# initial line, final line, block number, color		
-		jal drawVerticalLine		
-		
-		sendParameters(6, 25, 27, BLUE_COLOR)						# line number, initial block, final block, color		
-		jal drawHorizontalLine		
-		
-		sendParameters(8, 25, 27, BLUE_COLOR)						# line number, initial block, final block, color		
-		jal drawHorizontalLine										
-		
-		sendParameters(10, 25, 27, BLUE_COLOR)						# line number, initial block, final block, color		
-		jal drawHorizontalLine
-		
-		# draw O
-		sendParameters(6, 29, 10, 32, BLUE_COLOR, NOT_FILLED)		# start in (6,29) and finish in (10,32)		
+		sendParameters(12, 60, 31, 87, BLUE_COLOR, NOT_FILLED)		# start in (6,29) and finish in (10,32)		
 		jal drawRectangle
-										
+				
+		sendParameters(12, 87, 31, 114, BLUE_COLOR, NOT_FILLED)		# start in (6,29) and finish in (10,32)		
+		jal drawRectangle
+				
+		sendParameters(12, 114, 31, 141, BLUE_COLOR, NOT_FILLED)		# start in (6,29) and finish in (10,32)		
+		jal drawRectangle
+		
+		sendParameters(12, 141, 31, 168, BLUE_COLOR, NOT_FILLED)		# start in (6,29) and finish in (10,32)		
+		jal drawRectangle
+				
+		sendParameters(12, 168, 31, 195, BLUE_COLOR, NOT_FILLED)		# start in (6,29) and finish in (10,32)		
+		jal drawRectangle
+				
+		sendParameters(12, 195, 31, 222, BLUE_COLOR, NOT_FILLED)		# start in (6,29) and finish in (10,32)		
+		jal drawRectangle
+		
+		sendParameters(12, 222, 31, 249, BLUE_COLOR, NOT_FILLED)		# start in (6,29) and finish in (10,32)		
+		jal drawRectangle	
+		
+		#vertical
+		sendParameters(31, 6, 50, 33, BLUE_COLOR, NOT_FILLED)		# start in (6,29) and finish in (10,32)		
+		jal drawRectangle
+				
+		sendParameters(50, 6, 69, 33, BLUE_COLOR, NOT_FILLED)		# start in (6,29) and finish in (10,32)		
+		jal drawRectangle
+		
+		sendParameters(69, 6, 88, 33, BLUE_COLOR, NOT_FILLED)		# start in (6,29) and finish in (10,32)		
+		jal drawRectangle		
+		
+		sendParameters(88, 6, 107, 33, BLUE_COLOR, NOT_FILLED)		# start in (6,29) and finish in (10,32)		
+		jal drawRectangle
+				
+		sendParameters(107, 6, 126, 33, BLUE_COLOR, NOT_FILLED)		# start in (6,29) and finish in (10,32)		
+		jal drawRectangle
+									
 	return_EXIT_SUCCESS

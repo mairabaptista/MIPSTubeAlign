@@ -1,12 +1,24 @@
 .data
-	#Screen 
+	# Display 
 	.eqv SCREEN_WIDTH 			1024
 	.eqv SCREEN_HEIGHT			512
-	.eqv UNIT_WIDTH				8
-	.eqv UNIT_HEIGHT			8
+	.eqv UNIT_WIDTH				4
+	.eqv UNIT_HEIGHT			4
 	.eqv BASE_ADDRESS 			0x10010000
 	
-	#Colors	
+	# Screen Game
+	.eqv HORIZONTAL_SLOTS		9	
+	.eqv VERTICAL_SLOTS			6
+	
+	.eqv SLOT_HEIGHT			19	
+	.eqv SLOT_WIDTH				27
+		
+	.eqv MARGIN_TOP				12
+	.eqv MARGIN_LEFT			6
+	.eqv MARGIN_RIGHT			7
+	.eqv MARGIN_BOTTOM			2
+		
+	# Colors	
 	.eqv BACKGROUND_COLOR		0x00ff00
 	.eqv RED_COLOR		 		0xff0000
 	.eqv GREEN_COLOR 			0x00ff00
@@ -14,17 +26,17 @@
 	.eqv BLACK_COLOR			0x000000
 	.eqv WHITE_COLOR			0xffffff
 	
-	#Orientation
+	# Orientation
 	.eqv HORIZONTAL				0
 	.eqv VERTICAL				1
 	.eqv MAIN_DIAGONAL			2
 	.eqv SECONDARY_DIAGONAL		3
 	
-	#Rectangule
+	# Rectangule
 	.eqv FILLED					1
 	.eqv NOT_FILLED				0	
 .text
-	#Macros
+	# Macros
 	.macro pushInStack(%x)
 		sub $sp, $sp, 4								# adjust to push in stack
 		sw  %x, 0($sp)								# push register in stack
