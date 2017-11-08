@@ -9,7 +9,55 @@
 	.globl main
 			
 	main:		
-	
-	jal fillBackgroundColor			
-															
+
+		jal fillBackgroundColor		
+				
+		# arguments: line number, color
+		sendParameters(10, BLUE_COLOR)
+		jal drawEntireLine
+			
+		sendParameters(RED_COLOR)
+		jal createCursor
+					
+		jal setMaxCursorTop
+		jal setMaxCursorLeft
+		
+		readInput:
+			lw $t1, BASE_INPUT_ADDRESS
+			
+			beq $t1, LETTER_W, onWPress 
+			beq $t1, LETTER_X, onXPress 
+			beq $t1, LETTER_A, onAPress 
+			beq $t1, LETTER_D, onDPress 
+			beq $t1, LETTER_S, onSPress 					
+						
+			j notKeyPressValid
+			
+			onWPress:
+				jal moveCursorUp
+			j beforeKeyPress
+			
+			onXPress:
+				jal moveCursorDown
+			j beforeKeyPress
+			
+			onAPress:
+				jal moveCursorLeft
+			j beforeKeyPress
+			
+			onDPress:
+				jal moveCursorRight
+			j beforeKeyPress
+			
+			onSPress:
+				jal toggleTube
+			j beforeKeyPress
+			
+			beforeKeyPress:		
+				sw $zero, 0xFFFF0004
+							
+			notKeyPressValid:
+			
+		j readInput   
+									
 	return_EXIT_SUCCESS

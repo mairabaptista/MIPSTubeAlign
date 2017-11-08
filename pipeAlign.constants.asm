@@ -4,14 +4,23 @@
 	.eqv SCREEN_HEIGHT			512
 	.eqv UNIT_WIDTH				4
 	.eqv UNIT_HEIGHT			4
-	.eqv BASE_ADDRESS 			0x10010000
+	.eqv BASE_ADDRESS 			0x10040000
 	
+	# Input Data
+	.eqv BASE_INPUT_ADDRESS		0xffff0004
+	.eqv LETTER_W				119
+	.eqv LETTER_X				120
+	.eqv LETTER_A				97
+	.eqv LETTER_D				100
+	.eqv LETTER_S				115
+			
 	# Screen Game
 	.eqv HORIZONTAL_SLOTS			9	
 	.eqv VERTICAL_SLOTS			6
 	
 	.eqv SLOT_HEIGHT			19	
-	.eqv SLOT_WIDTH				27
+	.eqv SLOT_WIDTH				27	
+	.eqv CURSOR_SIZE			4
 		
 	.eqv MARGIN_TOP				11
 	.eqv MARGIN_LEFT			6
