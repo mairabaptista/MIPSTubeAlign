@@ -8,8 +8,7 @@
 .text
 	.globl main
 			
-	main:		
-
+	main:
 		jal fillBackgroundColor		
 				
 		# arguments: line number, color
@@ -54,7 +53,7 @@
 			j beforeKeyPress
 			
 			beforeKeyPress:		
-				sw $zero, 0xFFFF0004
+				sw $zero, BASE_INPUT_ADDRESS
 							
 			notKeyPressValid:
 			

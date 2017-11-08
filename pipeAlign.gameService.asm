@@ -1,6 +1,6 @@
 .data	
 	cursorTop:		.word 	11				
-	cursorLeft: 	.word 	6
+	cursorLeft: 	.word 	33
 		
 	maxCursorTop: 	.word 	0	
 	maxCursorLeft: 	.word 	0
@@ -87,12 +87,21 @@
 		end_loop_cursor_vertical:
 	jr $ra
 		
-	moveCursorUp:
+	moveCursorUp:		
 		lw $t0, cursorTop
-		li $t1, MARGIN_TOP
+		lw $t1, cursorLeft
+		li $t2, MARGIN_TOP
 		
-		ble $t0, $t1, end_movimentation_up
+		beq $t1, MARGIN_LEFT, break_first_slot_up
 		
+		j verify_movement_valid_up	
+								
+		break_first_slot_up:
+			addi $t2, $t2, SLOT_HEIGHT		
+		
+		verify_movement_valid_up:
+			ble $t0, $t2, end_movimentation_up
+				
 		sendParameters(BACKGROUND_COLOR)
 		pushInStack($ra)
 		jal createCursor	
@@ -139,9 +148,18 @@
 		
 	moveCursorLeft:
 		lw $t0, cursorLeft
-		li $t1, MARGIN_LEFT
+		lw $t1, cursorTop
+		li $t2, MARGIN_LEFT
 		
-		ble $t0, $t1, end_movimentation_left		
+		beq $t1, MARGIN_TOP, break_first_slot_left
+		
+		j verify_movement_valid_left	
+								
+		break_first_slot_left:
+			addi $t2, $t2, SLOT_WIDTH		
+		
+		verify_movement_valid_left:
+			ble $t0, $t2, end_movimentation_left	
 	
 		sendParameters(BACKGROUND_COLOR)
 		pushInStack($ra)
@@ -210,5 +228,6 @@
 		mul $t0, $t0, $t1
 		
 		addi $t0, $t0, MARGIN_LEFT
+		subi $t0, $t0, SLOT_WIDTH
 		sw $t0, maxCursorLeft
 	jr $ra
