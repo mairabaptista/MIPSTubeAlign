@@ -20,7 +20,7 @@
 	
 	.eqv SLOT_HEIGHT			19	
 	.eqv SLOT_WIDTH				27	
-	.eqv CURSOR_SIZE			4
+	.eqv CURSOR_SIZE			3
 		
 	.eqv MARGIN_TOP				11
 	.eqv MARGIN_LEFT			6

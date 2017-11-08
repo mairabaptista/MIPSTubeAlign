@@ -19,10 +19,10 @@
 		jal drawVerticalTube
 		
 		sendParameters(2)
-		jal drawVerticalTube
+		jal drawHorizontalTube	
 		
-		sendParameters(3)
-		jal drawVerticalTube	
+		sendParameters(10)
+		jal drawVerticalTube
 			
 		sendParameters(RED_COLOR)
 		jal createCursor

@@ -142,7 +142,7 @@
 								
 	jr $ra		
 	
-	# arguments: BlockNumber
+	# arguments: SlotNumber
 	drawVerticalTube:			
 		pushInStack($ra)
 		jal getBlockFromSlot
@@ -231,7 +231,6 @@
 		popFromStack($ra, $t0, $t1)
 		
 		#Lower tube stripes
-		
 		add $t2, $t0, 19
 		add $t3, $t0, 19
 		add $t4, $t1, 7
@@ -293,15 +292,56 @@
 		pushInStack($ra, $t0, $t1)
 		sendParameters($t2, $t3, $t4, STRIPE_TUBE)
 		jal drawVerticalLine
-		popFromStack($ra, $t0, $t1)
-
-													
-																																																																																																																																		
+		popFromStack($ra, $t0, $t1)																																																																																																																													
 	jr $ra
 	
-	# arguments:
+	# arguments: SlotNumber
 	drawHorizontalTube:
-		#TODO
+		
+		pushInStack($ra)
+		jal getBlockFromSlot
+		popFromStack($ra)
+		
+		# return line $v0, column in $v1
+		move $t0, $v0
+		move $t1, $v1
+		
+		#Draw the middle tube
+		add $t2, $t0, 7
+		add $t3, $t0, 12
+		add $t4, $t1, 27
+
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2 ,$t1 ,$t3 ,$t4 , TUBE_COLOR, FILLED)
+		jal drawRectangle
+		popFromStack($ra, $t0, $t1)
+		
+		#Draw the left pipe connector
+		add $t2, $t0, 4
+		add $t3, $t0, 15
+		
+		add $t4, $t1, 4
+		
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2 ,$t1 ,$t3 ,$t4 ,CONNECT_TUBE, FILLED)
+		jal drawRectangle
+		popFromStack($ra, $t0, $t1)
+		
+		
+		#Draw the right pipe connector
+		add $t2, $t0, 4
+		add $t3, $t0, 15
+		
+		add $t4, $t1, 23
+		add $t5, $t1, 27
+		
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2 ,$t4 ,$t3 ,$t5 ,CONNECT_TUBE, FILLED)
+		jal drawRectangle
+		popFromStack($ra, $t0, $t1)
+		
+		
+																			
 	jr $ra
 	
 	# arguments:
