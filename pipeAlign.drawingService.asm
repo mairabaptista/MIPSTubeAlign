@@ -142,9 +142,45 @@
 								
 	jr $ra		
 	
-	# arguments:	
-	drawVerticalTube:
-		#TODO
+	# arguments: BlockNumber
+	drawVerticalTube:			
+		pushInStack($ra)
+		jal getBlockFromSlot
+		popFromStack($ra)
+		
+		# return line $v0, column in $v1
+		move $t0, $v0
+		move $t1, $v1
+
+		add $t3, $t0, 19		
+		add $t2, $t1, 10
+		add $t4, $t2, 7
+		
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t0, $t2, $t3, $t4, TUBE_COLOR, FILLED)
+		jal drawRectangle
+		popFromStack($ra, $t0, $t1)
+		
+		add $t2, $t1, 7
+		add $t4, $t2, 13
+				
+		add $t3, $t0, 3
+		
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t0, $t2, $t3, $t4, RED_COLOR, FILLED)
+		jal drawRectangle
+		popFromStack($ra, $t0, $t1)
+		
+		add $t0, $t0, 16
+		add $t3, $t0, 3
+
+		add $t2, $t1, 7
+		add $t4, $t2, 13
+		
+		pushInStack($ra)
+		sendParameters($t0, $t2, $t3, $t4, TUBE_COLOR, FILLED)
+		jal drawRectangle
+		popFromStack($ra)																	
 	jr $ra
 	
 	# arguments:
