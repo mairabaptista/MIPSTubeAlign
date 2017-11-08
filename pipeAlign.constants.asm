@@ -28,13 +28,15 @@
 	.eqv MARGIN_BOTTOM			2
 		
 	# Colors	
-	.eqv BACKGROUND_COLOR			0x00ff00
-	.eqv TUBE_COLOR				0x7d41f4
+	.eqv BACKGROUND_COLOR		0x00ff00
+	.eqv TUBE_COLOR				0xb5bec6
 	.eqv RED_COLOR		 		0xff0000
 	.eqv GREEN_COLOR 			0x00ff00
 	.eqv BLUE_COLOR				0x0000ff
 	.eqv BLACK_COLOR			0x000000
 	.eqv WHITE_COLOR			0xffffff
+	.eqv CONNECT_TUBE			0x84a5ac
+	.eqv STRIPE_TUBE			0x5a6e71
 	
 	# Orientation
 	.eqv HORIZONTAL				0

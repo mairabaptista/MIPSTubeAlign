@@ -167,7 +167,7 @@
 		add $t3, $t0, 3
 		
 		pushInStack($ra, $t0, $t1)
-		sendParameters($t0, $t2, $t3, $t4, RED_COLOR, FILLED)
+		sendParameters($t0, $t2, $t3, $t4, CONNECT_TUBE, FILLED)
 		jal drawRectangle
 		popFromStack($ra, $t0, $t1)
 		
@@ -178,7 +178,7 @@
 		add $t4, $t2, 13
 		
 		pushInStack($ra)
-		sendParameters($t0, $t2, $t3, $t4, TUBE_COLOR, FILLED)
+		sendParameters($t0, $t2, $t3, $t4, CONNECT_TUBE, FILLED)
 		jal drawRectangle
 		popFromStack($ra)																	
 	jr $ra
