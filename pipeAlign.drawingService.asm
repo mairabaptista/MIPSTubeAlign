@@ -171,16 +171,132 @@
 		jal drawRectangle
 		popFromStack($ra, $t0, $t1)
 		
-		add $t0, $t0, 16
-		add $t3, $t0, 3
+		add $t5, $t0, 16
+		add $t3, $t5, 3
 
 		add $t2, $t1, 7
 		add $t4, $t2, 13
 		
-		pushInStack($ra)
-		sendParameters($t0, $t2, $t3, $t4, CONNECT_TUBE, FILLED)
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t5, $t2, $t3, $t4, CONNECT_TUBE, FILLED)
 		jal drawRectangle
-		popFromStack($ra)																	
+		popFromStack($ra, $t0, $t1)
+		
+		#Tube top stripes	
+		add $t2, $t0, 2
+		add $t3, $t1, 8
+		
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t0, $t2, $t3, STRIPE_TUBE)
+		jal drawVerticalLine
+		popFromStack($ra, $t0, $t1)
+	
+		add $t2, $t0, 2
+		add $t3, $t1, 10
+		
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t0, $t2, $t3, STRIPE_TUBE)
+		jal drawVerticalLine
+		popFromStack($ra, $t0, $t1)
+		
+		add $t2, $t0, 1
+		add $t3, $t1, 13
+		
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t0, $t2, $t3, STRIPE_TUBE)
+		jal drawVerticalLine
+		popFromStack($ra, $t0, $t1)
+		
+		add $t3, $t1, 15
+		
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t0, $t0, $t3, STRIPE_TUBE)
+		jal drawVerticalLine
+		popFromStack($ra, $t0, $t1)
+		
+		add $t2, $t0, 2
+		add $t3, $t1, 17
+		
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t0, $t2, $t3, STRIPE_TUBE)
+		jal drawVerticalLine
+		popFromStack($ra, $t0, $t1)
+		
+		add $t2, $t0, 1
+		add $t3, $t1, 19
+		
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t0, $t2, $t3, STRIPE_TUBE)
+		jal drawVerticalLine
+		popFromStack($ra, $t0, $t1)
+		
+		#Lower tube stripes
+		
+		add $t2, $t0, 19
+		add $t3, $t0, 19
+		add $t4, $t1, 7
+		
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2, $t3, $t4, STRIPE_TUBE)
+		jal drawVerticalLine
+		popFromStack($ra, $t0, $t1)
+		
+		add $t2, $t0, 19
+		add $t3, $t0, 17
+		add $t4, $t1, 9
+		
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2, $t3, $t4, STRIPE_TUBE)
+		jal drawVerticalLine
+		popFromStack($ra, $t0, $t1)
+		
+		add $t2, $t0, 19
+		add $t3, $t0, 18
+		add $t4, $t1, 11
+		
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2, $t3, $t4, STRIPE_TUBE)
+		jal drawVerticalLine
+		popFromStack($ra, $t0, $t1)
+				
+		add $t2, $t0, 19
+		add $t3, $t0, 19
+		add $t4, $t1, 14
+		
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2, $t3, $t4, STRIPE_TUBE)
+		jal drawVerticalLine
+		popFromStack($ra, $t0, $t1)
+		
+		add $t2, $t0, 19
+		add $t3, $t0, 17
+		add $t4, $t1, 16
+		
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2, $t3, $t4, STRIPE_TUBE)
+		jal drawVerticalLine
+		popFromStack($ra, $t0, $t1)
+
+		add $t2, $t0, 19
+		add $t3, $t0, 18
+		add $t4, $t1, 18
+		
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2, $t3, $t4, STRIPE_TUBE)
+		jal drawVerticalLine
+		popFromStack($ra, $t0, $t1)
+		
+		add $t2, $t0, 19
+		add $t3, $t0, 19
+		add $t4, $t1, 20
+		
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2, $t3, $t4, STRIPE_TUBE)
+		jal drawVerticalLine
+		popFromStack($ra, $t0, $t1)
+
+													
+																																																																																																																																		
 	jr $ra
 	
 	# arguments:
