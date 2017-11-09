@@ -19,6 +19,9 @@
 		jal drawVerticalTube
 		
 		sendParameters(2)
+		jal drawHorizontalTube
+		
+		sendParameters(3)
 		jal drawHorizontalTube	
 		
 		sendParameters(10)

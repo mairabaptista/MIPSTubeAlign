@@ -284,15 +284,6 @@
 		sendParameters($t2, $t3, $t4, STRIPE_TUBE)
 		jal drawVerticalLine
 		popFromStack($ra, $t0, $t1)
-		
-		add $t2, $t0, 19
-		add $t3, $t0, 19
-		add $t4, $t1, 20
-		
-		pushInStack($ra, $t0, $t1)
-		sendParameters($t2, $t3, $t4, STRIPE_TUBE)
-		jal drawVerticalLine
-		popFromStack($ra, $t0, $t1)																																																																																																																													
 	jr $ra
 	
 	# arguments: SlotNumber
@@ -302,7 +293,6 @@
 		jal getBlockFromSlot
 		popFromStack($ra)
 		
-		# return line $v0, column in $v1
 		move $t0, $v0
 		move $t1, $v1
 		
@@ -320,7 +310,7 @@
 		add $t2, $t0, 4
 		add $t3, $t0, 15
 		
-		add $t4, $t1, 4
+		add $t4, $t1, 3
 		
 		pushInStack($ra, $t0, $t1)
 		sendParameters($t2 ,$t1 ,$t3 ,$t4 ,CONNECT_TUBE, FILLED)
@@ -332,7 +322,7 @@
 		add $t2, $t0, 4
 		add $t3, $t0, 15
 		
-		add $t4, $t1, 23
+		add $t4, $t1, 24
 		add $t5, $t1, 27
 		
 		pushInStack($ra, $t0, $t1)
@@ -340,8 +330,99 @@
 		jal drawRectangle
 		popFromStack($ra, $t0, $t1)
 		
+		#Draw the right stripes		
+		add $t2, $t0, 14
+		add $t3, $t1, 26 
+		add $t4, $t1, 27		
+
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
+		jal drawHorizontalLine
+		popFromStack($ra, $t0, $t1)
 		
-																			
+		add $t2, $t0, 12
+		add $t3, $t1, 25 
+		add $t4, $t1, 27		
+
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
+		jal drawHorizontalLine
+		popFromStack($ra, $t0, $t1)
+		
+		
+		add $t2, $t0, 10
+		add $t3, $t1, 26
+		add $t4, $t1, 27		
+
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
+		jal drawHorizontalLine
+		popFromStack($ra, $t0, $t1)
+		
+		add $t2, $t0, 6
+		add $t3, $t1, 25 
+		add $t4, $t1, 27		
+
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
+		jal drawHorizontalLine
+		popFromStack($ra, $t0, $t1)
+		
+		add $t2, $t0, 4
+		add $t3, $t1, 26 
+		add $t4, $t1, 27		
+
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
+		jal drawHorizontalLine
+		popFromStack($ra, $t0, $t1)
+		
+		#Draw the right stripes
+		add $t2, $t0, 5
+		add $t3, $t1, 0
+		add $t4, $t1, 2
+
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
+		jal drawHorizontalLine
+		popFromStack($ra, $t0, $t1)
+		
+		add $t2, $t0, 8
+		add $t3, $t1, 0
+		add $t4, $t1, 0	
+
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
+		jal drawHorizontalLine
+		popFromStack($ra, $t0, $t1)
+		
+		add $t2, $t0, 11
+		add $t3, $t1, 0
+		add $t4, $t1, 1
+
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
+		jal drawHorizontalLine
+		popFromStack($ra, $t0, $t1)
+		
+		add $t2, $t0, 13
+		add $t3, $t1, 0
+		add $t4, $t1, 2
+
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
+		jal drawHorizontalLine
+		popFromStack($ra, $t0, $t1)
+		
+		add $t2, $t0, 15
+		add $t3, $t1, 0
+		add $t4, $t1, 0
+
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
+		jal drawHorizontalLine
+		popFromStack($ra, $t0, $t1)		
+																																																																																																																																																
 	jr $ra
 	
 	# arguments:
