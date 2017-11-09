@@ -26,6 +26,15 @@
 		
 		sendParameters(10)
 		jal drawVerticalTube
+		
+		sendParameters(12)
+		jal drawHorizontalTube	
+		
+		
+		
+		
+		sendParameters(13)
+		jal drawFirstTubeElbow
 			
 		sendParameters(RED_COLOR)
 		jal createCursor
