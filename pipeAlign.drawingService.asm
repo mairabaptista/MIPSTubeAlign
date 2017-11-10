@@ -425,8 +425,149 @@
 	jr $ra
 	
 	# arguments:
-	drawFirstTubeElbow:
-		#TODO
+	drawFirstTubeElbow:		        
+        pushInStack($ra)
+        jal getBlockFromSlot
+        popFromStack($ra)
+        
+        move $t0, $v0
+        move $t1, $v1
+        
+        #Draw horizontal tube
+        add $t2, $t0, 14
+        add $t3, $t0, 24
+        add $t4, $t1, 28
+
+        pushInStack($ra, $t0, $t1)
+        sendParameters($t2 ,$t1 ,$t3 ,$t4 , TUBE_COLOR, FILLED)
+        jal drawRectangle
+        popFromStack($ra, $t0, $t1)
+                
+        #Draw vertical tube
+        add $t3, $t0, 24        
+        add $t2, $t1, 20
+        add $t4, $t2, 14
+        
+        pushInStack($ra, $t0, $t1)
+        sendParameters($t0, $t2, $t3, $t4, TUBE_COLOR, FILLED)
+        jal drawRectangle
+        popFromStack($ra, $t0, $t1)
+        
+        #Draw the left pipe connector
+        add $t2, $t0, 8
+        add $t3, $t0, 30
+        
+        add $t4, $t1, 6
+        
+        pushInStack($ra, $t0, $t1)
+        sendParameters($t2 ,$t1 ,$t3 ,$t4 ,CONNECT_TUBE, FILLED)
+        jal drawRectangle
+        popFromStack($ra, $t0, $t1)
+        
+        #Draw the left stripes
+        add $t2, $t0, 10
+        add $t3, $t1, 0
+        add $t4, $t1, 4
+
+        pushInStack($ra, $t0, $t1)
+        sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
+        jal drawHorizontalLine
+        popFromStack($ra, $t0, $t1)
+        
+        add $t2, $t0, 16
+        add $t3, $t1, 0
+        add $t4, $t1, 0    
+
+        pushInStack($ra, $t0, $t1)
+        sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
+        jal drawHorizontalLine
+        popFromStack($ra, $t0, $t1)
+        
+        add $t2, $t0, 22
+        add $t3, $t1, 0
+        add $t4, $t1, 2
+
+        pushInStack($ra, $t0, $t1)
+        sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
+        jal drawHorizontalLine
+        popFromStack($ra, $t0, $t1)
+        
+        add $t2, $t0, 26
+        add $t3, $t1, 0
+        add $t4, $t1, 4
+
+        pushInStack($ra, $t0, $t1)
+        sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
+        jal drawHorizontalLine
+        popFromStack($ra, $t0, $t1)
+        
+        add $t2, $t0, 30
+        add $t3, $t1, 0
+        add $t4, $t1, 0
+
+        pushInStack($ra, $t0, $t1)
+        sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
+        jal drawHorizontalLine
+        popFromStack($ra, $t0, $t1)
+        
+        
+        #Draw the top pipe connector
+        add $t2, $t1, 14
+        add $t4, $t2, 26    
+        add $t3, $t0, 6
+        
+        pushInStack($ra, $t0, $t1)
+        sendParameters($t0, $t2, $t3, $t4, CONNECT_TUBE, FILLED)
+        jal drawRectangle
+        popFromStack($ra, $t0, $t1)
+        
+        #Tube top stripes    
+        add $t2, $t0, 4
+        add $t3, $t1, 16
+        
+        pushInStack($ra, $t0, $t1)
+        sendParameters($t0, $t2, $t3, STRIPE_TUBE)
+        jal drawVerticalLine
+        popFromStack($ra, $t0, $t1)
+    
+        add $t2, $t0, 4
+        add $t3, $t1, 20
+        
+        pushInStack($ra, $t0, $t1)
+        sendParameters($t0, $t2, $t3, STRIPE_TUBE)
+        jal drawVerticalLine
+        popFromStack($ra, $t0, $t1)
+        
+        add $t2, $t0, 2
+        add $t3, $t1, 26
+        
+        pushInStack($ra, $t0, $t1)
+        sendParameters($t0, $t2, $t3, STRIPE_TUBE)
+        jal drawVerticalLine
+        popFromStack($ra, $t0, $t1)
+        
+        add $t3, $t1, 30
+        
+        pushInStack($ra, $t0, $t1)
+        sendParameters($t0, $t0, $t3, STRIPE_TUBE)
+        jal drawVerticalLine
+        popFromStack($ra, $t0, $t1)
+        
+        add $t2, $t0, 4
+        add $t3, $t1, 34
+        
+        pushInStack($ra, $t0, $t1)
+        sendParameters($t0, $t2, $t3, STRIPE_TUBE)
+        jal drawVerticalLine
+        popFromStack($ra, $t0, $t1)
+        
+        add $t2, $t0, 2
+        add $t3, $t1, 38
+        
+        pushInStack($ra, $t0, $t1)
+        sendParameters($t0, $t2, $t3, STRIPE_TUBE)
+        jal drawVerticalLine
+        popFromStack($ra, $t0, $t1)
 	jr $ra
 	
 	# arguments:

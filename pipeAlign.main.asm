@@ -22,7 +22,7 @@
 		jal drawHorizontalTube
 		
 		sendParameters(3)
-		jal drawHorizontalTube	
+		jal drawFirstTubeElbow	
 		
 		sendParameters(10)
 		jal drawVerticalTube
