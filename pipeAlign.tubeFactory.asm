@@ -19,12 +19,12 @@
 	
 		pushInStack($ra, $t0, $t1)
 		sendParameters($t0, $t1)
-		jal drawTopPipeConnectorTube
+		jal drawTopPipeConnector
 		popFromStack($ra, $t0, $t1)
 	
 		pushInStack($ra, $t0, $t1)
 		sendParameters($t0, $t1)
-		jal drawBottomPipeConnectorTube
+		jal drawBottomPipeConnector
 		popFromStack($ra, $t0, $t1)
 		
 		pushInStack($ra, $t0, $t1)
@@ -112,7 +112,7 @@
         	
         	pushInStack($ra, $t0, $t1)
         	sendParameters($t0, $t1)
-        	jal drawTopPipeConnectorTube
+        	jal drawTopPipeConnector
         	popFromStack($ra, $t0, $t1)
         	
         	pushInStack($ra, $t0, $t1)
@@ -134,22 +134,167 @@
 	
 	# arguments:
 	drawSecondTubeElbow:
-		#TODO
+	
+		pushInStack($ra)
+	        jal getBlockFromSlot
+        	popFromStack($ra)
+        
+	        move $t0, $v0
+        	move $t1, $v1
+        
+	        #Draw horizontal tube
+        	add $t2, $t0, 12
+	        add $t3, $t0, 26
+        	add $t4, $t1, 20
+        	add $t5, $t4, 34
+
+       		pushInStack($ra, $t0, $t1)
+        	sendParameters($t2 ,$t4 ,$t3 ,$t5 , TUBE_COLOR, FILLED)
+        	jal drawRectangle
+       		popFromStack($ra, $t0, $t1)
+	       	
+	       	#Draw vertical tube
+        	add $t3, $t0, 26       
+        	add $t2, $t1, 20
+        	add $t4, $t2, 14
+        
+        	pushInStack($ra, $t0, $t1)
+        	sendParameters($t0, $t2, $t3, $t4, TUBE_COLOR, FILLED)
+        	jal drawRectangle
+        	popFromStack($ra, $t0, $t1)
+        	        	
+       		pushInStack($ra, $t0, $t1)
+        	sendParameters($t0, $t1)
+        	jal drawTopPipeConnector
+        	popFromStack($ra, $t0, $t1)
+        	
+    	       	pushInStack($ra, $t0, $t1)
+        	sendParameters($t0, $t1)
+        	jal drawRightPipeConnector
+        	popFromStack($ra, $t0, $t1)
+        	
+        	pushInStack($ra, $t0, $t1)
+        	sendParameters($t0, $t1)
+        	jal drawTopPipeConnectorStripes
+        	popFromStack($ra, $t0, $t1)
+        	
+        	pushInStack($ra, $t0, $t1)
+        	sendParameters($t0, $t1)
+        	jal drawRightPipeConnectorStripes
+        	popFromStack($ra, $t0, $t1)
+        		
 	jr $ra
 	
 	# arguments:
 	drawThirdTubeElbow:
-		#TODO
+		
+		pushInStack($ra)
+	        jal getBlockFromSlot
+        	popFromStack($ra)
+        
+	        move $t0, $v0
+        	move $t1, $v1
+        
+	        #Draw horizontal tube
+        	add $t2, $t0, 12
+	        add $t3, $t0, 26
+        	add $t4, $t1, 28
+
+       		pushInStack($ra, $t0, $t1)
+        	sendParameters($t2 ,$t1 ,$t3 ,$t4 , TUBE_COLOR, FILLED)
+        	jal drawRectangle
+       		popFromStack($ra, $t0, $t1)
+       		
+       		#Draw vertical tube
+        	add $t2, $t0, 12
+        	add $t3, $t0, 38	       
+        	add $t4, $t1, 20
+        	add $t5, $t4, 14
+        
+        	pushInStack($ra, $t0, $t1)
+        	sendParameters($t2, $t4, $t3, $t5, TUBE_COLOR, FILLED)
+        	jal drawRectangle
+        	popFromStack($ra, $t0, $t1)
+        	
+        	pushInStack($ra, $t0, $t1)
+        	sendParameters($t0, $t1)
+        	jal drawBottomPipeConnector
+        	popFromStack($ra, $t0, $t1)
+        	
+        	pushInStack($ra, $t0, $t1)
+        	sendParameters($t0, $t1)
+        	jal drawLeftPipeConnector
+        	popFromStack($ra, $t0, $t1)
+        	
+     	        pushInStack($ra, $t0, $t1)
+        	sendParameters($t0, $t1)
+        	jal drawBottomPipeConnectorStripes
+        	popFromStack($ra, $t0, $t1)
+        	
+        	pushInStack($ra, $t0, $t1)
+        	sendParameters($t0, $t1)
+        	jal drawLeftPipeConnectorStripes
+        	popFromStack($ra, $t0, $t1)
+		
 	jr $ra
 	
 	# arguments:
 	drawFourthTubeElbow:
-		#TODO
+	
+		pushInStack($ra)
+	        jal getBlockFromSlot
+        	popFromStack($ra)
+        
+	        move $t0, $v0
+        	move $t1, $v1
+        
+	        #Draw horizontal tube
+        	add $t2, $t0, 12
+	        add $t3, $t0, 26
+        	add $t4, $t1, 20
+        	add $t5, $t4, 34
+
+       		pushInStack($ra, $t0, $t1)
+        	sendParameters($t2 ,$t4 ,$t3 ,$t5 , TUBE_COLOR, FILLED)
+        	jal drawRectangle
+       		popFromStack($ra, $t0, $t1)
+       		
+       		#Draw vertical tube
+        	add $t2, $t0, 12
+        	add $t3, $t0, 38	       
+        	add $t4, $t1, 20
+        	add $t5, $t4, 14
+        
+        	pushInStack($ra, $t0, $t1)
+        	sendParameters($t2, $t4, $t3, $t5, TUBE_COLOR, FILLED)
+        	jal drawRectangle
+        	popFromStack($ra, $t0, $t1)
+        	
+        	pushInStack($ra, $t0, $t1)
+        	sendParameters($t0, $t1)
+        	jal drawBottomPipeConnector
+        	popFromStack($ra, $t0, $t1)
+        	
+        	pushInStack($ra, $t0, $t1)
+        	sendParameters($t0, $t1)
+        	jal drawRightPipeConnector
+        	popFromStack($ra, $t0, $t1)
+        	
+     	        pushInStack($ra, $t0, $t1)
+        	sendParameters($t0, $t1)
+        	jal drawBottomPipeConnectorStripes
+        	popFromStack($ra, $t0, $t1)
+        	
+        	pushInStack($ra, $t0, $t1)
+        	sendParameters($t0, $t1)
+        	jal drawRightPipeConnectorStripes
+        	popFromStack($ra, $t0, $t1)
+		
 	jr $ra
 
 	
 	#arguments: initial slot line number in $a0, initial slot column number in $a1
-	drawTopPipeConnectorTube:
+	drawTopPipeConnector:
 		move $t0, $a0
 		move $t1, $a1
 
@@ -166,7 +311,7 @@
 	jr $ra
 
 	#arguments: initial slot line number in $a0, initial slot column number in $a1
-	drawBottomPipeConnectorTube:
+	drawBottomPipeConnector:
 		move $t0, $a0
 		move $t1, $a1
 		
