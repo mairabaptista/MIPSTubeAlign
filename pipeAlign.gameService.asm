@@ -1,6 +1,6 @@
 .data	
-	cursorTop:		.word 	11				
-	cursorLeft: 	.word 	33
+	cursorTop:		.word 	22				
+	cursorLeft: 	.word 	60
 		
 	maxCursorTop: 	.word 	0	
 	maxCursorLeft: 	.word 	0
@@ -97,7 +97,7 @@
 		j verify_movement_valid_up	
 								
 		break_first_slot_up:
-			addi $t2, $t2, SLOT_HEIGHT		
+			addi $t2, $t2, SLOT_HEIGHT
 		
 		verify_movement_valid_up:
 			ble $t0, $t2, end_movimentation_up
@@ -229,5 +229,6 @@
 		
 		addi $t0, $t0, MARGIN_LEFT
 		subi $t0, $t0, SLOT_WIDTH
+				
 		sw $t0, maxCursorLeft
 	jr $ra

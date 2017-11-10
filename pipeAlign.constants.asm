@@ -2,8 +2,8 @@
 	# Display 
 	.eqv SCREEN_WIDTH 			1024
 	.eqv SCREEN_HEIGHT			512
-	.eqv UNIT_WIDTH				4
-	.eqv UNIT_HEIGHT			4
+	.eqv UNIT_WIDTH				2
+	.eqv UNIT_HEIGHT			2
 	.eqv BASE_ADDRESS 			0x10040000
 	
 	# Input Data
@@ -15,21 +15,21 @@
 	.eqv LETTER_S				115
 			
 	# Screen Game
-	.eqv HORIZONTAL_SLOTS			9	
+	.eqv HORIZONTAL_SLOTS		9	
 	.eqv VERTICAL_SLOTS			6
 	
-	.eqv SLOT_HEIGHT			19	
-	.eqv SLOT_WIDTH				27	
-	.eqv CURSOR_SIZE			3
+	.eqv SLOT_HEIGHT			38	
+	.eqv SLOT_WIDTH				54	
+	.eqv CURSOR_SIZE			4
 		
-	.eqv MARGIN_TOP				11
+	.eqv MARGIN_TOP				22
 	.eqv MARGIN_LEFT			6
-	.eqv MARGIN_RIGHT			7
-	.eqv MARGIN_BOTTOM			2
+	.eqv MARGIN_RIGHT			14
+	.eqv MARGIN_BOTTOM			4
 		
 	# Colors	
-	#.eqv BACKGROUND_COLOR			0x00ff00
-	.eqv BACKGROUND_COLOR			0x000000
+	#.eqv BACKGROUND_COLOR		0x00ff00
+	.eqv BACKGROUND_COLOR		0x000000
 	.eqv RED_COLOR		 		0xff0000
 	.eqv GREEN_COLOR 			0x00ff00
 	.eqv BLUE_COLOR				0x0000ff

@@ -12,7 +12,7 @@
 		jal fillBackgroundColor		
 				
 		# arguments: line number, color
-		sendParameters(10, BLACK_COLOR)
+		sendParameters(20, BLACK_COLOR)
 		jal drawEntireLine
 		
 		sendParameters(1)
