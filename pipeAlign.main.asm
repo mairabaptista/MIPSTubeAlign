@@ -1,6 +1,7 @@
 .include "pipeAlign.constants.asm"
 .include "pipeAlign.drawingService.asm"
 .include "pipeAlign.displayService.asm"
+.include "pipeAlign.tubeFactory.asm"
 .include "pipeAlign.gameService.asm"
 
 .data	
@@ -22,10 +23,7 @@
 		jal drawHorizontalTube
 		
 		sendParameters(3)
-		jal drawFirstTubeElbow	
-		
-		sendParameters(10)
-		jal drawVerticalTube
+		jal drawFirstTubeElbow
 			
 		sendParameters(RED_COLOR)
 		jal createCursor

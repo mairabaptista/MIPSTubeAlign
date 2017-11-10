@@ -7,7 +7,7 @@
 	.eqv BASE_ADDRESS 			0x10040000
 	
 	# Input Data
-	.eqv BASE_INPUT_ADDRESS		0xffff0004
+	.eqv BASE_INPUT_ADDRESS			0xffff0004
 	.eqv LETTER_W				119
 	.eqv LETTER_X				120
 	.eqv LETTER_A				97
@@ -15,7 +15,7 @@
 	.eqv LETTER_S				115
 			
 	# Screen Game
-	.eqv HORIZONTAL_SLOTS		9	
+	.eqv HORIZONTAL_SLOTS			9	
 	.eqv VERTICAL_SLOTS			6
 	
 	.eqv SLOT_HEIGHT			38	
@@ -29,7 +29,7 @@
 		
 	# Colors	
 	#.eqv BACKGROUND_COLOR		0x00ff00
-	.eqv BACKGROUND_COLOR		0x000000
+	.eqv BACKGROUND_COLOR			0x000000
 	.eqv RED_COLOR		 		0xff0000
 	.eqv GREEN_COLOR 			0x00ff00
 	.eqv BLUE_COLOR				0x0000ff
