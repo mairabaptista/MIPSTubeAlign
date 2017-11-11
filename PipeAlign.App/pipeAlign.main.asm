@@ -1,8 +1,8 @@
-.include "pipeAlign.constants.asm"
-.include "pipeAlign.drawingService.asm"
-.include "pipeAlign.displayService.asm"
-.include "pipeAlign.tubeFactory.asm"
-.include "pipeAlign.gameService.asm"
+.include "../PipeAlign.Service/pipeAlign.constants.asm"
+.include "../PipeAlign.Service/pipeAlign.drawingService.asm"
+.include "../PipeAlign.Service/pipeAlign.displayService.asm"
+.include "../PipeAlign.Service/pipeAlign.gameService.asm"
+.include "Factories/pipeAlign.tubeFactory.asm"
 
 .data	
 	# Data Segment
