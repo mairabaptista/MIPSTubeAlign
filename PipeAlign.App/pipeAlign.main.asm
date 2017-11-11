@@ -1,4 +1,5 @@
-.include "../PipeAlign.Service/pipeAlign.constants.asm"
+.include "../PipeAlign.Service/Constants/pipeAlign.constants.asm"
+.include "../PipeAlign.Common/Macros/pipeAlign.Macros.asm"
 .include "../PipeAlign.Service/pipeAlign.drawingService.asm"
 .include "../PipeAlign.Service/pipeAlign.displayService.asm"
 .include "../PipeAlign.Service/pipeAlign.gameService.asm"
