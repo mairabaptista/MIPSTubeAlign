@@ -14,6 +14,7 @@
 .include "Constants/pipeAlign.constants.asm"
 
 .include "Factories/pipeAlign.tubeFactory.asm"
+.include "Factories/pipeAlign.cursorFactory.asm"
 
 .include "Service/pipeAlign.displayService.asm"
 .include "Service/pipeAlign.drawingService.asm"
