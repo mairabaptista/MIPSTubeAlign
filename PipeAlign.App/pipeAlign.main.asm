@@ -1,9 +1,24 @@
-.include "../PipeAlign.Service/Constants/pipeAlign.constants.asm"
-.include "../PipeAlign.Common/Macros/pipeAlign.macros.asm"
-.include "../PipeAlign.Service/pipeAlign.drawingService.asm"
-.include "../PipeAlign.Service/pipeAlign.displayService.asm"
-.include "../PipeAlign.Service/pipeAlign.gameService.asm"
+# Import macros lib
+.include "../MipsMacroLibrary/Macros/mipsMacroLibrary.functionMacros.asm"
+.include "../MipsMacroLibrary/Macros/mipsMacroLibrary.memoryMacros.asm"
+
+
+# Import display lib
+.include "../MipsDisplayLibrary/Constants/mipsDisplayLibrary.constants.asm"
+.include "../MipsDisplayLibrary/mipsDisplayLibrary.displayService.asm"
+.include "../MipsDisplayLibrary/mipsDisplayLibrary.drawingService.asm"
+
+
+# Import files of application
+
+.include "Constants/pipeAlign.constants.asm"
+
 .include "Factories/pipeAlign.tubeFactory.asm"
+
+.include "Service/pipeAlign.displayService.asm"
+.include "Service/pipeAlign.drawingService.asm"
+.include "Service/pipeAlign.gameService.asm"
+
 
 .data	
 	# Data Segment
@@ -54,6 +69,13 @@
 		sendParameters(12)
 		jal drawFourthTubeElbow
 		
+		sendParameters(53, FOURTH_TUBE_ELBOW)
+		jal setTubeType	
+		sendParameters(53)
+		jal drawFourthTubeElbow
+
+
+		#TODO: Criar uma função para esse trecho de código
 		readInput:
 			lw $t1, BASE_INPUT_ADDRESS
 			

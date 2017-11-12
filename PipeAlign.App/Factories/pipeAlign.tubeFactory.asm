@@ -1,4 +1,3 @@
-#TubeFactory: Functions that draw pipes on the screen
 .data
 
 
