@@ -84,8 +84,8 @@
 			move $v1, $a1
 	jr $ra
 	
-	# arguments slot_number 
-	# return line $v0, column in $v1
+	# arguments: slot_number 
+	# return: line $v0, column in $v1
 	getBlockFromSlot:	
 		subi $a0, $a0, 1	
 		div $t0, $a0, HORIZONTAL_SLOTS
@@ -103,4 +103,25 @@
 		
 		move $v0, $t1
 		move $v1, $t2
+	jr $ra
+	
+	
+	# arguments: line in $a0, column in $a1
+	# return: Slot in $v0
+	getSlotFromBlock:
+		li $t8, 38
+		div $a0, $t8
+		
+		mflo $t0 #slot line
+		
+		li $t8, 54
+		div $a1,$t8
+		
+		mflo $t1 #slot column
+				
+		mul $t2, $t0, 9
+		add $t3, $t2, $t1
+		addi $t4, $t3, 1
+
+		move $v0, $t4
 	jr $ra

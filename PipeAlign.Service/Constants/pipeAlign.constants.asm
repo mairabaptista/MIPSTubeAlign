@@ -33,11 +33,8 @@
 	.eqv GREEN_COLOR 			0x00ff00
 	.eqv BLUE_COLOR				0x0000ff
 	.eqv BLACK_COLOR			0x000000
-	.eqv WHITE_COLOR			0xffffff
-	.eqv TUBE_COLOR				0xb5bec6
-	.eqv CONNECT_TUBE			0x84a5ac
-	.eqv STRIPE_TUBE			0x5a6e71
-	
+	.eqv WHITE_COLOR			0xffffff	
+
 	# Orientation
 	.eqv HORIZONTAL				0
 	.eqv VERTICAL				1
@@ -47,3 +44,20 @@
 	# Rectangule
 	.eqv FILLED				1
 	.eqv NOT_FILLED				0
+	
+	# TODO: Criar arquivo de constates para a aplicação
+	
+	# Tube Colors	
+	.eqv TUBE_COLOR				0xb5bec6
+	.eqv CONNECT_TUBE			0x84a5ac
+	.eqv STRIPE_TUBE			0x5a6e71
+	
+	# TubeTypes
+	.eqv EMPTY _TUBE			0
+	.eqv HORIZONTAL_TUBE 			1
+	.eqv VERTICAL_TUBE 			2
+	.eqv FIRST_TUBE_ELBOW			3
+	.eqv SECOND_TUBE_ELBOW			4
+	.eqv THIRD_TUBE_ELBOW			5
+	.eqv FOURTH_TUBE_ELBOW			6
+	

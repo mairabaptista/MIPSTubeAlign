@@ -1,10 +1,14 @@
 .data	
-	cursorTop:		.word 	22				
+	cursorTop:	.word 	22				
 	cursorLeft: 	.word 	60
 		
 	maxCursorTop: 	.word 	0	
 	maxCursorLeft: 	.word 	0
+	
+	slotMapping:	.space	54
 .text
+	
+	# TODO: Remover essa função deste arquivo, ela faz parte da aplicação, deve-se criar algo como uma factory
 	# arguments: color
 	createCursor:
 		li $t9, 0
@@ -206,7 +210,115 @@
 	jr $ra
 	
 	toggleTube:
-		#TODO
+		la $t1 ,slotMapping
+		lw $t2, cursorTop
+		lw $t3, cursorLeft
+		
+		pushInStack($ra, $t1, $t2, $t3)
+		sendParameters($t2, $t3)
+		jal removeTube
+		popFromStack($ra, $t1, $t2, $t3)
+		
+		pushInStack($ra, $t1)
+		sendParameters($t2, $t3)
+		jal getSlotFromBlock
+		popFromStack($ra, $t1)
+		
+		move $t4, $v0
+		
+		subi $t5, $t4, 1
+		add $t1, $t1, $t5
+		
+		lb $t5, 0($t1)
+		
+		beq $t5, 0, finishDraw
+		beq $t5, 1, horizontal
+		beq $t5, 2, vertical
+		beq $t5, 3, firstElbow
+		beq $t5, 4, secondElbow
+		beq $t5, 5, thirdElbow
+		beq $t5, 6, fourthElbow
+				
+		horizontal:
+			pushInStack($ra,$t4)
+			sendParameters($t4)
+			jal drawVerticalTube
+			popFromStack($ra, $t4)
+	
+			pushInStack($ra, $t4)
+			sendParameters($t4, VERTICAL_TUBE)
+			jal setTubeType
+			popFromStack($ra, $t4)
+			j finishDraw
+		
+		vertical:
+			pushInStack($ra, $t4)
+			sendParameters($t4)
+			jal drawHorizontalTube
+			popFromStack($ra, $t4)
+		
+			pushInStack($ra, $t4)
+			sendParameters($t4, HORIZONTAL_TUBE)
+			jal setTubeType
+			popFromStack($ra, $t4)
+		
+			j finishDraw
+			
+			firstElbow:
+			pushInStack($ra, $t4)
+			sendParameters($t4)
+			jal drawSecondTubeElbow
+			popFromStack($ra, $t4)
+		
+			pushInStack($ra, $t4)
+			sendParameters($t4, SECOND_TUBE_ELBOW)
+			jal setTubeType
+			popFromStack($ra, $t4)
+		
+			j finishDraw
+		
+		secondElbow:
+			pushInStack($ra, $t4)
+			sendParameters($t4)
+			jal drawFourthTubeElbow
+			popFromStack($ra, $t4)
+		
+			pushInStack($ra, $t4)
+			sendParameters($t4, FOURTH_TUBE_ELBOW)
+			jal setTubeType
+			popFromStack($ra, $t4)
+			
+			j finishDraw
+		
+		thirdElbow:
+			pushInStack($ra, $t4)
+			sendParameters($t4)
+			jal drawFirstTubeElbow
+			popFromStack($ra, $t4)
+		
+			pushInStack($ra, $t4)
+			sendParameters($t4, FIRST_TUBE_ELBOW)
+			jal setTubeType
+			popFromStack($ra, $t4)
+				
+			j finishDraw
+		
+		fourthElbow:
+			
+			pushInStack($ra, $t4)
+			sendParameters($t4)
+			jal drawThirdTubeElbow
+			popFromStack($ra, $t4)
+		
+			pushInStack($ra, $t4)
+			sendParameters($t4, THIRD_TUBE_ELBOW)
+			jal setTubeType
+			popFromStack($ra, $t4)
+		
+			j finishDraw
+						
+		finishDraw:
+			
 	jr $ra
 	
 	setMaxCursorTop:
@@ -232,3 +344,81 @@
 				
 		sw $t0, maxCursorLeft
 	jr $ra
+	
+	
+	#TODO: Verificar se essa parte vai ficar aqui
+	
+	#arguments: No parameters
+	initializeSlotMapping:
+		
+		li $t0, 0
+		li $t1, 0
+		la $t2, slotMapping
+	
+		while: beq $t1, 54, exit
+			
+			sb $t0, 0($t2)
+			
+			add $t2, $t2, 1
+			add $t1, $t1, 1
+		j while
+		
+		exit:
+	jr $ra
+	
+	#arguments: Slot in $a0 ,Type of tube in $a1
+	setTubeType:	
+		la $t1, slotMapping
+
+		subi $a0, $a0, 1
+		add $t1, $t1, $a0
+		
+		sb $a1, 0($t1)
+				
+	jr $ra
+	
+	#arguments: Cursor top in $a0, Cursor left in $a1
+	removeTube:
+	
+		#Removes the vertical drawing
+		add $t1, $a0, 1
+		add $t2, $a0, 39		
+		
+		add $t3, $a1, 15
+		add $t4, $a1, 41
+		
+		pushInStack($ra, $a0, $a1)
+		sendParameters($t1, $t3, $t2, $t4, BACKGROUND_COLOR, FILLED)
+		jal drawRectangle
+		popFromStack($ra, $a0, $a1)
+		
+		#Removes left horizontal drawing
+		add $t1, $a0, 8
+		add $t2, $a0, 32		
+		
+		add $t3, $a1, 1
+		add $t4, $a1, 14
+		
+		pushInStack($ra, $a0, $a1)
+		sendParameters($t1, $t3, $t2, $t4, BACKGROUND_COLOR, FILLED)
+		jal drawRectangle
+		popFromStack($ra, $a0, $a1)
+		
+		
+		#Removes right horizontal drawing
+		add $t1, $a0, 8
+		add $t2, $a0, 32		
+		
+		add $t3, $a1, 42
+		add $t4, $a1, 55
+		
+		pushInStack($ra, $a0, $a1)
+		sendParameters($t1, $t3, $t2, $t4, BACKGROUND_COLOR, FILLED)
+		jal drawRectangle
+		popFromStack($ra, $a0, $a1)
+		
+			
+				
+			
+	jr $ra
+	

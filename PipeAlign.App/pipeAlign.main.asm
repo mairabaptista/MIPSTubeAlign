@@ -1,5 +1,5 @@
 .include "../PipeAlign.Service/Constants/pipeAlign.constants.asm"
-.include "../PipeAlign.Common/Macros/pipeAlign.Macros.asm"
+.include "../PipeAlign.Common/Macros/pipeAlign.macros.asm"
 .include "../PipeAlign.Service/pipeAlign.drawingService.asm"
 .include "../PipeAlign.Service/pipeAlign.displayService.asm"
 .include "../PipeAlign.Service/pipeAlign.gameService.asm"
@@ -11,36 +11,48 @@
 	.globl main
 			
 	main:
+		#jal initializeSlotMapping				
+			
 		jal fillBackgroundColor		
-				
-		# arguments: line number, color
-		sendParameters(20, BLACK_COLOR)
-		jal drawEntireLine
-		
-		sendParameters(1)
-		jal drawVerticalTube
-		
-		sendParameters(2)
-		jal drawHorizontalTube
-		
-		sendParameters(3)
-		jal drawFirstTubeElbow
-		
-		sendParameters(10)
-		jal drawSecondTubeElbow
-		
-		sendParameters(11)
-		jal drawThirdTubeElbow
-		
-		
-		sendParameters(12)
-		jal drawFourthTubeElbow
 			
 		sendParameters(RED_COLOR)
 		jal createCursor
 					
 		jal setMaxCursorTop
 		jal setMaxCursorLeft
+		
+		sendParameters(20, BLACK_COLOR)
+		jal drawEntireLine
+		
+		sendParameters(4, VERTICAL_TUBE)
+		jal setTubeType		
+		sendParameters(4)
+		jal drawVerticalTube
+
+		sendParameters(2, HORIZONTAL_TUBE)
+		jal setTubeType		
+		sendParameters(2)
+		jal drawHorizontalTube
+		
+		sendParameters(3, FIRST_TUBE_ELBOW)
+		jal setTubeType	
+		sendParameters(3)
+		jal drawFirstTubeElbow
+		
+		sendParameters(10, SECOND_TUBE_ELBOW)
+		jal setTubeType	
+		sendParameters(10)
+		jal drawSecondTubeElbow
+		
+		sendParameters(11, THIRD_TUBE_ELBOW)
+		jal setTubeType	
+		sendParameters(11)
+		jal drawThirdTubeElbow
+		
+		sendParameters(12, FOURTH_TUBE_ELBOW)
+		jal setTubeType	
+		sendParameters(12)
+		jal drawFourthTubeElbow
 		
 		readInput:
 			lw $t1, BASE_INPUT_ADDRESS

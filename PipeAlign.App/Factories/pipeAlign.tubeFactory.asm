@@ -1,5 +1,8 @@
 #TubeFactory: Functions that draw pipes on the screen
-	
+.data
+
+
+.text
 	#arguments: SlotNumber
 	drawVerticalTube:			
 		pushInStack($ra)
@@ -39,7 +42,8 @@
 		pushInStack($ra, $t0, $t1)
 		sendParameters($t0, $t1)
 		jal drawBottomPipeConnectorStripes
-		popFromStack($ra, $t0, $t1)		
+		popFromStack($ra, $t0, $t1)
+						
 	jr $ra
 	
 	#arguments: SlotNumber
