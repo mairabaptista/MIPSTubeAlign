@@ -15,6 +15,7 @@
 
 .include "Factories/pipeAlign.tubeFactory.asm"
 .include "Factories/pipeAlign.cursorFactory.asm"
+.include "Factories/pipeAlign.letterFactory.asm"
 
 .include "Service/pipeAlign.displayService.asm"
 .include "Service/pipeAlign.drawingService.asm"
@@ -37,7 +38,7 @@
 		jal setMaxCursorTop
 		jal setMaxCursorLeft
 		
-		sendParameters(20, BLACK_COLOR)
+		sendParameters(20, RED_COLOR)
 		jal drawEntireLine
 		
 		jal drawInitalTube
@@ -77,44 +78,6 @@
 		sendParameters(53)
 		jal drawFourthTubeElbow
 
-
-		#TODO: Criar uma função para esse trecho de código
-		readInput:
-			lw $t1, BASE_INPUT_ADDRESS
-			
-			beq $t1, LETTER_W, onWPress 
-			beq $t1, LETTER_X, onXPress 
-			beq $t1, LETTER_A, onAPress 
-			beq $t1, LETTER_D, onDPress 
-			beq $t1, LETTER_S, onSPress 					
-						
-			j notKeyPressValid
-			
-			onWPress:
-				jal moveCursorUp
-			j beforeKeyPress
-			
-			onXPress:
-				jal moveCursorDown
-			j beforeKeyPress
-			
-			onAPress:
-				jal moveCursorLeft
-			j beforeKeyPress
-			
-			onDPress:
-				jal moveCursorRight
-			j beforeKeyPress
-			
-			onSPress:
-				jal toggleTube
-			j beforeKeyPress
-			
-			beforeKeyPress:		
-				sw $zero, BASE_INPUT_ADDRESS
-							
-			notKeyPressValid:
-			
-		j readInput   
+		jal readInput		
 									
 	return_EXIT_SUCCESS
