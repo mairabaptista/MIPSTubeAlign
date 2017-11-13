@@ -37,10 +37,7 @@
 					
 		jal setMaxCursorTop
 		jal setMaxCursorLeft
-		
-		sendParameters(20, RED_COLOR)
-		jal drawEntireLine
-		
+						
 		jal drawInitalTube
 		
 		sendParameters(4, VERTICAL_TUBE)
@@ -77,6 +74,17 @@
 		jal setTubeType	
 		sendParameters(53)
 		jal drawFourthTubeElbow
+		
+		
+		sendParameters(18, BORDER_TOP_COLOR)
+		jal drawEntireLine
+			
+		sendParameters(1, 1, 17, 512, TOP_SCREEN_COLOR, FILLED)
+		jal drawRectangle
+		
+		sendParameters(1, 1, 256, 512, BLACK_COLOR, NOT_FILLED)
+		jal drawRectangle
+		
 
 		jal readInput		
 									
