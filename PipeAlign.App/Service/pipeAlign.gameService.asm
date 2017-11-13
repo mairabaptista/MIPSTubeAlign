@@ -33,6 +33,7 @@
 		popFromStack($ra)
 		
 		end_movimentation_up:
+
 	jr $ra
 	
 	moveCursorDown:
@@ -58,6 +59,7 @@
 		popFromStack($ra)
 		
 		end_movimentation_down:
+
 	jr $ra
 		
 	moveCursorLeft:
@@ -92,6 +94,7 @@
 		popFromStack($ra)
 		
 		end_movimentation_left:
+
 	jr $ra
 	
 	moveCursorRight:	
@@ -117,6 +120,7 @@
 		popFromStack($ra)
 		
 		end_movimentation_right:
+
 	jr $ra
 	
 	setMaxCursorLeft:		
@@ -130,6 +134,7 @@
 		subi $t0, $t0, SLOT_WIDTH
 				
 		sw $t0, maxCursorLeft
+
 	jr $ra
 		
 	setMaxCursorTop:
@@ -140,7 +145,8 @@
 		mul $t0, $t0, $t1
 		
 		addi $t0, $t0, MARGIN_TOP
-		sw $t0, maxCursorTop						
+		sw $t0, maxCursorTop
+
 	jr $ra
 
 	
@@ -154,7 +160,7 @@
 		sendParameters($t2, $t3)
 		jal clearSlot
 		popFromStack($ra, $t1, $t2, $t3)
-		
+			
 		pushInStack($ra, $t1)
 		sendParameters($t2, $t3)
 		jal getSlotFromBlock
@@ -271,6 +277,7 @@
 		j while
 		
 		exit:
+		
 	jr $ra
 	
 	#arguments: Slot in $a0 ,Type of tube in $a1
@@ -280,5 +287,6 @@
 		subi $a0, $a0, 1
 		add $t1, $t1, $a0
 		
-		sb $a1, 0($t1)			
+		sb $a1, 0($t1)
+
 	jr $ra

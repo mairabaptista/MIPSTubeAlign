@@ -9,8 +9,8 @@
 		subi $a0, $a0, 1	
 		div $t0, $a0, HORIZONTAL_SLOTS
 		
-		mflo $t1 				#Represents the slot line
-		mfhi $t2				#Represents the slot column
+		mflo $t1 						#Represents the slot line
+		mfhi $t2						#Represents the slot column
 
 		mul $t1, $t1, SLOT_HEIGHT		#Multiplies the slot line by slot height
 		addi $t1, $t1, 1
@@ -22,6 +22,7 @@
 		
 		move $v0, $t1
 		move $v1, $t2
+		
 	jr $ra
 	
 	
@@ -43,4 +44,5 @@
 		addi $t4, $t3, 1
 
 		move $v0, $t4
+
 	jr $ra

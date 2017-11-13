@@ -40,6 +40,8 @@
 		sendParameters(20, BLACK_COLOR)
 		jal drawEntireLine
 		
+		jal drawInitalTube
+		
 		sendParameters(4, VERTICAL_TUBE)
 		jal setTubeType		
 		sendParameters(4)

@@ -2,6 +2,59 @@
 
 
 .text
+	drawInitalTube:
+		pushInStack($ra)
+        	sendParameters(1)
+	    	jal getBlockFromSlot
+        	popFromStack($ra)
+        
+	    	move $t0, $v0
+        	move $t1, $v1
+        
+        	#Draw horizontal initial tube
+		add $t2, $t0, 0
+	    	add $t3, $t0, 20
+	        
+        	add $t4, $t1, -6
+        	add $t5, $t1, 13
+
+       		pushInStack($ra, $t0, $t1)
+        	sendParameters($t2 ,$t4 ,$t3 ,$t5 , TUBE_COLOR, FILLED)
+        	jal drawRectangle
+       		popFromStack($ra, $t0, $t1)
+       		
+       		#Draw vertical initial tube		
+		add $t2, $t0, 0
+        	add $t3, $t0, 27
+        	       
+        	add $t4, $t1, 14
+        	add $t5, $t1, 40
+        
+        	pushInStack($ra, $t0, $t1)
+        	sendParameters($t2, $t4, $t3, $t5, TUBE_COLOR, FILLED)
+        	jal drawRectangle
+        	popFromStack($ra, $t0, $t1)
+        	
+        	#Draw connector
+		add $t5, $t0, 28
+		add $t3, $t0, 37
+
+		add $t2, $t1, 11
+		add $t4, $t1, 43
+		
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t5, $t2, $t3, $t4, CONNECT_INITIAL_TUBE, FILLED)
+		jal drawRectangle
+		popFromStack($ra, $t0, $t1)
+		
+     		pushInStack($ra, $t0, $t1)
+        	sendParameters($t0, $t1)
+        	jal drawBottomPipeConnectorStripes
+        	popFromStack($ra, $t0, $t1)        	
+        	
+	jr $ra
+	
+
 	#arguments: SlotNumber
 	drawVerticalTube:			
 		pushInStack($ra)
@@ -93,11 +146,11 @@
 	drawFirstTubeElbow:
 			        
         	pushInStack($ra)
-	        jal getBlockFromSlot
+	    	jal getBlockFromSlot
         	popFromStack($ra)
         
-	        move $t0, $v0
-        	move $t1, $v1
+	   	move $t0, $v0
+       		move $t1, $v1
         
 		pushInStack($ra, $t0, $t1)
         	sendParameters($t0, $t1)
@@ -119,12 +172,12 @@
         	jal drawLeftPipeConnector
         	popFromStack($ra, $t0, $t1)
         	
-     	        pushInStack($ra, $t0, $t1)
+     		pushInStack($ra, $t0, $t1)
         	sendParameters($t0, $t1)
         	jal drawTopPipeConnectorStripes
         	popFromStack($ra, $t0, $t1)
         	
-        	pushInStack($ra, $t0, $t1)
+       	 	pushInStack($ra, $t0, $t1)
         	sendParameters($t0, $t1)
         	jal drawLeftPipeConnectorStripes
         	popFromStack($ra, $t0, $t1)	
@@ -135,10 +188,10 @@
 	drawSecondTubeElbow:
 	
 		pushInStack($ra)
-	        jal getBlockFromSlot
+	    	jal getBlockFromSlot
         	popFromStack($ra)
         
-	        move $t0, $v0
+	    	move $t0, $v0
         	move $t1, $v1
         
 		pushInStack($ra, $t0, $t1)
@@ -146,7 +199,7 @@
         	jal drawHorizontalRigthElbow
         	popFromStack($ra, $t0, $t1)
         	
-	       	pushInStack($ra, $t0, $t1)
+	    	pushInStack($ra, $t0, $t1)
 		sendParameters($t0, $t1)
 		jal drawVerticalTopElbow
         	popFromStack($ra, $t0, $t1)
@@ -156,7 +209,7 @@
         	jal drawTopPipeConnector
         	popFromStack($ra, $t0, $t1)
         	
-    	       	pushInStack($ra, $t0, $t1)
+    		pushInStack($ra, $t0, $t1)
         	sendParameters($t0, $t1)
         	jal drawRightPipeConnector
         	popFromStack($ra, $t0, $t1)
@@ -177,10 +230,10 @@
 	drawThirdTubeElbow:
 		
 		pushInStack($ra)
-	        jal getBlockFromSlot
-        	popFromStack($ra)
+	    	jal getBlockFromSlot
+       		popFromStack($ra)
         
-	        move $t0, $v0
+	    	move $t0, $v0
         	move $t1, $v1
         
 		pushInStack($ra, $t0, $t1)
@@ -192,20 +245,20 @@
         	sendParameters($t0, $t1)
         	jal drawVerticalBottomElbow
         	popFromStack($ra, $t0, $t1)
-        	
+        
         	pushInStack($ra, $t0, $t1)
         	sendParameters($t0, $t1)
         	jal drawBottomPipeConnector
         	popFromStack($ra, $t0, $t1)
-        	
+        
         	pushInStack($ra, $t0, $t1)
         	sendParameters($t0, $t1)
         	jal drawLeftPipeConnector
         	popFromStack($ra, $t0, $t1)
-        	
-     	        pushInStack($ra, $t0, $t1)
+        
+     		pushInStack($ra, $t0, $t1)
         	sendParameters($t0, $t1)
-        	jal drawBottomPipeConnectorStripes
+       		jal drawBottomPipeConnectorStripes
         	popFromStack($ra, $t0, $t1)
         	
         	pushInStack($ra, $t0, $t1)
@@ -219,17 +272,17 @@
 	drawFourthTubeElbow:
 	
 		pushInStack($ra)
-	        jal getBlockFromSlot
+	    	jal getBlockFromSlot
         	popFromStack($ra)
         
-	        move $t0, $v0
+	    	move $t0, $v0
         	move $t1, $v1
         		
 		pushInStack($ra, $t0, $t1)
         	sendParameters($t0, $t1)
         	jal drawHorizontalRigthElbow
         	popFromStack($ra, $t0, $t1)
-       		    		
+       	    		
         	pushInStack($ra, $t0, $t1)
         	sendParameters($t0, $t1)
         	jal drawVerticalBottomElbow
@@ -245,7 +298,7 @@
         	jal drawRightPipeConnector
         	popFromStack($ra, $t0, $t1)
         	
-     	        pushInStack($ra, $t0, $t1)
+     		pushInStack($ra, $t0, $t1)
         	sendParameters($t0, $t1)
         	jal drawBottomPipeConnectorStripes
         	popFromStack($ra, $t0, $t1)
@@ -562,6 +615,7 @@
         	sendParameters($t2, $t4, $t3, $t5, TUBE_COLOR, FILLED)
         	jal drawRectangle
         	popFromStack($ra, $t0, $t1)
+
 	jr $ra
 	
 	#arguments: initial slot line number in $a0, initial slot column number in $a1
@@ -571,7 +625,7 @@
 		
 		add $t2, $t0, 12
         	add $t3, $t0, 31
-        		       
+        	       
         	add $t4, $t1, 20
         	add $t5, $t1, 34
         
@@ -579,16 +633,17 @@
         	sendParameters($t2, $t4, $t3, $t5, TUBE_COLOR, FILLED)
         	jal drawRectangle
         	popFromStack($ra, $t0, $t1)
+
 	jr $ra
-	
 	
 	#arguments: initial slot line number in $a0, initial slot column number in $a1
 	drawHorizontalRigthElbow:
+		
 		move $t0, $a0
 		move $t1, $a1
 		
 		add $t2, $t0, 12
-	        add $t3, $t0, 26
+	   	add $t3, $t0, 26
 	        
         	add $t4, $t1, 35
         	add $t5, $t1, 47
@@ -600,14 +655,13 @@
 
 	jr $ra
 	
-	
 	#arguments: initial slot line number in $a0, initial slot column number in $a1
 	drawHorizontalLeftElbow:
 		move $t0, $a0
 		move $t1, $a1
 		
 		add $t2, $t0, 12
-	        add $t3, $t0, 26
+	    	add $t3, $t0, 26
 	        
         	add $t4, $t1, 7
         	add $t5, $t1, 19
