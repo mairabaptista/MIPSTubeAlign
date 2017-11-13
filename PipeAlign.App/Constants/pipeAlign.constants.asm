@@ -13,6 +13,12 @@
 	.eqv MARGIN_RIGHT		14
 	.eqv MARGIN_BOTTOM		4
 
+# Text Division
+	.eqv HORIZONTAL_LETTER_SLOTS		32
+
+	.eqv LETTER_SLOT_HEIGHT		20
+	.eqv LETTER_SLOT_WIDTH		16					
+
 # Input Data
 	.eqv BASE_INPUT_ADDRESS	0xffff0004
 	.eqv LETTER_W			119
@@ -20,7 +26,7 @@
 	.eqv LETTER_A			97
 	.eqv LETTER_D			100
 	.eqv LETTER_S			115
-	.eqv SPACE_KEY				32
+	.eqv SPACE_KEY			32
 
 # TubeTypes
 	.eqv EMPTY _TUBE		0

@@ -282,3 +282,53 @@
 		
 		sb $a1, 0($t1)			
 	jr $ra
+
+	readInput:
+			readInputLoop:
+				lw $t1, BASE_INPUT_ADDRESS
+				
+				beq $t1, LETTER_W, onWPress			
+				beq $t1, LETTER_A, onAPress 
+				beq $t1, LETTER_D, onDPress 
+				beq $t1, LETTER_S, onSPress
+				beq $t1, SPACE_KEY, onSpacePress  					
+						
+				j notKeyPressValid
+			
+				onWPress:
+					pushInStack($ra)
+					jal moveCursorUp
+					popFromStack($ra)
+				j beforeKeyPress			
+			
+				onAPress:
+					pushInStack($ra)
+					jal moveCursorLeft
+					popFromStack($ra)
+				j beforeKeyPress
+			
+				onDPress:
+					pushInStack($ra)
+					jal moveCursorRight
+					popFromStack($ra)
+				j beforeKeyPress
+			
+				onSPress:
+					pushInStack($ra)
+					jal moveCursorDown
+					popFromStack($ra)
+				j beforeKeyPress
+
+				onSpacePress:
+					pushInStack($ra)
+					jal toggleTube
+					popFromStack($ra)
+				j beforeKeyPress
+			
+				beforeKeyPress:		
+					sw $zero, BASE_INPUT_ADDRESS
+							
+				notKeyPressValid:
+
+			j readInputLoop
+		jr $ra    
