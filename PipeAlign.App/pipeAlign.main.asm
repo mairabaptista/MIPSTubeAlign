@@ -80,21 +80,17 @@
 		readInput:
 			lw $t1, BASE_INPUT_ADDRESS
 			
-			beq $t1, LETTER_W, onWPress 
-			beq $t1, LETTER_X, onXPress 
+			beq $t1, LETTER_W, onWPress			
 			beq $t1, LETTER_A, onAPress 
 			beq $t1, LETTER_D, onDPress 
-			beq $t1, LETTER_S, onSPress 					
+			beq $t1, LETTER_S, onSPress
+			beq $t1, SPACE_KEY, onSpacePress  					
 						
 			j notKeyPressValid
 			
 			onWPress:
 				jal moveCursorUp
-			j beforeKeyPress
-			
-			onXPress:
-				jal moveCursorDown
-			j beforeKeyPress
+			j beforeKeyPress			
 			
 			onAPress:
 				jal moveCursorLeft
@@ -105,6 +101,10 @@
 			j beforeKeyPress
 			
 			onSPress:
+				jal moveCursorDown
+			j beforeKeyPress
+
+			onSpacePress:
 				jal toggleTube
 			j beforeKeyPress
 			
