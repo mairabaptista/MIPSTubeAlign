@@ -12,7 +12,7 @@
         	move $t1, $v1
         
         	#Draw horizontal initial tube
-		add $t2, $t0, 0
+			add $t2, $t0, 0
 	    	add $t3, $t0, 20
 	        
         	add $t4, $t1, -6
