@@ -86,6 +86,6 @@
 		jal drawRectangle
 		
 
-		jal readInput		
+		jal readInput
 									
 	return_EXIT_SUCCESS
