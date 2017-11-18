@@ -1,60 +1,94 @@
 .data
 
-
 .text
 	drawInitalTube:
 		pushInStack($ra)
-        	sendParameters(1)
-	    	jal getBlockFromSlot
-        	popFromStack($ra)
+        sendParameters(1)
+	    jal getBlockFromSlot
+        popFromStack($ra)
         
-	    	move $t0, $v0
-        	move $t1, $v1
+	   	move $t0, $v0
+       	move $t1, $v1
         
-        	#Draw horizontal initial tube
-			add $t2, $t0, 0
-	    	add $t3, $t0, 20
-	        
-        	add $t4, $t1, -6
-        	add $t5, $t1, 13
-
-       		pushInStack($ra, $t0, $t1)
-        	sendParameters($t2 ,$t4 ,$t3 ,$t5 , TUBE_COLOR, FILLED)
-        	jal drawRectangle
-       		popFromStack($ra, $t0, $t1)
-       		
-       		#Draw vertical initial tube		
+        #Draw horizontal initial tube
 		add $t2, $t0, 0
-        	add $t3, $t0, 27
+	    add $t3, $t0, 20
+	        
+        add $t4, $t1, -6
+        add $t5, $t1, 13
+
+       	pushInStack($ra, $t0, $t1)
+       	pushInStack($t2, $t4, $t3, $t5)
+        sendParameters($t2 ,$t4 ,$t3 ,$t5 , TUBE_COLOR, FILLED)
+        jal drawRectangle
+        popFromStack($t2, $t4, $t3, $t5)
+       	popFromStack($ra, $t0, $t1)
+       	
+       	# draw border
+       	pushInStack($ra, $t0, $t1)       
+        sendParameters($t2, $t4, $t3, $t5, BORDER_COLOR, NOT_FILLED)
+        jal drawRectangle        
+       	popFromStack($ra, $t0, $t1)
+       		
+       	#Draw vertical initial tube		
+		add $t2, $t0, 0
+        add $t3, $t0, 27
         	       
-        	add $t4, $t1, 14
-        	add $t5, $t1, 40
+        add $t4, $t1, 14
+        add $t5, $t1, 40
         
-        	pushInStack($ra, $t0, $t1)
-        	sendParameters($t2, $t4, $t3, $t5, TUBE_COLOR, FILLED)
-        	jal drawRectangle
-        	popFromStack($ra, $t0, $t1)
+       	pushInStack($ra, $t0, $t1)
+       	pushInStack($t2, $t4, $t3, $t5)
+        sendParameters($t2 ,$t4 ,$t3 ,$t5 , TUBE_COLOR, FILLED)
+        jal drawRectangle
+        popFromStack($t2, $t4, $t3, $t5)
+       	popFromStack($ra, $t0, $t1)
+        
+        # draw border
+        addi $t3, $t3, 1
+        pushInStack($ra, $t0, $t1)
+        sendParameters($t2, $t4, $t3, $t5,  BORDER_COLOR, NOT_FILLED)
+        jal drawRectangle
+        popFromStack($ra, $t0, $t1)
+        
+        # draw correction border
+        add $t2, $t0, 1
+        add $t3, $t0, 19
+        	       
+        add $t4, $t1, 13
+        add $t5, $t1, 14
+        
+        pushInStack($ra, $t0, $t1)
+        sendParameters($t2, $t4, $t3, $t5,  TUBE_COLOR, NOT_FILLED)
+        jal drawRectangle
+        popFromStack($ra, $t0, $t1)
         	
-        	#Draw connector
+        #Draw connector
 		add $t5, $t0, 28
-		add $t3, $t0, 37
+		add $t3, $t0, 38
 
 		add $t2, $t1, 11
 		add $t4, $t1, 43
 		
 		pushInStack($ra, $t0, $t1)
+		pushInStack($t5, $t2, $t3, $t4)
 		sendParameters($t5, $t2, $t3, $t4, CONNECT_INITIAL_TUBE, FILLED)
 		jal drawRectangle
+		popFromStack($t5, $t2, $t3, $t4)
 		popFromStack($ra, $t0, $t1)
 		
-     		pushInStack($ra, $t0, $t1)
-        	sendParameters($t0, $t1)
-        	jal drawBottomPipeConnectorStripes
-        	popFromStack($ra, $t0, $t1)        	
-        	
+		# draw border
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t5, $t2, $t3, $t4, BORDER_COLOR, NOT_FILLED)
+		jal drawRectangle
+		popFromStack($ra, $t0, $t1)	
+				
+     	pushInStack($ra, $t0, $t1)
+        sendParameters($t0, $t1)
+        jal drawBottomPipeConnectorStripes
+        popFromStack($ra, $t0, $t1)
 	jr $ra
 	
-
 	#arguments: SlotNumber
 	drawVerticalTube:			
 		pushInStack($ra)
@@ -72,7 +106,17 @@
 		add $t5, $t1, 34
 		
 		pushInStack($ra, $t0, $t1)
+		pushInStack($t2, $t4, $t3, $t5)
 		sendParameters($t2, $t4, $t3, $t5, TUBE_COLOR, FILLED)
+		jal drawRectangle
+		popFromStack($t2, $t4, $t3, $t5)
+		popFromStack($ra, $t0, $t1)
+		
+		#draw border
+		subi $t2, $t2, 1
+		addi $t3, $t3, 1		
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2, $t4, $t3, $t5, BORDER_COLOR, NOT_FILLED)
 		jal drawRectangle
 		popFromStack($ra, $t0, $t1)
 	
@@ -82,6 +126,7 @@
 		popFromStack($ra, $t0, $t1)
 	
 		pushInStack($ra, $t0, $t1)
+		
 		sendParameters($t0, $t1)
 		jal drawBottomPipeConnector
 		popFromStack($ra, $t0, $t1)
@@ -91,7 +136,7 @@
 		jal drawTopPipeConnectorStripes
 		popFromStack($ra, $t0, $t1)
 		
-		pushInStack($ra, $t0, $t1)
+		pushInStack($ra, $t0, $t1)		
 		sendParameters($t0, $t1)
 		jal drawBottomPipeConnectorStripes
 		popFromStack($ra, $t0, $t1)
@@ -99,8 +144,7 @@
 	jr $ra
 	
 	#arguments: SlotNumber
-	drawHorizontalTube:
-			
+	drawHorizontalTube:			
 		pushInStack($ra)
 		jal getBlockFromSlot
 		popFromStack($ra)
@@ -116,7 +160,17 @@
 		add $t5, $t1, 47
 
 		pushInStack($ra, $t0, $t1)
+		pushInStack($t2 ,$t4 ,$t3 ,$t5)
 		sendParameters($t2 ,$t4 ,$t3 ,$t5 , TUBE_COLOR, FILLED)
+		jal drawRectangle
+		popFromStack($t2 ,$t4 ,$t3 ,$t5)
+		popFromStack($ra, $t0, $t1)
+		
+		#draw border
+		subi $t4, $t4, 1
+		addi $t5, $t5, 1
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2 ,$t4 ,$t3 ,$t5 , BORDER_COLOR, NOT_FILLED)
 		jal drawRectangle
 		popFromStack($ra, $t0, $t1)
 		
@@ -149,18 +203,18 @@
 	    	jal getBlockFromSlot
         	popFromStack($ra)
         
-	   	move $t0, $v0
+	   		move $t0, $v0
        		move $t1, $v1
-        
-		pushInStack($ra, $t0, $t1)
+        		
+        	pushInStack($ra, $t0, $t1)
+        	sendParameters($t0, $t1)
+			jal drawVerticalTopElbow
+        	popFromStack($ra, $t0, $t1)
+        	
+        	pushInStack($ra, $t0, $t1)
         	sendParameters($t0, $t1)
         	jal drawHorizontalLeftElbow
        		popFromStack($ra, $t0, $t1)
-                
-        	pushInStack($ra, $t0, $t1)
-        	sendParameters($t0, $t1)
-		jal drawVerticalTopElbow
-        	popFromStack($ra, $t0, $t1)
         	       		
         	pushInStack($ra, $t0, $t1)
         	sendParameters($t0, $t1)
@@ -193,15 +247,15 @@
         
 	    	move $t0, $v0
         	move $t1, $v1
-        
-		pushInStack($ra, $t0, $t1)
-        	sendParameters($t0, $t1)
-        	jal drawHorizontalRigthElbow
+        			        	
+	    	pushInStack($ra, $t0, $t1)
+			sendParameters($t0, $t1)
+			jal drawVerticalTopElbow
         	popFromStack($ra, $t0, $t1)
         	
-	    	pushInStack($ra, $t0, $t1)
-		sendParameters($t0, $t1)
-		jal drawVerticalTopElbow
+        	pushInStack($ra, $t0, $t1)
+        	sendParameters($t0, $t1)
+        	jal drawHorizontalRigthElbow
         	popFromStack($ra, $t0, $t1)
         	        	
        		pushInStack($ra, $t0, $t1)
@@ -236,15 +290,15 @@
 	    	move $t0, $v0
         	move $t1, $v1
         
-		pushInStack($ra, $t0, $t1)
-        	sendParameters($t0, $t1)
-        	jal drawHorizontalLeftElbow
-       		popFromStack($ra, $t0, $t1)
-       		
-		pushInStack($ra, $t0, $t1)
+			pushInStack($ra, $t0, $t1)
         	sendParameters($t0, $t1)
         	jal drawVerticalBottomElbow
         	popFromStack($ra, $t0, $t1)
+        	
+        	pushInStack($ra, $t0, $t1)
+        	sendParameters($t0, $t1)
+        	jal drawHorizontalLeftElbow
+       		popFromStack($ra, $t0, $t1)
         
         	pushInStack($ra, $t0, $t1)
         	sendParameters($t0, $t1)
@@ -278,14 +332,14 @@
 	    	move $t0, $v0
         	move $t1, $v1
         		
-		pushInStack($ra, $t0, $t1)
-        	sendParameters($t0, $t1)
-        	jal drawHorizontalRigthElbow
-        	popFromStack($ra, $t0, $t1)
-       	    		
         	pushInStack($ra, $t0, $t1)
         	sendParameters($t0, $t1)
         	jal drawVerticalBottomElbow
+        	popFromStack($ra, $t0, $t1)
+        	
+        	pushInStack($ra, $t0, $t1)
+        	sendParameters($t0, $t1)
+        	jal drawHorizontalRigthElbow
         	popFromStack($ra, $t0, $t1)
         	
         	pushInStack($ra, $t0, $t1)
@@ -306,10 +360,8 @@
         	pushInStack($ra, $t0, $t1)
         	sendParameters($t0, $t1)
         	jal drawRightPipeConnectorStripes
-        	popFromStack($ra, $t0, $t1)
-		
+        	popFromStack($ra, $t0, $t1)		
 	jr $ra
-
 	
 	#arguments: initial slot line number in $a0, initial slot column number in $a1
 	drawTopPipeConnector:
@@ -322,10 +374,17 @@
 		add $t3, $t0, 6
 		
 		pushInStack($ra, $t0, $t1)
+		pushInStack($t0, $t2, $t3, $t4)
 		sendParameters($t0, $t2, $t3, $t4, CONNECT_TUBE, FILLED)
 		jal drawRectangle
+		popFromStack($t0, $t2, $t3, $t4)
 		popFromStack($ra, $t0, $t1)
 		
+		#draw border
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t0, $t2, $t3, $t4, BORDER_COLOR, NOT_FILLED)
+		jal drawRectangle
+		popFromStack($ra, $t0, $t1)		
 	jr $ra
 
 	#arguments: initial slot line number in $a0, initial slot column number in $a1
@@ -340,7 +399,15 @@
 		add $t4, $t2, 26
 		
 		pushInStack($ra, $t0, $t1)
+		pushInStack($t5, $t2, $t3, $t4)
 		sendParameters($t5, $t2, $t3, $t4, CONNECT_TUBE, FILLED)
+		jal drawRectangle
+		popFromStack($t5, $t2, $t3, $t4)
+		popFromStack($ra, $t0, $t1)
+		
+		#draw border
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t5, $t2, $t3, $t4, BORDER_COLOR, NOT_FILLED)
 		jal drawRectangle
 		popFromStack($ra, $t0, $t1)
 
@@ -356,7 +423,15 @@
 		add $t4, $t1, 6
 		
 		pushInStack($ra, $t0, $t1)
+		pushInStack($t2 ,$t1 ,$t3 ,$t4)
 		sendParameters($t2 ,$t1 ,$t3 ,$t4 ,CONNECT_TUBE, FILLED)
+		jal drawRectangle
+		popFromStack($t2 ,$t1 ,$t3 ,$t4)
+		popFromStack($ra, $t0, $t1)
+		
+		#draw border
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2 ,$t1 ,$t3 ,$t4 ,BORDER_COLOR, NOT_FILLED)
 		jal drawRectangle
 		popFromStack($ra, $t0, $t1)
 
@@ -374,7 +449,15 @@
 		add $t5, $t1, 54
 		
 		pushInStack($ra, $t0, $t1)
+		pushInStack($t2 ,$t4 ,$t3 ,$t5)
 		sendParameters($t2 ,$t4 ,$t3 ,$t5 ,CONNECT_TUBE, FILLED)
+		jal drawRectangle
+		popFromStack($t2 ,$t4 ,$t3 ,$t5)
+		popFromStack($ra, $t0, $t1)
+		
+		#draw border
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t2 ,$t4 ,$t3 ,$t5 ,BORDER_COLOR, NOT_FILLED)
 		jal drawRectangle
 		popFromStack($ra, $t0, $t1)
 
@@ -384,8 +467,10 @@
 	drawTopPipeConnectorStripes:
 		move $t0, $a0
 		move $t1, $a1
+		
+		addi $t0, $t0, 1
 
-		add $t2, $t0, 4
+		add $t2, $t0, 3
 		add $t3, $t1, 16
 		
 		pushInStack($ra, $t0, $t1)
@@ -393,7 +478,7 @@
 		jal drawVerticalLine
 		popFromStack($ra, $t0, $t1)
 	
-		add $t2, $t0, 4
+		add $t2, $t0, 3
 		add $t3, $t1, 20
 		
 		pushInStack($ra, $t0, $t1)
@@ -401,7 +486,7 @@
 		jal drawVerticalLine
 		popFromStack($ra, $t0, $t1)
 		
-		add $t2, $t0, 2
+		add $t2, $t0, 1
 		add $t3, $t1, 26
 		
 		pushInStack($ra, $t0, $t1)
@@ -416,7 +501,7 @@
 		jal drawVerticalLine
 		popFromStack($ra, $t0, $t1)
 		
-		add $t2, $t0, 4
+		add $t2, $t0, 2
 		add $t3, $t1, 34
 		
 		pushInStack($ra, $t0, $t1)
@@ -424,7 +509,7 @@
 		jal drawVerticalLine
 		popFromStack($ra, $t0, $t1)
 		
-		add $t2, $t0, 2
+		add $t2, $t0, 1
 		add $t3, $t1, 38
 		
 		pushInStack($ra, $t0, $t1)
@@ -438,17 +523,8 @@
 	drawBottomPipeConnectorStripes:
 		move $t0, $a0
 		move $t1, $a1
-
-		add $t2, $t0, 38
-		add $t3, $t0, 38
-		add $t4, $t1, 14
 		
-		pushInStack($ra, $t0, $t1)
-		sendParameters($t2, $t3, $t4, STRIPE_TUBE)
-		jal drawVerticalLine
-		popFromStack($ra, $t0, $t1)
-		
-		add $t2, $t0, 38
+		add $t2, $t0, 37
 		add $t3, $t0, 34
 		add $t4, $t1, 18
 		
@@ -457,7 +533,7 @@
 		jal drawVerticalLine
 		popFromStack($ra, $t0, $t1)
 		
-		add $t2, $t0, 38
+		add $t2, $t0, 37
 		add $t3, $t0, 36
 		add $t4, $t1, 22
 		
@@ -466,8 +542,8 @@
 		jal drawVerticalLine
 		popFromStack($ra, $t0, $t1)
 				
-		add $t2, $t0, 38
-		add $t3, $t0, 38
+		add $t2, $t0, 37
+		add $t3, $t0, 37
 		add $t4, $t1, 28
 		
 		pushInStack($ra, $t0, $t1)
@@ -475,7 +551,7 @@
 		jal drawVerticalLine
 		popFromStack($ra, $t0, $t1)
 		
-		add $t2, $t0, 38
+		add $t2, $t0, 37
 		add $t3, $t0, 34
 		add $t4, $t1, 32
 		
@@ -484,8 +560,8 @@
 		jal drawVerticalLine
 		popFromStack($ra, $t0, $t1)
 
-		add $t2, $t0, 38
-		add $t3, $t0, 36
+		add $t2, $t0, 37
+		add $t3, $t0, 35
 		add $t4, $t1, 36
 		
 		pushInStack($ra, $t0, $t1)
@@ -501,7 +577,7 @@
 		move $t1, $a1
 
 		add $t2, $t0, 10
-		add $t3, $t1, 0
+		add $t3, $t1, 1
 		add $t4, $t1, 4
 
 		pushInStack($ra, $t0, $t1)
@@ -510,8 +586,8 @@
 		popFromStack($ra, $t0, $t1)
 		
 		add $t2, $t0, 16
-		add $t3, $t1, 0
-		add $t4, $t1, 0	
+		add $t3, $t1, 1
+		add $t4, $t1, 1
 
 		pushInStack($ra, $t0, $t1)
 		sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
@@ -519,8 +595,8 @@
 		popFromStack($ra, $t0, $t1)
 		
 		add $t2, $t0, 22
-		add $t3, $t1, 0
-		add $t4, $t1, 2
+		add $t3, $t1, 1
+		add $t4, $t1, 3
 
 		pushInStack($ra, $t0, $t1)
 		sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
@@ -528,7 +604,7 @@
 		popFromStack($ra, $t0, $t1)
 		
 		add $t2, $t0, 26
-		add $t3, $t1, 0
+		add $t3, $t1, 1
 		add $t4, $t1, 4
 
 		pushInStack($ra, $t0, $t1)
@@ -537,8 +613,8 @@
 		popFromStack($ra, $t0, $t1)
 		
 		add $t2, $t0, 30
-		add $t3, $t1, 0
-		add $t4, $t1, 0
+		add $t3, $t1, 1
+		add $t4, $t1, 1
 
 		pushInStack($ra, $t0, $t1)
 		sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
@@ -554,7 +630,7 @@
 
 		add $t2, $t0, 28
 		add $t3, $t1, 52 
-		add $t4, $t1, 54		
+		add $t4, $t1, 53		
 
 		pushInStack($ra, $t0, $t1)
 		sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
@@ -563,7 +639,7 @@
 		
 		add $t2, $t0, 24
 		add $t3, $t1, 50
-		add $t4, $t1, 54		
+		add $t4, $t1, 53		
 
 		pushInStack($ra, $t0, $t1)
 		sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
@@ -573,7 +649,7 @@
 		
 		add $t2, $t0, 20
 		add $t3, $t1, 52
-		add $t4, $t1, 54		
+		add $t4, $t1, 53		
 
 		pushInStack($ra, $t0, $t1)
 		sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
@@ -582,7 +658,7 @@
 		
 		add $t2, $t0, 12
 		add $t3, $t1, 50
-		add $t4, $t1, 54		
+		add $t4, $t1, 53		
 
 		pushInStack($ra, $t0, $t1)
 		sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
@@ -591,7 +667,7 @@
 		
 		add $t2, $t0, 8
 		add $t3, $t1, 52
-		add $t4, $t1, 54		
+		add $t4, $t1, 53		
 
 		pushInStack($ra, $t0, $t1)
 		sendParameters($t2 ,$t3 ,$t4 , STRIPE_TUBE)
@@ -608,14 +684,22 @@
 		add $t2, $t0, 7
 		add $t3, $t0, 26
 		    
-        	add $t4, $t1, 20
-        	add $t5, $t1, 34
+        add $t4, $t1, 20
+        add $t5, $t1, 34
         
-        	pushInStack($ra, $t0, $t1)
-        	sendParameters($t2, $t4, $t3, $t5, TUBE_COLOR, FILLED)
-        	jal drawRectangle
-        	popFromStack($ra, $t0, $t1)
-
+        pushInStack($ra, $t0, $t1)
+        pushInStack($t2, $t4, $t3, $t5)
+        sendParameters($t2, $t4, $t3, $t5, TUBE_COLOR, FILLED)
+        jal drawRectangle
+        popFromStack($t2, $t4, $t3, $t5)
+        popFromStack($ra, $t0, $t1)
+        
+        #draw border
+        subi $t2, $t2, 1
+        pushInStack($ra, $t0, $t1)
+        sendParameters($t2, $t4, $t3, $t5, BORDER_COLOR, NOT_FILLED)
+        jal drawRectangle
+        popFromStack($ra, $t0, $t1)        
 	jr $ra
 	
 	#arguments: initial slot line number in $a0, initial slot column number in $a1
@@ -624,35 +708,60 @@
 		move $t1, $a1
 		
 		add $t2, $t0, 12
-        	add $t3, $t0, 31
+        add $t3, $t0, 31
         	       
-        	add $t4, $t1, 20
-        	add $t5, $t1, 34
+        add $t4, $t1, 20
+        add $t5, $t1, 34
         
-        	pushInStack($ra, $t0, $t1)
-        	sendParameters($t2, $t4, $t3, $t5, TUBE_COLOR, FILLED)
-        	jal drawRectangle
-        	popFromStack($ra, $t0, $t1)
-
+        pushInStack($ra, $t0, $t1)
+        pushInStack($t2, $t4, $t3, $t5)
+        sendParameters($t2, $t4, $t3, $t5, TUBE_COLOR, FILLED)
+        jal drawRectangle
+        popFromStack($t2, $t4, $t3, $t5)
+        popFromStack($ra, $t0, $t1)
+        
+        #draw border
+        addi $t3, $t3, 1
+        pushInStack($ra, $t0, $t1)
+        sendParameters($t2, $t4, $t3, $t5, BORDER_COLOR, NOT_FILLED)
+        jal drawRectangle
+        popFromStack($ra, $t0, $t1)
 	jr $ra
 	
 	#arguments: initial slot line number in $a0, initial slot column number in $a1
-	drawHorizontalRigthElbow:
-		
+	drawHorizontalRigthElbow:		
 		move $t0, $a0
 		move $t1, $a1
 		
 		add $t2, $t0, 12
 	   	add $t3, $t0, 26
 	        
-        	add $t4, $t1, 35
-        	add $t5, $t1, 47
+        add $t4, $t1, 35
+        add $t5, $t1, 47
 
-       		pushInStack($ra, $t0, $t1)
-        	sendParameters($t2 ,$t4 ,$t3 ,$t5 , TUBE_COLOR, FILLED)
-        	jal drawRectangle
-       		popFromStack($ra, $t0, $t1)
-
+       	pushInStack($ra, $t0, $t1)
+       	pushInStack($t2 ,$t4 ,$t3 ,$t5)
+        sendParameters($t2 ,$t4 ,$t3 ,$t5 , TUBE_COLOR, FILLED)
+        jal drawRectangle
+        popFromStack($t2 ,$t4 ,$t3 ,$t5)
+       	popFromStack($ra, $t0, $t1)
+       	
+       	#draw border
+       	subi $t4, $t4, 1
+       	addi $t5, $t5, 1
+       	pushInStack($ra, $t0, $t1)
+       	pushInStack($t2, $t3, $t4)
+        sendParameters($t2 ,$t4 ,$t3 ,$t5 , BORDER_COLOR, NOT_FILLED)
+        jal drawRectangle
+        popFromStack($t2, $t3, $t4)
+       	popFromStack($ra, $t0, $t1)       	
+       
+       	addi $t2, $t2, 1	
+       	subi $t3, $t3, 1       	
+       	pushInStack($ra)
+        sendParameters($t2, $t3, $t4, TUBE_COLOR)
+        jal drawVerticalLine
+       	popFromStack($ra)
 	jr $ra
 	
 	#arguments: initial slot line number in $a0, initial slot column number in $a1
@@ -661,14 +770,32 @@
 		move $t1, $a1
 		
 		add $t2, $t0, 12
-	    	add $t3, $t0, 26
+	    add $t3, $t0, 26
 	        
-        	add $t4, $t1, 7
-        	add $t5, $t1, 19
+        add $t4, $t1, 7
+        add $t5, $t1, 19
 
-       		pushInStack($ra, $t0, $t1)
-        	sendParameters($t2 ,$t4 ,$t3 ,$t5 , TUBE_COLOR, FILLED)
-        	jal drawRectangle
-       		popFromStack($ra, $t0, $t1)	
+       	pushInStack($ra, $t0, $t1)
+       	pushInStack($t2 ,$t4 ,$t3 ,$t5)
+        sendParameters($t2 ,$t4 ,$t3 ,$t5 , TUBE_COLOR, FILLED)
+        jal drawRectangle
+        popFromStack($t2 ,$t4 ,$t3 ,$t5)
+       	popFromStack($ra, $t0, $t1)	
+       	
+       	#draw border
+       	subi $t4, $t4, 1
+       	addi $t5, $t5, 1
+       	pushInStack($ra, $t0, $t1)
+       	pushInStack($t2, $t3, $t5)
+        sendParameters($t2 ,$t4 ,$t3 ,$t5 , BORDER_COLOR, NOT_FILLED)
+        jal drawRectangle
+        popFromStack($t2, $t3, $t5)
+       	popFromStack($ra, $t0, $t1)	
 	
+		addi $t2, $t2, 1	
+       	subi $t3, $t3, 1       	
+       	pushInStack($ra)
+        sendParameters($t2, $t3, $t5, TUBE_COLOR)
+        jal drawVerticalLine
+       	popFromStack($ra)
 	jr $ra

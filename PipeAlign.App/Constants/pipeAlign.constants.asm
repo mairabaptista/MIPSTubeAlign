@@ -40,8 +40,9 @@
 # Tube Colors	
 	.eqv TUBE_COLOR				0xb5bec6
 	.eqv CONNECT_TUBE			0x84a5ac
-	.eqv STRIPE_TUBE			0x5a6e71
+	.eqv STRIPE_TUBE			0x4f6063
 	.eqv CONNECT_INITIAL_TUBE	0x84a5ac
+	.eqv BORDER_COLOR			0x000000
 	
 #Memory game service
 

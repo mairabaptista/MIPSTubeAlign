@@ -40,10 +40,10 @@
 						
 		jal drawInitalTube
 		
-		sendParameters(4, VERTICAL_TUBE)
+		sendParameters(4, HORIZONTAL_TUBE)
 		jal setTubeType		
 		sendParameters(4)
-		jal drawVerticalTube
+		jal drawHorizontalTube
 
 		sendParameters(2, HORIZONTAL_TUBE)
 		jal setTubeType		

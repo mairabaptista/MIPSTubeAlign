@@ -7,9 +7,9 @@
 	.eqv BASE_ADDRESS 			0x10040000
 		
 	# Colors	
-	.eqv BACKGROUND_COLOR		0x28282a
+	.eqv BACKGROUND_COLOR		0x47474c
 	.eqv TOP_SCREEN_COLOR 		0xc4ccdf
-	.eqv BORDER_TOP_COLOR 		0x8ca0b9
+	.eqv BORDER_TOP_COLOR 		0x68798e
 	.eqv RED_COLOR		 		0xff0000
 	.eqv GREEN_COLOR 			0x00ff00
 	.eqv BLUE_COLOR				0x0000ff
