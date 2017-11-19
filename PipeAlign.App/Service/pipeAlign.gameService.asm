@@ -259,11 +259,9 @@
 		finishDraw:
 			
 	jr $ra
-
 	
 	#arguments: No parameters
 	initializeSlotMapping:
-		
 		li $t0, 0
 		li $t1, 0
 		la $t2, slotMapping
@@ -290,6 +288,8 @@
 		sb $a1, 0($t1)
 
 	jr $ra
+	
+	
 
 	readInput:
 			readInputLoop:

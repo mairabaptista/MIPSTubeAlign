@@ -90,14 +90,19 @@
 	jr $ra
 	
 	#arguments: SlotNumber
-	drawVerticalTube:			
+	drawVerticalTube:
+		pushInStack($ra, $a0)
+		sendParameters($a0, VERTICAL_TUBE)
+		jal setTubeType
+		popFromStack($ra, $a0)
+						
 		pushInStack($ra)
 		jal getBlockFromSlot
 		popFromStack($ra)
 		
 		move $t0, $v0
 		move $t1, $v1
-
+		
 		#Draw middle tuble
 		add $t2, $t0, 7
 		add $t3, $t0, 31
@@ -111,7 +116,7 @@
 		jal drawRectangle
 		popFromStack($t2, $t4, $t3, $t5)
 		popFromStack($ra, $t0, $t1)
-		
+				
 		#draw border
 		subi $t2, $t2, 1
 		addi $t3, $t3, 1		
@@ -119,7 +124,7 @@
 		sendParameters($t2, $t4, $t3, $t5, BORDER_COLOR, NOT_FILLED)
 		jal drawRectangle
 		popFromStack($ra, $t0, $t1)
-	
+		
 		pushInStack($ra, $t0, $t1)
 		sendParameters($t0, $t1)
 		jal drawTopPipeConnector
@@ -144,7 +149,12 @@
 	jr $ra
 	
 	#arguments: SlotNumber
-	drawHorizontalTube:			
+	drawHorizontalTube:		
+		pushInStack($ra, $a0)
+		sendParameters($a0, HORIZONTAL_TUBE)
+		jal setTubeType
+		popFromStack($ra, $a0)
+							
 		pushInStack($ra)
 		jal getBlockFromSlot
 		popFromStack($ra)
@@ -197,11 +207,15 @@
 	jr $ra
 	
 	# arguments: SlotNumber
-	drawFirstTubeElbow:
-			        
+	drawFirstTubeElbow:			 
+			pushInStack($ra, $a0)
+			sendParameters($a0, FIRST_TUBE_ELBOW)
+			jal setTubeType
+			popFromStack($ra, $a0)        
+			                      
         	pushInStack($ra)
 	    	jal getBlockFromSlot
-        	popFromStack($ra)
+       	 	popFromStack($ra)
         
 	   		move $t0, $v0
        		move $t1, $v1
@@ -239,9 +253,13 @@
 	jr $ra
 	
 	# arguments: SlotNumber
-	drawSecondTubeElbow:
+	drawSecondTubeElbow:		
+			pushInStack($ra, $a0)
+			sendParameters($a0, SECOND_TUBE_ELBOW)
+			jal setTubeType
+			popFromStack($ra, $a0)   
 	
-		pushInStack($ra)
+			pushInStack($ra)
 	    	jal getBlockFromSlot
         	popFromStack($ra)
         
@@ -281,9 +299,13 @@
 	jr $ra
 	
 	# arguments: SlotNumber
-	drawThirdTubeElbow:
+	drawThirdTubeElbow:	
+			pushInStack($ra, $a0)
+			sendParameters($a0, THIRD_TUBE_ELBOW)
+			jal setTubeType
+			popFromStack($ra, $a0) 
 		
-		pushInStack($ra)
+			pushInStack($ra)
 	    	jal getBlockFromSlot
        		popFromStack($ra)
         
@@ -323,9 +345,13 @@
 	jr $ra
 	
 	# arguments: SlotNumber
-	drawFourthTubeElbow:
+	drawFourthTubeElbow:	
+			pushInStack($ra, $a0)
+			sendParameters($a0, FOURTH_TUBE_ELBOW)
+			jal setTubeType
+			popFromStack($ra, $a0)
 	
-		pushInStack($ra)
+			pushInStack($ra)
 	    	jal getBlockFromSlot
         	popFromStack($ra)
         
