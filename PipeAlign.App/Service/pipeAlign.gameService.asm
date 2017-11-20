@@ -267,7 +267,7 @@
 		li $t1, 0
 		la $t2, slotMapping
 	
-		while: beq $t1, 108, exit
+		while: beq $t1, 54, exit
 			
 			sb $t0, 0($t2)
 			
