@@ -29,13 +29,19 @@
 	.eqv SPACE_KEY			32
 
 # TubeTypes
-	.eqv EMPTY _TUBE			0
+	.eqv EMPTY_TUBE			0
 	.eqv HORIZONTAL_TUBE 		1
 	.eqv VERTICAL_TUBE 			2
 	.eqv FIRST_TUBE_ELBOW		3
 	.eqv SECOND_TUBE_ELBOW		4
 	.eqv THIRD_TUBE_ELBOW		5
 	.eqv FOURTH_TUBE_ELBOW		6
+	
+# Tube Orientation
+	.eqv UP						0
+	.eqv DOWN					1
+	.eqv LEFT					2
+	.eqv RIGHT					3
 
 # Tube Colors	
 	.eqv TUBE_COLOR				0xb5bec6
