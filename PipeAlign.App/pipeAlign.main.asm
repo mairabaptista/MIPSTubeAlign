@@ -37,14 +37,9 @@
 		jal createFirstPhase
 				
 		pushInStack($ra)		
-		sendParameters(28, 10)		
+		sendParameters(42, 10)		
 		jal drawLetters
-		popFromStack($ra)
-		
-		pushInStack($ra)		
-		sendParameters(29, 10)		
-		jal drawLetters
-		popFromStack($ra)
+		popFromStack($ra)		
 		
 		jal readInput
 						
