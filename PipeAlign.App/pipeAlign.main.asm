@@ -35,9 +35,14 @@
 		#startGame:
 
 		jal createFirstPhase
+				
+		pushInStack($ra)		
+		sendParameters(42, 10)		
 		jal drawLetters
+		popFromStack($ra)		
+		
 		jal readInput
 						
-		#finishGame:
-	
+		#finishGame:	
+
 	return_EXIT_SUCCESS

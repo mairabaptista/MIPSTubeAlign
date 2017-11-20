@@ -61,8 +61,7 @@
 		mul $t0, $t0, TOP_SCREEN_SLOT_HEIGHT	#Multiplies the slot's line by slot's height
 		add $t0, $t0, 1
 
-		mul $t1, $t1, TOP_SCREEN_SLOT_WIDTH		#Multiplies the slot's column by slot's width
-		add $t1, $t1, 1
+		mul $t1, $t1, TOP_SCREEN_SLOT_WIDTH		#Multiplies the slot's column by slot's width		
 
 		move $v0, $t0
 		move $v1, $t1
