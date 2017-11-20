@@ -24,7 +24,7 @@
         popFromStack($t2, $t4, $t3, $t5)
        	popFromStack($ra, $t0, $t1)
        	
-       	# draw border
+       	#Draw border
        	pushInStack($ra, $t0, $t1)       
         sendParameters($t2, $t4, $t3, $t5, BORDER_COLOR, NOT_FILLED)
         jal drawRectangle        
@@ -88,6 +88,66 @@
         jal drawBottomPipeConnectorStripes
         popFromStack($ra, $t0, $t1)
 	jr $ra
+
+drawFinalTube:
+
+		pushInStack($ra)
+        sendParameters(45)
+	    jal getBlockFromSlot
+        popFromStack($ra)
+        
+	   	move $t0, $v0
+       	move $t1, $v1
+
+       	#Draw horizontal final tube
+		add $t2, $t0, 7
+	    add $t3, $t0, 31
+	        
+        add $t4, $t1, 10
+        add $t5, $t1, 74
+
+       	pushInStack($ra, $t0, $t1)
+       	pushInStack($t2, $t4, $t3, $t5)
+        sendParameters($t2 ,$t4 ,$t3 ,$t5 , TUBE_COLOR, FILLED)
+        jal drawRectangle
+        popFromStack($t2, $t4, $t3, $t5)
+       	popFromStack($ra, $t0, $t1)
+
+       	#Draw border
+       	pushInStack($ra, $t0, $t1)       
+        sendParameters($t2, $t4, $t3, $t5, BORDER_COLOR, NOT_FILLED)
+        jal drawRectangle        
+       	popFromStack($ra, $t0, $t1)
+
+       	#Draw connector
+		add $t5, $t0, 3
+		add $t3, $t0, 35
+
+		add $t2, $t1, 0
+		add $t4, $t1, 10
+		
+		pushInStack($ra, $t0, $t1)
+		pushInStack($t5, $t2, $t3, $t4)
+		sendParameters($t5, $t2, $t3, $t4, CONNECT_INITIAL_TUBE, FILLED)
+		jal drawRectangle
+		popFromStack($t5, $t2, $t3, $t4)
+		popFromStack($ra, $t0, $t1)
+		
+		# draw border
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t5, $t2, $t3, $t4, BORDER_COLOR, NOT_FILLED)
+		jal drawRectangle
+		popFromStack($ra, $t0, $t1)	
+
+		pushInStack($ra, $t0, $t1)
+        sendParameters($t0, $t1)
+        jal drawLeftPipeConnectorStripes
+        popFromStack($ra, $t0, $t1)
+
+
+       		
+	jr $ra
+
 	
 	#arguments: SlotNumber
 	drawVerticalTube:
