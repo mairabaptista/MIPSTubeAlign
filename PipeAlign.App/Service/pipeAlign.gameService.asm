@@ -447,9 +447,14 @@
 			j loop_verify
 			
 			win:
+
 				pushInStack($ra)
-				jal fillBackgroundColor
+				jal drawWaterWinningPipes
 				popFromStack($ra)
+
+				#pushInStack($ra)
+				#jal fillBackgroundColor
+				#popFromStack($ra)
 			
 			finish_verify:
 	jr $ra

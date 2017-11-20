@@ -17,6 +17,7 @@
 .include "Factories/pipeAlign.cursorFactory.asm"
 .include "Factories/pipeAlign.letterFactory.asm"
 .include "Factories/pipeAlign.gamePhasesFactory.asm"
+.include "Factories/pipeAlign.waterFactory.asm"
 #.include "Factories/pipeAlign.menuFactory.asm"
 
 .include "Service/pipeAlign.displayService.asm"
