@@ -1,6 +1,7 @@
 .data	
 	#Data Segment
 .text
+
 	#arguments
 	createBasePhase:
 
@@ -8,7 +9,12 @@
 		pushInStack($ra)
 		jal fillBackgroundColor	
 		popFromStack($ra)
-	
+
+		#Clear slot mapping vector 
+		pushInStack($ra)
+		jal initializeSlotMapping
+		popFromStack($ra)
+
 		#Draw cursor	
 		pushInStack($ra)
 		sendParameters(RED_COLOR)
@@ -22,7 +28,6 @@
 		pushInStack($ra)
 		jal setMaxCursorLeft	
 		popFromStack($ra)
-
 
 		#Draw initial tube					
 		pushInStack($ra)
