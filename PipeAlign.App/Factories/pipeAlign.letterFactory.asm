@@ -12,9 +12,6 @@
 		move $t0, $v0
         move $t1, $v1
 
-        
-
-
 	jr $ra
 
 
