@@ -14,27 +14,33 @@
 	.eqv MARGIN_BOTTOM			4
 
 # Top Screen
-	.eqv HORIZONTAL_TOP_SCREEN_SLOTS	32
-	.eqv TOP_SCREEN_SLOT_HEIGHT			20
-	.eqv TOP_SCREEN_SLOT_WIDTH			16					
+	.eqv HORIZONTAL_TOP_SCREEN_SLOTS		32
+	.eqv TOP_SCREEN_SLOT_HEIGHT		18
+	.eqv TOP_SCREEN_SLOT_WIDTH		16					
 
-# Input data
-	.eqv BASE_INPUT_ADDRESS		0xffff0004
-	.eqv LETTER_W				119
-	.eqv LETTER_X				120
-	.eqv LETTER_A				97
-	.eqv LETTER_D				100
-	.eqv LETTER_S				115
-	.eqv SPACE_KEY				32
+# Input Data
+	.eqv BASE_INPUT_ADDRESS	0xffff0004
+	.eqv LETTER_W			119
+	.eqv LETTER_X			120
+	.eqv LETTER_A			97
+	.eqv LETTER_D			100
+	.eqv LETTER_S			115
+	.eqv SPACE_KEY			32
 
 # TubeTypes
-	.eqv EMPTY _TUBE			0
+	.eqv EMPTY_TUBE			0
 	.eqv HORIZONTAL_TUBE 		1
 	.eqv VERTICAL_TUBE 			2
 	.eqv FIRST_TUBE_ELBOW		3
 	.eqv SECOND_TUBE_ELBOW		4
 	.eqv THIRD_TUBE_ELBOW		5
 	.eqv FOURTH_TUBE_ELBOW		6
+	
+# Tube Orientation
+	.eqv UP						0
+	.eqv DOWN					1
+	.eqv LEFT					2
+	.eqv RIGHT					3
 
 # Tube Colors	
 	.eqv TUBE_COLOR				0xb5bec6

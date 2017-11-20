@@ -148,7 +148,6 @@
 		sw $t0, maxCursorTop
 
 	jr $ra
-
 	
 	#arguments: No parameters
 	toggleTube:
@@ -257,7 +256,9 @@
 			popFromStack($ra, $t4)
 						
 		finishDraw:
-			
+			pushInStack($ra)
+			jal verifyWin
+			popFromStack($ra)
 	jr $ra
 	
 	#arguments: No parameters
@@ -274,8 +275,7 @@
 			add $t1, $t1, 1
 		j while
 		
-		exit:
-		
+		exit:		
 	jr $ra
 	
 	#arguments: Slot in $a0 ,Type of tube in $a1
@@ -286,11 +286,118 @@
 		add $t1, $t1, $a0
 		
 		sb $a1, 0($t1)
-
 	jr $ra
 	
+	verifyWin:				
+		li $t1, 10
+		li $t2, UP
+		
+		loop_verify:
+			beq $t1, 45, win
+		
+			la $t0, slotMapping
+			add $t0, $t0, $t1
+			subi $t0, $t0, 1
+			lb $t0, ($t0)
+		
+			beq $t0, EMPTY_TUBE, finish_verify
+			beq $t0, HORIZONTAL_TUBE, continue_horizontal_verify
+			beq $t0, VERTICAL_TUBE, continue_vertical_verify
+			beq $t0, FIRST_TUBE_ELBOW, continue_first_elbow_verify
+			beq $t0, SECOND_TUBE_ELBOW, continue_second_elbow_verify
+			beq $t0, THIRD_TUBE_ELBOW, continue_third_elbow_verify
+			beq $t0, FOURTH_TUBE_ELBOW, continue_fourth_elbow_verify
+				 
+			j finish_verify
+		
+			continue_horizontal_verify:	
+				li $t3, LEFT	
+				beq $t2, LEFT, go_to_right
+			
+				li $t3, RIGHT
+				beq $t2, RIGHT, go_to_left			
+			j finish_verify
+		
+			continue_vertical_verify:
+				li $t3, UP		
+				beq $t2, UP, go_to_down
+				
+				li $t3, DOWN
+				beq $t2, DOWN, go_to_up			
+			j finish_verify
+							
+			continue_first_elbow_verify:
+				li $t3, RIGHT		
+				beq $t2, UP, go_to_left
+				
+				li $t3, DOWN
+				beq $t2, LEFT, go_to_up			
+			j finish_verify
+			
+			continue_second_elbow_verify:	
+				li $t3, LEFT		
+				beq $t2, UP, go_to_right
+				
+				li $t3, DOWN
+				beq $t2, RIGHT, go_to_up			
+			j finish_verify
+														
+			continue_third_elbow_verify:
+				li $t3, UP		
+				beq $t2, LEFT, go_to_down
+				
+				li $t3, RIGHT
+				beq $t2, DOWN, go_to_left			
+			j finish_verify
+			
+			continue_fourth_elbow_verify:
+				li $t3, UP		
+				beq $t2, RIGHT, go_to_down
+				
+				li $t3, LEFT
+				beq $t2, DOWN, go_to_right			
+			j finish_verify	
+																																																						
+			go_to_up:
+				subi $t1, $t1, 9	
+				move $t2, $t3
+			j loop_verify		
+				
+			go_to_down:
+				addi $t1, $t1, 9	
+				move $t2, $t3			
+			j loop_verify	
+			
+			go_to_left:
+				subi $t1, $t1, 1
+				
+				li $t5, 9
+				div $t1, $t5
+				mfhi $t5
+				beqz $t5, finish_verify
+							
+				move $t2, $t3			
+			j loop_verify	
+			
+			go_to_right:
+				addi $t1, $t1, 1
+				
+				li $t5, 9
+				div $t1, $t5
+				mfhi $t5
+				beq $t5, 1, finish_verify
+				
+				move $t2, $t3				
+			j loop_verify
+			
+			win:
+				pushInStack($ra)
+				jal fillBackgroundColor
+				popFromStack($ra)
+			
+			finish_verify:
+	jr $ra
 	
-
 	readInput:
 			readInputLoop:
 				lw $t1, BASE_INPUT_ADDRESS
