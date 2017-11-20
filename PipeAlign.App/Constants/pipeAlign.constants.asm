@@ -14,9 +14,9 @@
 	.eqv MARGIN_BOTTOM		4
 
 # Top Screen
-	.eqv HORIZONTAL_TOP_SCREEN_SLOTS		32
+	.eqv HORIZONTAL_TOP_SCREEN_SLOTS		42
 	.eqv TOP_SCREEN_SLOT_HEIGHT				18
-	.eqv TOP_SCREEN_SLOT_WIDTH				16					
+	.eqv TOP_SCREEN_SLOT_WIDTH				12					
 
 # Input Data
 	.eqv BASE_INPUT_ADDRESS			0xffff0004
@@ -65,4 +65,4 @@
 	maxCursorLeft: 	.word 			0			#TODO: Create description
 	
 	slotMapping:	.space			54 			#It is the memory space where the slots are mapped so that we know what kind of pipe is in each slot
-	slotPathWin:	.space			108			# 54 * 2 bits
+	slotPathWin:	.space			162			# 54 * 3 bits
