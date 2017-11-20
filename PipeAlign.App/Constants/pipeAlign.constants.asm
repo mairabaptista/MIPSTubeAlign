@@ -1,8 +1,8 @@
 .data
 
 # Screen Game
-	.eqv HORIZONTAL_SLOTS	9	
-	.eqv VERTICAL_SLOTS		6
+	.eqv HORIZONTAL_SLOTS		9	
+	.eqv VERTICAL_SLOTS			6
 
 	.eqv SLOT_HEIGHT			38	
 	.eqv SLOT_WIDTH				54	
@@ -14,19 +14,18 @@
 	.eqv MARGIN_BOTTOM			4
 
 # Top Screen
-	.eqv HORIZONTAL_TOP_SCREEN_SLOTS		32
+	.eqv HORIZONTAL_TOP_SCREEN_SLOTS	32
+	.eqv TOP_SCREEN_SLOT_HEIGHT			20
+	.eqv TOP_SCREEN_SLOT_WIDTH			16					
 
-	.eqv TOP_SCREEN_SLOT_HEIGHT		20
-	.eqv TOP_SCREEN_SLOT_WIDTH		16					
-
-# Input Data
-	.eqv BASE_INPUT_ADDRESS	0xffff0004
-	.eqv LETTER_W			119
-	.eqv LETTER_X			120
-	.eqv LETTER_A			97
-	.eqv LETTER_D			100
-	.eqv LETTER_S			115
-	.eqv SPACE_KEY			32
+# Input data
+	.eqv BASE_INPUT_ADDRESS		0xffff0004
+	.eqv LETTER_W				119
+	.eqv LETTER_X				120
+	.eqv LETTER_A				97
+	.eqv LETTER_D				100
+	.eqv LETTER_S				115
+	.eqv SPACE_KEY				32
 
 # TubeTypes
 	.eqv EMPTY _TUBE			0

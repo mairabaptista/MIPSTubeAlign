@@ -2,15 +2,18 @@
 	#Data Segment
 .text
 	#arguments
-	createBasePhase:	
+	createBasePhase:
+
+		#Fill background color
 		pushInStack($ra)
 		jal fillBackgroundColor	
 		popFromStack($ra)
-		
+	
+		#Draw cursor	
 		pushInStack($ra)
 		sendParameters(RED_COLOR)
 		jal createCursor	
-		popFromStack($ra)	
+		popFromStack($ra)
 		
 		pushInStack($ra)
 		jal setMaxCursorTop	
@@ -19,21 +22,31 @@
 		pushInStack($ra)
 		jal setMaxCursorLeft	
 		popFromStack($ra)
-							
+
+
+		#Draw initial tube					
 		pushInStack($ra)
 		jal drawInitalTube
 		popFromStack($ra)
+
+		#Draw final tube
+		pushInStack($ra)
+		jal drawFinalTube
+		popFromStack($ra)
 					
+		#Draw line below phase header
 		pushInStack($ra)
 		sendParameters(18, BORDER_TOP_COLOR)
 		jal drawEntireLine
 		popFromStack($ra)		
-			
+
+		#Draw phase header			
 		pushInStack($ra)
 		sendParameters(1, 1, 17, 512, TOP_SCREEN_COLOR, FILLED)
 		jal drawRectangle
 		popFromStack($ra)
-		
+
+		#Draw phase border
 		pushInStack($ra)
 		sendParameters(1, 1, 256, 512, BLACK_COLOR, NOT_FILLED)
 		jal drawRectangle

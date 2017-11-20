@@ -8,6 +8,8 @@
 		popFromStack($ra)
 		
 		move $t1, $v0
+		move $s0, $v0
+		
 		la $t0, slotMapping
 		add $t0, $t0, $t1
 		subi $t0, $t0, 1
@@ -50,6 +52,8 @@
 			beq $t2, HORIZONTAL_TUBE, clearHorizontalLeft
 			beq $t2, SECOND_TUBE_ELBOW, clearHorizontalLeft
 			beq $t2, FOURTH_TUBE_ELBOW, clearHorizontalLeft
+			beq $s0, 44, clearHorizontalRight
+
 			
 			li $t8, 0
 			li $t5, 0
