@@ -60,8 +60,8 @@
 
 		finishDrawWater:
 
-		addi $t0, $t0, 2
-		addi $t1, $t1, 2
+		addi $t0, $t0, 3
+		addi $t1, $t1, 3
 
 		j waterLoop
 
