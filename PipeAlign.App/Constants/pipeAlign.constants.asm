@@ -59,3 +59,4 @@
 	maxCursorLeft: 	.word 			0			#TODO: Create description
 	
 	slotMapping:	.space			54 			#It is the memory space where the slots are mapped so that we know what kind of pipe is in each slot
+	slotPathWin:	.space			108			# 54 * 2 bits
