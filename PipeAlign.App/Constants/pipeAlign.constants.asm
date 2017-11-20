@@ -18,18 +18,19 @@
 	.eqv TOP_SCREEN_SLOT_HEIGHT				18
 	.eqv TOP_SCREEN_SLOT_WIDTH				16					
 
-
 # Input Data
-	.eqv BASE_INPUT_ADDRESS	0xffff0004
-	.eqv LETTER_W			119
-	.eqv LETTER_X			120
-	.eqv LETTER_A			97
-	.eqv LETTER_D			100
-	.eqv LETTER_S			115
-	.eqv SPACE_KEY			32
+	.eqv BASE_INPUT_ADDRESS			0xffff0004
+	.eqv LETTER_W					119
+	.eqv LETTER_X					120
+	.eqv LETTER_A					97
+	.eqv LETTER_D					100
+	.eqv LETTER_S					115
+	.eqv LETTER_K					107
+	.eqv LETTER_L					108
+	.eqv SPACE_KEY					32
 
 # TubeTypes
-	.eqv EMPTY_TUBE			0
+	.eqv EMPTY_TUBE				0
 	.eqv HORIZONTAL_TUBE 		1
 	.eqv VERTICAL_TUBE 			2
 	.eqv FIRST_TUBE_ELBOW		3
@@ -49,6 +50,11 @@
 	.eqv STRIPE_TUBE			0x4f6063
 	.eqv CONNECT_INITIAL_TUBE	0x84a5ac
 	.eqv BORDER_COLOR			0x000000
+
+#Water constants
+
+	.eqv WATER_COLOR			0x0d9bf6
+	.eqv WATER_TIME_OUT			100
 	
 #Memory game service
 
