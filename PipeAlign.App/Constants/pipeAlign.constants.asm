@@ -4,14 +4,14 @@
 	.eqv HORIZONTAL_SLOTS		9	
 	.eqv VERTICAL_SLOTS			6
 
-	.eqv SLOT_HEIGHT			38	
-	.eqv SLOT_WIDTH				54	
-	.eqv CURSOR_SIZE			4
+	.eqv SLOT_HEIGHT		38	
+	.eqv SLOT_WIDTH			54	
+	.eqv CURSOR_SIZE		4
 		
-	.eqv MARGIN_TOP				22
-	.eqv MARGIN_LEFT			6
-	.eqv MARGIN_RIGHT			14
-	.eqv MARGIN_BOTTOM			4
+	.eqv MARGIN_TOP			22
+	.eqv MARGIN_LEFT		6
+	.eqv MARGIN_RIGHT		14
+	.eqv MARGIN_BOTTOM		4
 
 # Top Screen
 	.eqv HORIZONTAL_TOP_SCREEN_SLOTS		32
@@ -65,3 +65,4 @@
 	maxCursorLeft: 	.word 			0			#TODO: Create description
 	
 	slotMapping:	.space			54 			#It is the memory space where the slots are mapped so that we know what kind of pipe is in each slot
+	slotPathWin:	.space			108			# 54 * 2 bits

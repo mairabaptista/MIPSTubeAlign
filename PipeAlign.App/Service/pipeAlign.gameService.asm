@@ -267,7 +267,7 @@
 		li $t1, 0
 		la $t2, slotMapping
 	
-		while: beq $t1, 54, exit
+		while: beq $t1, 108, exit
 			
 			sb $t0, 0($t2)
 			
@@ -288,13 +288,45 @@
 		sb $a1, 0($t1)
 	jr $ra
 	
+	#arguments: No parameters
+	initializeSlotPathWin:
+		li $t0, 0
+		li $t1, 0
+		la $t2, slotPathWin
+	
+		while_slot: beq $t1, 54, exit_while			
+			sb $t0, 0($t2)			
+			add $t2, $t2, 1
+			add $t1, $t1, 1
+		j while_slot
+		
+		exit_while:		
+	jr $ra
+	
+	# arguments: slot, tubeType, positionToUpdate
+	# return position of last update
+	setSlotPathWin:
+		la $t0, slotPathWin
+		add $t0, $t0, $a2
+		sb $a0, ($t0)
+		addi $t0, $t0, 1
+		sb $a1, ($t0)
+		addi $a2, $a2, 2
+		move $v0, $a2
+	jr $ra
+	
 	verifyWin:				
+		pushInStack($ra)
+		jal	initializeSlotPathWin
+		popFromStack($ra)
+		
 		li $t1, 10
 		li $t2, UP
+		li $t7, 0
 		
 		loop_verify:
 			beq $t1, 45, win
-		
+					
 			la $t0, slotMapping
 			add $t0, $t0, $t1
 			subi $t0, $t0, 1
@@ -358,17 +390,35 @@
 				beq $t2, DOWN, go_to_right			
 			j finish_verify	
 																																																						
-			go_to_up:
+			go_to_up:				
+				pushInStack($ra, $t0)
+				sendParameters($t1, $t0, $t7)
+				jal setSlotPathWin
+				move $t7, $v0	
+				popFromStack($ra, $t0)
+												
 				subi $t1, $t1, 9	
 				move $t2, $t3
 			j loop_verify		
 				
 			go_to_down:
+				pushInStack($ra, $t0)
+				sendParameters($t1, $t0, $t7)
+				jal setSlotPathWin
+				move $t7, $v0	
+				popFromStack($ra, $t0)
+				
 				addi $t1, $t1, 9	
 				move $t2, $t3			
 			j loop_verify	
 			
 			go_to_left:
+				pushInStack($ra, $t0)
+				sendParameters($t1, $t0, $t7)
+				jal setSlotPathWin
+				move $t7, $v0	
+				popFromStack($ra, $t0)
+			
 				subi $t1, $t1, 1
 				
 				li $t5, 9
@@ -379,7 +429,13 @@
 				move $t2, $t3			
 			j loop_verify	
 			
-			go_to_right:
+			go_to_right:				
+				pushInStack($ra, $t0)
+				sendParameters($t1, $t0, $t7)
+				jal setSlotPathWin
+				move $t7, $v0	
+				popFromStack($ra, $t0)
+				
 				addi $t1, $t1, 1
 				
 				li $t5, 9

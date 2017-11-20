@@ -35,6 +35,7 @@
 		#startGame:
 
 		jal createFirstPhase
+		jal drawLetters
 		jal readInput
 						
 		#finishGame:

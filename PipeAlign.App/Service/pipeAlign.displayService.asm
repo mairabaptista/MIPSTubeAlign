@@ -51,16 +51,18 @@
 	#arguments: Top screen slot number
 	#return: line in $v0, column in $v1
 	getBlockFromTopScreenSlot:
-		subi $a0, $a0, 1
-		addi $t0, $t0, HORIZONTAL_TOP_SCREEN_SLOTS
+		sub $a0, $a0, 1
+		addi $t0, $zero, HORIZONTAL_TOP_SCREEN_SLOTS
 		div $a0, $t0
 
 		mflo $t0								#Represents the slot's line  
 		mfhi $t1								#Represents the slot's column
 
 		mul $t0, $t0, TOP_SCREEN_SLOT_HEIGHT	#Multiplies the slot's line by slot's height
+		add $t0, $t0, 1
 
 		mul $t1, $t1, TOP_SCREEN_SLOT_WIDTH		#Multiplies the slot's column by slot's width
+		add $t1, $t1, 1
 
 		move $v0, $t0
 		move $v1, $t1
