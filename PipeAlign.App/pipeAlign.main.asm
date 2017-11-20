@@ -29,10 +29,12 @@
 	.globl main
 			
 	main:
-		#jal initializeSlotMapping				
+		jal initializeSlotMapping				
 				
 		jal createFirstPhase
 				
-		jal readInput
+		jal drawLetters
+		
+		jal readInput		
 											
 	return_EXIT_SUCCESS
