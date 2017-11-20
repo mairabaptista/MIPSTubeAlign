@@ -294,7 +294,7 @@
 		li $t1, 0
 		la $t2, slotPathWin
 	
-		while_slot: beq $t1, 54, exit_while			
+		while_slot: beq $t1, 162, exit_while			
 			sb $t0, 0($t2)			
 			add $t2, $t2, 1
 			add $t1, $t1, 1
@@ -303,16 +303,22 @@
 		exit_while:		
 	jr $ra
 	
-	# arguments: slot, tubeType, positionToUpdate
+	# arguments: slot, tubeType, orientation_to_go, positionToUpdate
 	# return position of last update
 	setSlotPathWin:
 		la $t0, slotPathWin
-		add $t0, $t0, $a2
+		add $t0, $t0, $a3
+		
 		sb $a0, ($t0)
+		
 		addi $t0, $t0, 1
 		sb $a1, ($t0)
-		addi $a2, $a2, 2
-		move $v0, $a2
+		
+		addi $t0, $t0, 1
+		sb $a2, ($t0)
+		
+		addi $a3, $a3, 3
+		move $v0, $a3
 	jr $ra
 	
 	verifyWin:				
@@ -392,7 +398,7 @@
 																																																						
 			go_to_up:				
 				pushInStack($ra, $t0)
-				sendParameters($t1, $t0, $t7)
+				sendParameters($t1, $t0, UP, $t7)
 				jal setSlotPathWin
 				move $t7, $v0	
 				popFromStack($ra, $t0)
@@ -403,7 +409,7 @@
 				
 			go_to_down:
 				pushInStack($ra, $t0)
-				sendParameters($t1, $t0, $t7)
+				sendParameters($t1, $t0, DOWN, $t7)
 				jal setSlotPathWin
 				move $t7, $v0	
 				popFromStack($ra, $t0)
@@ -414,7 +420,7 @@
 			
 			go_to_left:
 				pushInStack($ra, $t0)
-				sendParameters($t1, $t0, $t7)
+				sendParameters($t1, $t0, LEFT, $t7)
 				jal setSlotPathWin
 				move $t7, $v0	
 				popFromStack($ra, $t0)
@@ -431,7 +437,7 @@
 			
 			go_to_right:				
 				pushInStack($ra, $t0)
-				sendParameters($t1, $t0, $t7)
+				sendParameters($t1, $t0, RIGHT, $t7)
 				jal setSlotPathWin
 				move $t7, $v0	
 				popFromStack($ra, $t0)
