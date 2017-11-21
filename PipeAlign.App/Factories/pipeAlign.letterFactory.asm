@@ -5,6 +5,7 @@
 
 	#arguments: top screen slot number in $a0, letter code in ascii $a1
 	drawLetters:
+        beq $a1, 32 finish_drawing_letter
 		pushInStack($ra, $a0, $a1)
 		sendParameters($a0)
 		jal getBlockFromTopScreenSlot

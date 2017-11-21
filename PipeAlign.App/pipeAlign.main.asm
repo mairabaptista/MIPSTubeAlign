@@ -40,7 +40,7 @@
 		sendParameters(40, 65)		
 		jal drawLetters
 		
-		sendParameters(41, 67)		
+		sendParameters(41, 32)		
 		jal drawLetters		
 		
 		sendParameters(42, 69)		
