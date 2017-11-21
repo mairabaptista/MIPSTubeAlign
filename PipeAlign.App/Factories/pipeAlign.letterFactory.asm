@@ -19,7 +19,7 @@
         	beq $a1, 73, drawMiddleVerticalLine
             beq $a1, 84, drawMiddleVerticalLine
 
-        	add $t2, $t0, 12				#letter height
+        	add $t2, $t0, 13				#letter height
         	add $t3, $t1, 1					#letter width
         	pushInStack($ra, $t0, $t1)
         	pushInStack($a0, $a1)
@@ -42,7 +42,7 @@
         	beq $a1, 83, drawTopHorizontalLine
 
         	add $t2, $t1, 3
-        	add $t3, $t0, 12				#letter height
+        	add $t3, $t0, 13				#letter height
         	add $t4, $t2, 1					#letter width
         	pushInStack($ra, $t0, $t1)
         	pushInStack($a0, $a1)
@@ -162,7 +162,7 @@
         	beq $a1, 84, drawBottomHalfHorizontalLine
 
         	add $t2, $t1, 7
-        	add $t3, $t0, 12
+        	add $t3, $t0, 13
         	add $t4, $t2, 1
         	pushInStack($ra, $t0, $t1)
         	pushInStack($a0, $a1)
