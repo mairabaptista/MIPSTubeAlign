@@ -7,7 +7,8 @@
 
 		#Fill background color
 		pushInStack($ra)
-		jal fillBackgroundColor	
+		sendParameters(BACKGROUND_COLOR)
+		jal fillBackgroundColor
 		popFromStack($ra)
 
 		#Clear slot mapping vector 
@@ -218,4 +219,195 @@
 		sendParameters(52)
 		jal drawSecondTubeElbow
 		popFromStack($ra)	
+	jr $ra
+	
+	createSecondPhase:
+		pushInStack($ra)
+		jal createBasePhase
+		popFromStack($ra)
+		
+		pushInStack($ra)
+		sendParameters(2)
+		jal drawThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(3)
+		jal drawFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(4)
+		jal drawSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(10)
+		jal drawFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(11)
+		jal drawHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(12)
+		jal drawThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(13)
+		jal drawThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(14)
+		jal drawThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(15)
+		jal drawSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(17)
+		jal drawSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(19)
+		jal drawVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(20)
+		jal drawVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(22)
+		jal drawSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(23)
+		jal drawThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(24)
+		jal drawVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(25)
+		jal drawFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(26)
+		jal drawThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(28)
+		jal drawThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(29)
+		jal drawFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(30)
+		jal drawSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(31)
+		jal drawSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(32)
+		jal drawThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(34)
+		jal drawThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(35)
+		jal drawFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(38)
+		jal drawFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(39)
+		jal drawHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(40)
+		jal drawFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(41)
+		jal drawFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(42)
+		jal drawVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(43)
+		jal drawSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(44)
+		jal drawFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(46)
+		jal drawThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(47)
+		jal drawVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(48)
+		jal drawSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(49)
+		jal drawHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(50)
+		jal drawFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(53)
+		jal drawVerticalTube
+		popFromStack($ra)
 	jr $ra

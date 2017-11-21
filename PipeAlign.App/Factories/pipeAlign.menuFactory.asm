@@ -5,6 +5,7 @@
 
 		#Fill background color
 		pushInStack($ra)
+		sendParameters(BACKGROUND_COLOR)
 		jal fillBackgroundColor	
 		popFromStack($ra)
 

@@ -215,7 +215,7 @@
 		end_loop:						
 	jr $ra		
 			
-	# no arguments		
+	# arguments: color	
 	fillBackgroundColor:		
 		la $t0, SCREEN_WIDTH		
 		la $t1, SCREEN_HEIGHT		
@@ -234,7 +234,7 @@
 		li $t0, BASE_ADDRESS								# base address for display
 		add  $t4, $t4, $t0  								# last unit address
 						
-		li $t1, BACKGROUND_COLOR		
+		move $t1, $a0		
 				
 		fillLoop:		
 			beq $t0, $t4, exit_fillloop			

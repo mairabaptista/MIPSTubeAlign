@@ -28,6 +28,7 @@
 	.eqv LETTER_K					107
 	.eqv LETTER_L					108
 	.eqv SPACE_KEY					32
+	.eqv ESC_KEY					27
 
 # TubeTypes
 	.eqv EMPTY_TUBE				0
@@ -54,7 +55,7 @@
 #Water constants
 
 	.eqv WATER_COLOR			0x0d9bf6
-	.eqv WATER_TIME_OUT			100
+	.eqv WATER_TIME_OUT			10
 	
 #Memory game service
 
