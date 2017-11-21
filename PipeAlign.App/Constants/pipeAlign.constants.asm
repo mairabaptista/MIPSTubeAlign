@@ -16,7 +16,9 @@
 # Top Screen
 	.eqv HORIZONTAL_TOP_SCREEN_SLOTS		42
 	.eqv TOP_SCREEN_SLOT_HEIGHT				18
-	.eqv TOP_SCREEN_SLOT_WIDTH				12					
+	.eqv TOP_SCREEN_SLOT_WIDTH				12
+	.eqv TOP_SCREEN_COLOR 					0xc4ccdf
+	.eqv BORDER_TOP_COLOR 					0x68798e	
 
 # Input Data
 	.eqv BASE_INPUT_ADDRESS			0xffff0004
@@ -47,9 +49,10 @@
 
 # Tube Colors	
 	.eqv TUBE_COLOR				0xb5bec6
+	.eqv TUBE_INITIAL_COLOR		0xb5bec6
 	.eqv CONNECT_TUBE			0x84a5ac
 	.eqv STRIPE_TUBE			0x4f6063
-	.eqv CONNECT_INITIAL_TUBE	0x84a5ac
+	.eqv CONNECT_INITIAL_TUBE	0x777f91
 	.eqv BORDER_COLOR			0x000000
 
 #Water constants

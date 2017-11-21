@@ -19,7 +19,7 @@
 
        	pushInStack($ra, $t0, $t1)
        	pushInStack($t2, $t4, $t3, $t5)
-        sendParameters($t2 ,$t4 ,$t3 ,$t5 , TUBE_COLOR, FILLED)
+        sendParameters($t2 ,$t4 ,$t3 ,$t5 , TUBE_INITIAL_COLOR, FILLED)
         jal drawRectangle
         popFromStack($t2, $t4, $t3, $t5)
        	popFromStack($ra, $t0, $t1)
@@ -39,7 +39,7 @@
         
        	pushInStack($ra, $t0, $t1)
        	pushInStack($t2, $t4, $t3, $t5)
-        sendParameters($t2 ,$t4 ,$t3 ,$t5 , TUBE_COLOR, FILLED)
+        sendParameters($t2 ,$t4 ,$t3 ,$t5 , TUBE_INITIAL_COLOR, FILLED)
         jal drawRectangle
         popFromStack($t2, $t4, $t3, $t5)
        	popFromStack($ra, $t0, $t1)
@@ -59,7 +59,7 @@
         add $t5, $t1, 14
         
         pushInStack($ra, $t0, $t1)
-        sendParameters($t2, $t4, $t3, $t5,  TUBE_COLOR, NOT_FILLED)
+        sendParameters($t2, $t4, $t3, $t5,  TUBE_INITIAL_COLOR, NOT_FILLED)
         jal drawRectangle
         popFromStack($ra, $t0, $t1)
         	
