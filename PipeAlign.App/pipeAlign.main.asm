@@ -37,7 +37,7 @@
 
 		jal createFirstPhase
 		
-		sendParameters(42, 10)		
+		sendParameters(42, 69)		
 		jal drawLetters	
 		
 		jal readInput
