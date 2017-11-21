@@ -7,7 +7,8 @@
 
 		#Fill background color
 		pushInStack($ra)
-		jal fillBackgroundColor	
+		sendParameters(BACKGROUND_COLOR)
+		jal fillBackgroundColor
 		popFromStack($ra)
 
 		#Clear slot mapping vector 

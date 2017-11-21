@@ -473,7 +473,8 @@
 				beq $t1, LETTER_A, onAPress 
 				beq $t1, LETTER_D, onDPress 
 				beq $t1, LETTER_S, onSPress
-				beq $t1, SPACE_KEY, onSpacePress  					
+				beq $t1, SPACE_KEY, onSpacePress
+				beq $t1, ESC_KEY, onEscPress
 						
 				j notKeyPressValid
 			
@@ -506,6 +507,13 @@
 					jal toggleTube
 					popFromStack($ra)
 				j beforeKeyPress
+				
+				onEscPress:
+					sendParameters(BLACK_COLOR)
+					pushInStack($ra)
+					jal fillBackgroundColor
+					popFromStack($ra)
+					return_EXIT_SUCCESS
 			
 				beforeKeyPress:		
 					sw $zero, BASE_INPUT_ADDRESS

@@ -28,6 +28,7 @@
 	.eqv LETTER_K					107
 	.eqv LETTER_L					108
 	.eqv SPACE_KEY					32
+	.eqv ESC_KEY					27
 
 # TubeTypes
 	.eqv EMPTY_TUBE				0

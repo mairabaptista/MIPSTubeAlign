@@ -24,6 +24,8 @@
 			subi $t2, $t0, 9
 			addi $t4, $t0, 9
 			
+			blt $s0, 10, clear_vertical
+						
 			lb $t2, ($t2)
 			lb $t4, ($t4)
 			
@@ -35,6 +37,7 @@
 			li $t5, 0
 					
 			continue_vertical_clear:
+				bgt $s0, 45, clear_vertical
 				beq $t4, VERTICAL_TUBE, clearVerticalBottom
 				beq $t4, FIRST_TUBE_ELBOW, clearVerticalBottom
 				beq $t4, SECOND_TUBE_ELBOW, clearVerticalBottom
