@@ -36,11 +36,9 @@
 		#startGame:
 
 		jal createFirstPhase
-				
-		pushInStack($ra)		
+		
 		sendParameters(42, 10)		
-		jal drawLetters
-		popFromStack($ra)		
+		jal drawLetters	
 		
 		jal readInput
 						
