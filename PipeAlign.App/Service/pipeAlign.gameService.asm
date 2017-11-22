@@ -33,7 +33,8 @@
 		popFromStack($ra)
 		
 		end_movimentation_up:
-
+			li $v0, 39
+			syscall
 	jr $ra
 	
 	moveCursorDown:
@@ -59,7 +60,8 @@
 		popFromStack($ra)
 		
 		end_movimentation_down:
-
+			li $v0, 39
+			syscall
 	jr $ra
 		
 	moveCursorLeft:
@@ -94,7 +96,8 @@
 		popFromStack($ra)
 		
 		end_movimentation_left:
-
+			li $v0, 39
+			syscall
 	jr $ra
 	
 	moveCursorRight:	
@@ -120,7 +123,8 @@
 		popFromStack($ra)
 		
 		end_movimentation_right:
-
+			li $v0, 39
+			syscall
 	jr $ra
 	
 	setMaxCursorLeft:		
@@ -185,7 +189,9 @@
 			sendParameters($t4)
 			jal drawVerticalTube
 			popFromStack($ra, $t4)
-	
+			li $v0, 39
+			syscall
+		
 			pushInStack($ra, $t4)
 			sendParameters($t4, VERTICAL_TUBE)
 			jal setTubeType
@@ -197,6 +203,8 @@
 			sendParameters($t4)
 			jal drawHorizontalTube
 			popFromStack($ra, $t4)
+			li $v0, 39
+			syscall
 		
 			pushInStack($ra, $t4)
 			sendParameters($t4, HORIZONTAL_TUBE)
@@ -210,6 +218,8 @@
 			sendParameters($t4)
 			jal drawSecondTubeElbow
 			popFromStack($ra, $t4)
+			li $v0, 39
+			syscall
 		
 			pushInStack($ra, $t4)
 			sendParameters($t4, SECOND_TUBE_ELBOW)
@@ -223,6 +233,8 @@
 			sendParameters($t4)
 			jal drawFourthTubeElbow
 			popFromStack($ra, $t4)
+			li $v0, 39
+			syscall
 		
 			pushInStack($ra, $t4)
 			sendParameters($t4, FOURTH_TUBE_ELBOW)
@@ -236,6 +248,8 @@
 			sendParameters($t4)
 			jal drawFirstTubeElbow
 			popFromStack($ra, $t4)
+			li $v0, 39
+			syscall
 		
 			pushInStack($ra, $t4)
 			sendParameters($t4, FIRST_TUBE_ELBOW)
@@ -249,13 +263,15 @@
 			sendParameters($t4)
 			jal drawThirdTubeElbow
 			popFromStack($ra, $t4)
+			li $v0, 39
+			syscall
 		
 			pushInStack($ra, $t4)
 			sendParameters($t4, THIRD_TUBE_ELBOW)
 			jal setTubeType
 			popFromStack($ra, $t4)
 						
-		finishDraw:
+		finishDraw:			
 			pushInStack($ra)
 			jal verifyWin
 			popFromStack($ra)
@@ -461,11 +477,7 @@
 				pushInStack($ra)
 				jal drawWaterWinningPipes
 				popFromStack($ra)
-				
-				li $v0, 32
-    			li $a0, TRANSITION_PHASE_DELAY
-    			syscall
-				
+								
 				pushInStack($ra)
 				jal createNextPhase
 				popFromStack($ra)			
@@ -523,7 +535,7 @@
 					return_EXIT_SUCCESS
 			
 				beforeKeyPress:		
-					sw $zero, BASE_INPUT_ADDRESS
+					sw $zero, BASE_INPUT_ADDRESS					
 							
 				notKeyPressValid:
 

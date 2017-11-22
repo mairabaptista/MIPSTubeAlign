@@ -30,12 +30,15 @@
 	main:
 		#jal createMenu
 		#startGame:
-		
+								
 		# create First Phase
 		sendParameters(BACKGROUND_COLOR)
-		jal fillBackgroundColor		
+		jal fillBackgroundColor
 		sendParameters(NOT_CLEAR_SLOTS)
 		jal createFirstPhase
+		
+		li $v0, 39
+		syscall
 				
 		sendParameters(40, 65)		
 		jal drawLetters

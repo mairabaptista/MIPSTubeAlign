@@ -161,6 +161,7 @@
 		
 		add $v0, $v0, SLOT_HEIGHT
 		add $v1, $v1, SLOT_WIDTH
+		add $v1, $v1, 1
 		move $t2, $t0
 		move $t3, $v1
 						
@@ -194,6 +195,8 @@
 		
 		move $t0, $v0
 		move $t1, $v1	
+		
+		add $t0, $t0, 1
 		
 		pushInStack($ra, $t0, $t1)
 		sendParameters(53)

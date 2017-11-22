@@ -52,6 +52,9 @@
 		pushInStack($ra)		
 		jal clearAllTubeGameSlots
 		popFromStack($ra)
+		
+		li $v0, 39
+		syscall
 
 		notClearTubeSlots:
 		
@@ -100,7 +103,7 @@
 		pushInStack($ra)
 		sendParameters(1, 1, 256, 512, BLACK_COLOR, NOT_FILLED)
 		jal drawRectangle
-		popFromStack($ra)		
+		popFromStack($ra)
 	jr $ra
 	
 	#arguments: clearTubeSlots
@@ -264,6 +267,9 @@
 		sendParameters(52)
 		jal drawSecondTubeElbow
 		popFromStack($ra)	
+		
+		li $v0, 39
+		syscall
 	jr $ra
 	
 	createSecondPhase:
@@ -456,4 +462,7 @@
 		sendParameters(53)
 		jal drawVerticalTube
 		popFromStack($ra)
+		
+		li $v0, 39
+		syscall
 	jr $ra

@@ -123,7 +123,7 @@
 		addi $t0, $t0, 3
 		addi $t1, $t1, 3
 		addi $t7, $t7, 3
-
+		
 		j waterLoop
 
 
@@ -170,6 +170,9 @@
 			jal drawHorizontalLine
 			popFromStack($t4, $t5, $t6, $t3)
 			popFromStack($ra, $t0, $t1, $t2)
+			
+			li $v0, 39
+			syscall
 			
 			li $v0, 32
     		li $a0, WATER_TIME_OUT
@@ -218,6 +221,9 @@
 			jal drawVerticalLine
 			popFromStack($t3, $t4, $t5, $t6)
 			popFromStack($ra, $t0, $t1, $t2)
+	
+			li $v0, 39
+			syscall
 	
 			li  $v0, 32
     		li $a0, WATER_TIME_OUT
@@ -429,6 +435,9 @@
 			popFromStack($t4, $t5, $t6, $t3)
 			popFromStack($ra, $t0, $t1, $t2)
 			
+			li $v0, 39
+			syscall
+			
 			li $v0, 32
     		li $a0, WATER_TIME_OUT
     		syscall
@@ -481,6 +490,9 @@
 			popFromStack($t4, $t5, $t6, $t3)
 			popFromStack($ra, $t0, $t1, $t2)
 			
+			li $v0, 39
+			syscall
+			
 			li $v0, 32
     		li $a0, WATER_TIME_OUT
     		syscall
@@ -532,6 +544,9 @@
 			popFromStack($t3, $t4, $t5, $t6)
 			popFromStack($ra, $t0, $t1, $t2)
 	
+			li $v0, 39
+			syscall
+	
 			li  $v0, 32
     		li $a0, WATER_TIME_OUT
     		syscall
@@ -581,7 +596,10 @@
 
 			popFromStack($t3, $t4, $t5, $t6)
 			popFromStack($ra, $t0, $t1, $t2)
-	
+		
+			li $v0, 39
+			syscall
+		
 			li  $v0, 32
     		li $a0, WATER_TIME_OUT
     		syscall

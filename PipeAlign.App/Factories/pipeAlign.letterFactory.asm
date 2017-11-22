@@ -196,5 +196,6 @@
         	popFromStack($ra, $t0, $t1)
 
         finish_drawing_letter:
-        
+        	li $v0, 39
+			syscall
 	jr $ra

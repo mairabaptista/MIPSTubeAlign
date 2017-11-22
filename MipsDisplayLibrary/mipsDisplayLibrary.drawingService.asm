@@ -138,8 +138,7 @@
 			move $t2, $a3									# draw right side
 			addi $t6, $t6, 1
 			j draw_vertical			
-		end_draw_vertical:
-								
+		end_draw_vertical:										
 	jr $ra		
 	
 	# arguments: line number, color
@@ -210,9 +209,9 @@
 			sw $a3, 0($t1)		
 			add $t1, $t1, $t5								# add $t5 (orientation)
 			addi $t3, $t3, 1		
-			beq $t3, $t4, end_loop		
+			beq $t3, $t4, end_loop
 			j loop		
-		end_loop:						
+		end_loop:								
 	jr $ra		
 			
 	# arguments: color	
