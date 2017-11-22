@@ -2,12 +2,10 @@
 .include "../MipsMacroLibrary/Macros/mipsMacroLibrary.functionMacros.asm"
 .include "../MipsMacroLibrary/Macros/mipsMacroLibrary.memoryMacros.asm"
 
-
 # Import display lib
 .include "../MipsDisplayLibrary/Constants/mipsDisplayLibrary.constants.asm"
 .include "../MipsDisplayLibrary/mipsDisplayLibrary.displayService.asm"
 .include "../MipsDisplayLibrary/mipsDisplayLibrary.drawingService.asm"
-
 
 # Import files of application
 
@@ -24,19 +22,21 @@
 .include "Service/pipeAlign.drawingService.asm"
 .include "Service/pipeAlign.gameService.asm"
 
-
 .data	
 	# Data Segment
 .text
 	.globl main
 			
 	main:
-
 		#jal createMenu
 		#startGame:
-
-		jal createFirstPhase
 		
+		# create First Phase
+		sendParameters(BACKGROUND_COLOR)
+		jal fillBackgroundColor		
+		sendParameters(NOT_CLEAR_SLOTS)
+		jal createFirstPhase
+				
 		sendParameters(40, 65)		
 		jal drawLetters
 		

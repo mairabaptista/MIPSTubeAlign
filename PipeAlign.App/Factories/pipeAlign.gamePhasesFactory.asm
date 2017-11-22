@@ -1,16 +1,60 @@
 .data	
 	#Data Segment
 .text
-
-	#arguments
-	createBasePhase:
-
-		#Fill background color
+	# arguments: phaseNumber
+	createPhase:
+		blez $a0, finish_create
+		bgt $a0, MAX_PHASES, finish_create
+	
+		sw $a0, currentPhase
+		li $t0, CURSOR_TOP_DEFAULT
+		li $t1, CURSOR_LEFT_DEFAULT
+			
+		sw $t0, cursorTop
+		sw $t1, cursorLeft
+	
+		beq $a0, 1, create_first_phase
+		beq $a0, 2, create_second_phase
+		
+		j finish_create
+		
+		create_first_phase:				
+			pushInStack($ra)
+			sendParameters(CLEAR_SLOTS)
+			jal createFirstPhase
+			popFromStack($ra)			
+		j finish_create
+		
+		create_second_phase:			
+			pushInStack($ra)
+			jal createSecondPhase
+			popFromStack($ra)
+		
+		finish_create:
+	jr $ra
+	
+	createNextPhase:
+		lw $t0, currentPhase
+		
+		addi $t0, $t0, 1
+		
 		pushInStack($ra)
-		sendParameters(BACKGROUND_COLOR)
-		jal fillBackgroundColor
+		sendParameters($t0)
+		jal createPhase
+		popFromStack($ra)
+	jr $ra
+
+	#arguments: clearTubeSlots
+	createBasePhase:
+		bne $a0, CLEAR_SLOTS, notClearTubeSlots
+	
+		#Fill background color
+		pushInStack($ra)		
+		jal clearAllTubeGameSlots
 		popFromStack($ra)
 
+		notClearTubeSlots:
+		
 		#Clear slot mapping vector 
 		pushInStack($ra)
 		jal initializeSlotMapping
@@ -59,9 +103,10 @@
 		popFromStack($ra)		
 	jr $ra
 	
-	#arguments
+	#arguments: clearTubeSlots
 	createFirstPhase:
 		pushInStack($ra)
+		sendParameters($a0)
 		jal createBasePhase
 		popFromStack($ra)
 		
@@ -223,6 +268,7 @@
 	
 	createSecondPhase:
 		pushInStack($ra)
+		sendParameters(CLEAR_SLOTS)
 		jal createBasePhase
 		popFromStack($ra)
 		

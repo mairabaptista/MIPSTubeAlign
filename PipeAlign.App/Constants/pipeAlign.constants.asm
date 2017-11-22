@@ -4,9 +4,11 @@
 	.eqv HORIZONTAL_SLOTS		9	
 	.eqv VERTICAL_SLOTS			6
 
-	.eqv SLOT_HEIGHT		38	
-	.eqv SLOT_WIDTH			54	
-	.eqv CURSOR_SIZE		4
+	.eqv SLOT_HEIGHT			38	
+	.eqv SLOT_WIDTH				54	
+	.eqv CURSOR_SIZE			4
+	.eqv CURSOR_TOP_DEFAULT		22
+	.eqv CURSOR_LEFT_DEFAULT	60	
 		
 	.eqv MARGIN_TOP			22
 	.eqv MARGIN_LEFT		6
@@ -60,13 +62,23 @@
 	.eqv WATER_COLOR			0x0d9bf6
 	.eqv WATER_TIME_OUT			10
 	
+# Game Constants
+
+	.eqv MAX_PHASES					2
+	.eqv TRANSITION_PHASE_DELAY		500
+	
+	.eqv NOT_CLEAR_SLOTS			0
+	.eqv CLEAR_SLOTS				1	
+	
 #Memory game service
 
 	cursorTop:		.word 			22			#TODO: Create description
 	cursorLeft: 	.word 			60			#TODO: Create description
-		
+			
 	maxCursorTop: 	.word 			0			#TODO: Create description
 	maxCursorLeft: 	.word 			0			#TODO: Create description
 	
 	slotMapping:	.space			54 			#It is the memory space where the slots are mapped so that we know what kind of pipe is in each slot
 	slotPathWin:	.space			162			# 54 * 3 bits
+	
+	currentPhase:	.word			1

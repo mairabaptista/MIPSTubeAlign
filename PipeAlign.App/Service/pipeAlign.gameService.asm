@@ -453,15 +453,22 @@
 			j loop_verify
 			
 			win:
+				pushInStack($ra)
+				sendParameters(BACKGROUND_COLOR)				
+				jal createCursor	
+				popFromStack($ra)
 
 				pushInStack($ra)
 				jal drawWaterWinningPipes
 				popFromStack($ra)
-
-				#pushInStack($ra)
-				#jal fillBackgroundColor
-				#popFromStack($ra)
-			
+				
+				li $v0, 32
+    			li $a0, TRANSITION_PHASE_DELAY
+    			syscall
+				
+				pushInStack($ra)
+				jal createNextPhase
+				popFromStack($ra)			
 			finish_verify:
 	jr $ra
 	
