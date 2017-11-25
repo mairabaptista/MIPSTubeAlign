@@ -5,6 +5,9 @@
 .include "../MipsMacroLibrary/Constants/mipsMacroLibrary.bitmapConstants.asm"
 .include "../MipsMacroLibrary/Macros/mipsMacroLibrary.bitmapMacros.asm"
 
+.include "../MipsMacroLibrary/Constants/mipsMacroLibrary.soundConstants.asm"
+.include "../MipsMacroLibrary/Macros/mipsMacroLibrary.soundMacros.asm"
+
 # Import display lib
 .include "../MipsDisplayLibrary/Constants/mipsDisplayLibrary.constants.asm"
 .include "../MipsDisplayLibrary/mipsDisplayLibrary.displayService.asm"
@@ -28,13 +31,13 @@
 	# Data Segment
 .text
 	.globl main
-			
+
 	main:
 		#jal createMenu
 		#startGame:
 		
 		getBitmapCache(FIRST_PHASE_CACHE)
-		
+						
 		move $s7, $v0																												
 		
 		sendParameters(BACKGROUND_COLOR)
@@ -50,7 +53,9 @@
 			refreshBitmap()
 			setBitmapCache(FIRST_PHASE_CACHE)
 		
-		before_refresh_cache:		
+		before_refresh_cache:	
+		
+		playSound(IN_GAME_SOUND, -3, LOOP_SOUND)	
 				
 		#sendParameters(40, 65)		
 		#jal drawLetters

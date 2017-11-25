@@ -1,0 +1,9 @@
+# MENU_SOUND			0
+# IN_GAME_SOUND			1
+# TOGGLE_TUBE_SOUND		2
+# MOVE_CURSOR_SOUND		3
+# WIN_SOUND				4
+# LOSE_SOUND			5
+
+1=crash.wav
+2=toggle.wav

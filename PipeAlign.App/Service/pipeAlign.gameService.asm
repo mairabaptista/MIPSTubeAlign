@@ -261,7 +261,8 @@
 			jal setTubeType
 			popFromStack($ra, $t4)
 						
-		finishDraw:			
+		finishDraw:	
+			playSound(TOGGLE_TUBE_SOUND, KEEP_VOLUME, NOT_LOOP_SOUND)		
 			pushInStack($ra)
 			jal verifyWin
 			popFromStack($ra)

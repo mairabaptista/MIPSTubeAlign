@@ -33,7 +33,8 @@
 		pushInStack($t9)
 	.end_macro
 	
-	.macro return_EXIT_SUCCESS
+	.macro return_EXIT_SUCCESS	
+		stopAllSounds()	
 		li $v0, 10
 		syscall
 	.end_macro
