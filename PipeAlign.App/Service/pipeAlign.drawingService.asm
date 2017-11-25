@@ -23,9 +23,7 @@
 		clearVertical:
 			subi $t2, $t0, 9
 			addi $t4, $t0, 9
-			
-			blt $s0, 10, clear_vertical
-						
+				
 			lb $t2, ($t2)
 			lb $t4, ($t4)
 			
