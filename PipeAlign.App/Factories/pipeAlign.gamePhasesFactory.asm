@@ -4,8 +4,8 @@
 	# arguments: phaseNumber
 	createPhase:
 		blez $a0, finish_create
-		bgt $a0, MAX_PHASES, finish_create
-	
+		bgt $a0, MAX_PHASES, finish_create	
+			
 		sw $a0, currentPhase
 		li $t0, CURSOR_TOP_DEFAULT
 		li $t1, CURSOR_LEFT_DEFAULT
@@ -53,8 +53,7 @@
 		jal clearAllTubeGameSlots
 		popFromStack($ra)
 		
-		li $v0, 39
-		syscall
+		refreshBitmap()
 
 		notClearTubeSlots:
 		
@@ -266,15 +265,26 @@
 		pushInStack($ra)
 		sendParameters(52)
 		jal drawSecondTubeElbow
-		popFromStack($ra)	
-		
-		li $v0, 39
-		syscall
+		popFromStack($ra)
 	jr $ra
 	
-	createSecondPhase:
-		pushInStack($ra)
-		sendParameters(CLEAR_SLOTS)
+	createSecondPhase:	
+		getBitmapCache(SECOND_PHASE_CACHE)
+		
+		move $s6, $v0
+		
+		beq $s6, -1, clear_slots_second_phase
+		
+		sendParameters(NOT_CLEAR_SLOTS)
+		
+		j before_clear_slots_second_phase
+		
+		clear_slots_second_phase:
+			sendParameters(CLEAR_SLOTS)
+		
+		before_clear_slots_second_phase:
+		
+		pushInStack($ra)		
 		jal createBasePhase
 		popFromStack($ra)
 		
@@ -463,6 +473,9 @@
 		jal drawVerticalTube
 		popFromStack($ra)
 		
-		li $v0, 39
-		syscall
+		beq $s6, -1, updateBitmapAndCache_second_phase
+		
+		updateBitmapAndCache_second_phase:
+			refreshBitmap()
+			setBitmapCache(SECOND_PHASE_CACHE)
 	jr $ra

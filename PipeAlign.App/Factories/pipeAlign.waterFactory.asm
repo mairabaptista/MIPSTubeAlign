@@ -171,8 +171,7 @@
 			popFromStack($t4, $t5, $t6, $t3)
 			popFromStack($ra, $t0, $t1, $t2)
 			
-			li $v0, 39
-			syscall
+			refreshBitmap()
 			
 			li $v0, 32
     		li $a0, WATER_TIME_OUT
@@ -222,8 +221,7 @@
 			popFromStack($t3, $t4, $t5, $t6)
 			popFromStack($ra, $t0, $t1, $t2)
 	
-			li $v0, 39
-			syscall
+			refreshBitmap()
 	
 			li  $v0, 32
     		li $a0, WATER_TIME_OUT
@@ -435,8 +433,7 @@
 			popFromStack($t4, $t5, $t6, $t3)
 			popFromStack($ra, $t0, $t1, $t2)
 			
-			li $v0, 39
-			syscall
+			refreshBitmap()
 			
 			li $v0, 32
     		li $a0, WATER_TIME_OUT
@@ -490,8 +487,7 @@
 			popFromStack($t4, $t5, $t6, $t3)
 			popFromStack($ra, $t0, $t1, $t2)
 			
-			li $v0, 39
-			syscall
+			refreshBitmap()
 			
 			li $v0, 32
     		li $a0, WATER_TIME_OUT
@@ -544,8 +540,7 @@
 			popFromStack($t3, $t4, $t5, $t6)
 			popFromStack($ra, $t0, $t1, $t2)
 	
-			li $v0, 39
-			syscall
+			refreshBitmap()
 	
 			li  $v0, 32
     		li $a0, WATER_TIME_OUT
@@ -597,8 +592,7 @@
 			popFromStack($t3, $t4, $t5, $t6)
 			popFromStack($ra, $t0, $t1, $t2)
 		
-			li $v0, 39
-			syscall
+			refreshBitmap()
 		
 			li  $v0, 32
     		li $a0, WATER_TIME_OUT

@@ -33,8 +33,7 @@
 		popFromStack($ra)
 		
 		end_movimentation_up:
-			li $v0, 39
-			syscall
+			refreshBitmap()
 	jr $ra
 	
 	moveCursorDown:
@@ -60,8 +59,7 @@
 		popFromStack($ra)
 		
 		end_movimentation_down:
-			li $v0, 39
-			syscall
+			refreshBitmap()
 	jr $ra
 		
 	moveCursorLeft:
@@ -96,8 +94,7 @@
 		popFromStack($ra)
 		
 		end_movimentation_left:
-			li $v0, 39
-			syscall
+			refreshBitmap()
 	jr $ra
 	
 	moveCursorRight:	
@@ -123,8 +120,7 @@
 		popFromStack($ra)
 		
 		end_movimentation_right:
-			li $v0, 39
-			syscall
+			refreshBitmap()
 	jr $ra
 	
 	setMaxCursorLeft:		
@@ -189,8 +185,7 @@
 			sendParameters($t4)
 			jal drawVerticalTube
 			popFromStack($ra, $t4)
-			li $v0, 39
-			syscall
+			refreshBitmap()
 		
 			pushInStack($ra, $t4)
 			sendParameters($t4, VERTICAL_TUBE)
@@ -203,8 +198,7 @@
 			sendParameters($t4)
 			jal drawHorizontalTube
 			popFromStack($ra, $t4)
-			li $v0, 39
-			syscall
+			refreshBitmap()
 		
 			pushInStack($ra, $t4)
 			sendParameters($t4, HORIZONTAL_TUBE)
@@ -218,8 +212,7 @@
 			sendParameters($t4)
 			jal drawSecondTubeElbow
 			popFromStack($ra, $t4)
-			li $v0, 39
-			syscall
+			refreshBitmap()
 		
 			pushInStack($ra, $t4)
 			sendParameters($t4, SECOND_TUBE_ELBOW)
@@ -233,8 +226,7 @@
 			sendParameters($t4)
 			jal drawFourthTubeElbow
 			popFromStack($ra, $t4)
-			li $v0, 39
-			syscall
+			refreshBitmap()
 		
 			pushInStack($ra, $t4)
 			sendParameters($t4, FOURTH_TUBE_ELBOW)
@@ -248,8 +240,7 @@
 			sendParameters($t4)
 			jal drawFirstTubeElbow
 			popFromStack($ra, $t4)
-			li $v0, 39
-			syscall
+			refreshBitmap()
 		
 			pushInStack($ra, $t4)
 			sendParameters($t4, FIRST_TUBE_ELBOW)
@@ -263,8 +254,7 @@
 			sendParameters($t4)
 			jal drawThirdTubeElbow
 			popFromStack($ra, $t4)
-			li $v0, 39
-			syscall
+			refreshBitmap()
 		
 			pushInStack($ra, $t4)
 			sendParameters($t4, THIRD_TUBE_ELBOW)

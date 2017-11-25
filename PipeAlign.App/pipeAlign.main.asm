@@ -2,6 +2,9 @@
 .include "../MipsMacroLibrary/Macros/mipsMacroLibrary.functionMacros.asm"
 .include "../MipsMacroLibrary/Macros/mipsMacroLibrary.memoryMacros.asm"
 
+.include "../MipsMacroLibrary/Constants/mipsMacroLibrary.bitmapConstants.asm"
+.include "../MipsMacroLibrary/Macros/mipsMacroLibrary.bitmapMacros.asm"
+
 # Import display lib
 .include "../MipsDisplayLibrary/Constants/mipsDisplayLibrary.constants.asm"
 .include "../MipsDisplayLibrary/mipsDisplayLibrary.displayService.asm"
@@ -10,7 +13,6 @@
 # Import files of application
 
 .include "Constants/pipeAlign.constants.asm"
-
 .include "Factories/pipeAlign.tubeFactory.asm"
 .include "Factories/pipeAlign.cursorFactory.asm"
 .include "Factories/pipeAlign.letterFactory.asm"
@@ -30,24 +32,34 @@
 	main:
 		#jal createMenu
 		#startGame:
-								
-		# create First Phase
+		
+		getBitmapCache(FIRST_PHASE_CACHE)
+		
+		move $s7, $v0																												
+		
 		sendParameters(BACKGROUND_COLOR)
 		jal fillBackgroundColor
 		sendParameters(NOT_CLEAR_SLOTS)
 		jal createFirstPhase
 		
-		li $v0, 39
-		syscall
+		beq $s7, -1, updateBitmapAndCache
+		
+		j before_refresh_cache
+		
+		updateBitmapAndCache:
+			refreshBitmap()
+			setBitmapCache(FIRST_PHASE_CACHE)
+		
+		before_refresh_cache:		
 				
-		sendParameters(40, 65)		
-		jal drawLetters
+		#sendParameters(40, 65)		
+		#jal drawLetters
 		
-		sendParameters(41, 32)		
-		jal drawLetters		
+		#sendParameters(41, 32)		
+		#jal drawLetters		
 		
-		sendParameters(42, 69)		
-		jal drawLetters
+		#sendParameters(42, 69)		
+		#jal drawLetters
 		
 		jal readInput
 						
