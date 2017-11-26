@@ -38,7 +38,9 @@
 		
 		getBitmapCache(FIRST_PHASE_CACHE)
 						
-		move $s7, $v0																												
+		move $s7, $v0	
+		
+		playSound(IN_GAME_SOUND, -3, LOOP_SOUND)																												
 		
 		sendParameters(BACKGROUND_COLOR)
 		jal fillBackgroundColor
@@ -54,9 +56,7 @@
 			setBitmapCache(FIRST_PHASE_CACHE)
 		
 		before_refresh_cache:	
-		
-		playSound(IN_GAME_SOUND, -3, LOOP_SOUND)	
-				
+						
 		#sendParameters(40, 65)		
 		#jal drawLetters
 		
