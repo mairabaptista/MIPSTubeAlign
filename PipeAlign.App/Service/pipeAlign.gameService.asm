@@ -534,6 +534,7 @@
 					pushInStack($ra)
 					jal fillBackgroundColor
 					popFromStack($ra)
+					refreshBitmap()
 					return_EXIT_SUCCESS
 			
 				beforeKeyPress:		
