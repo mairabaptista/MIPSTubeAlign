@@ -40,7 +40,7 @@
 						
 		move $s7, $v0	
 		
-		playSound(IN_GAME_SOUND, -3, LOOP_SOUND)																												
+		#playSound(IN_GAME_SOUND, -3, LOOP_SOUND)																												
 		
 		sendParameters(BACKGROUND_COLOR)
 		jal fillBackgroundColor
@@ -57,14 +57,47 @@
 		
 		before_refresh_cache:	
 						
-		#sendParameters(40, 65)		
-		#jal drawLetters
+		sendParameters(28, 65)		
+		jal drawLetters
 		
-		#sendParameters(41, 32)		
-		#jal drawLetters		
+		sendParameters(29, 66)		
+		jal drawLetters	
 		
-		#sendParameters(42, 69)		
-		#jal drawLetters
+		sendParameters(30, 67)		
+		jal drawLetters	
+		
+		sendParameters(31, 69)		
+		jal drawLetters
+		
+		sendParameters(32, 71)		
+		jal drawLetters
+		
+		sendParameters(33, 73)		
+		jal drawLetters
+		
+		sendParameters(34, 76)		
+		jal drawLetters
+		
+		sendParameters(35, 77)		
+		jal drawLetters
+		
+		sendParameters(36, 78)		
+		jal drawLetters
+		
+		sendParameters(37, 79)		
+		jal drawLetters
+		
+		sendParameters(38, 80)		
+		jal drawLetters		
+		
+		sendParameters(39, 82)		
+		jal drawLetters		
+		
+		sendParameters(40, 83)		
+		jal drawLetters		
+		
+		sendParameters(41, 84)		
+		jal drawLetters
 		
 		jal readInput
 						
