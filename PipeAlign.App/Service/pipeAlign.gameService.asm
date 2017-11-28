@@ -15,7 +15,9 @@
 		
 		verify_movement_valid_up:
 			ble $t0, $t2, end_movimentation_up
-				
+		
+		playSound(MOVE_CURSOR_SOUND, KEEP_VOLUME, NOT_LOOP_SOUND)
+						
 		sendParameters(BACKGROUND_COLOR)
 		pushInStack($ra)
 		jal createCursor	
@@ -31,8 +33,7 @@
 		pushInStack($ra)
 		jal createCursor
 		popFromStack($ra)
-		playSound(MOVE_CURSOR_SOUND, KEEP_VOLUME, NOT_LOOP_SOUND)
-		
+				
 		end_movimentation_up:
 			refreshBitmap()			
 	jr $ra
@@ -42,6 +43,8 @@
 		lw $t1, maxCursorTop
 		
 		bge $t0, $t1, end_movimentation_down
+		
+		playSound(MOVE_CURSOR_SOUND, KEEP_VOLUME, NOT_LOOP_SOUND)
 				
 		sendParameters(BACKGROUND_COLOR)
 		pushInStack($ra)
@@ -58,8 +61,7 @@
 		pushInStack($ra)
 		jal createCursor
 		popFromStack($ra)
-		playSound(MOVE_CURSOR_SOUND, KEEP_VOLUME, NOT_LOOP_SOUND)
-		
+				
 		end_movimentation_down:
 			refreshBitmap()
 	jr $ra
@@ -77,7 +79,9 @@
 			addi $t2, $t2, SLOT_WIDTH		
 		
 		verify_movement_valid_left:
-			ble $t0, $t2, end_movimentation_left	
+			ble $t0, $t2, end_movimentation_left
+			
+		playSound(MOVE_CURSOR_SOUND, KEEP_VOLUME, NOT_LOOP_SOUND)			
 	
 		sendParameters(BACKGROUND_COLOR)
 		pushInStack($ra)
@@ -93,8 +97,7 @@
 		sendParameters(RED_COLOR)
 		pushInStack($ra)
 		jal createCursor
-		popFromStack($ra)
-		playSound(MOVE_CURSOR_SOUND, KEEP_VOLUME, NOT_LOOP_SOUND)
+		popFromStack($ra)		
 		
 		end_movimentation_left:
 			refreshBitmap()
@@ -105,6 +108,8 @@
 		lw $t1, maxCursorLeft
 		
 		bge $t0, $t1, end_movimentation_right
+		
+		playSound(MOVE_CURSOR_SOUND, KEEP_VOLUME, NOT_LOOP_SOUND)
 	
 		sendParameters(BACKGROUND_COLOR)
 		pushInStack($ra)
@@ -121,8 +126,7 @@
 		pushInStack($ra)
 		jal createCursor
 		popFromStack($ra)
-		playSound(MOVE_CURSOR_SOUND, KEEP_VOLUME, NOT_LOOP_SOUND)
-		
+				
 		end_movimentation_right:
 			refreshBitmap()
 	jr $ra
@@ -177,6 +181,9 @@
 		lb $t5, 0($t1)
 		
 		beq $t5, 0, finishDraw
+		
+		playSound(TOGGLE_TUBE_SOUND, KEEP_VOLUME, NOT_LOOP_SOUND)	
+		
 		beq $t5, HORIZONTAL_TUBE, toVertical
 		beq $t5, VERTICAL_TUBE, toHorizontal
 		beq $t5, FIRST_TUBE_ELBOW, toSecondElbow
@@ -266,7 +273,7 @@
 			popFromStack($ra, $t4)
 						
 		finishDraw:	
-			playSound(TOGGLE_TUBE_SOUND, KEEP_VOLUME, NOT_LOOP_SOUND)		
+			
 			pushInStack($ra)
 			jal verifyWin
 			popFromStack($ra)
