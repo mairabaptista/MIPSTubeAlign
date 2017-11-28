@@ -34,6 +34,7 @@
 		
 		end_movimentation_up:
 			refreshBitmap()
+			playSound(MOVE_CURSOR_SOUND, KEEP_VOLUME, NOT_LOOP_SOUND)
 	jr $ra
 	
 	moveCursorDown:
