@@ -68,7 +68,11 @@
 	.eqv TRANSITION_PHASE_DELAY		500
 	
 	.eqv NOT_CLEAR_SLOTS			0
-	.eqv CLEAR_SLOTS				1	
+	.eqv CLEAR_SLOTS				1
+
+# Number constants
+
+	.eqv NUMBER_COLOR				0x000000
 	
 #Memory game service
 
