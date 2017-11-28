@@ -31,10 +31,10 @@
 		pushInStack($ra)
 		jal createCursor
 		popFromStack($ra)
+		playSound(MOVE_CURSOR_SOUND, KEEP_VOLUME, NOT_LOOP_SOUND)
 		
 		end_movimentation_up:
-			refreshBitmap()
-			playSound(MOVE_CURSOR_SOUND, KEEP_VOLUME, NOT_LOOP_SOUND)
+			refreshBitmap()			
 	jr $ra
 	
 	moveCursorDown:
@@ -58,6 +58,7 @@
 		pushInStack($ra)
 		jal createCursor
 		popFromStack($ra)
+		playSound(MOVE_CURSOR_SOUND, KEEP_VOLUME, NOT_LOOP_SOUND)
 		
 		end_movimentation_down:
 			refreshBitmap()
@@ -93,6 +94,7 @@
 		pushInStack($ra)
 		jal createCursor
 		popFromStack($ra)
+		playSound(MOVE_CURSOR_SOUND, KEEP_VOLUME, NOT_LOOP_SOUND)
 		
 		end_movimentation_left:
 			refreshBitmap()
@@ -119,6 +121,7 @@
 		pushInStack($ra)
 		jal createCursor
 		popFromStack($ra)
+		playSound(MOVE_CURSOR_SOUND, KEEP_VOLUME, NOT_LOOP_SOUND)
 		
 		end_movimentation_right:
 			refreshBitmap()
