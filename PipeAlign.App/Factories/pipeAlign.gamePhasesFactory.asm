@@ -501,6 +501,8 @@
 		
 		beq $s6, -1, updateBitmapAndCache_second_phase
 		
+		jr $ra
+		
 		updateBitmapAndCache_second_phase:
 			refreshBitmap()
 			setBitmapCache(SECOND_PHASE_CACHE)
