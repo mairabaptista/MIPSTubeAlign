@@ -44,6 +44,32 @@
 		popFromStack($ra)
 	jr $ra
 
+	#TODO: Verificar se essa função ficará aqui
+
+	#arguments: hundred in $a0, ten in $a1, unity $a2
+	crateMovesDisplay:
+
+		move $t0, $a0
+		move $t1, $a1
+
+		pushInStack($ra, $t0, $t1)
+		sendParameters($t0, $t1)
+		jal initializeMovesDisplayMemory
+		popFromStack($ra, $t0, $t1)
+
+		pushInStack($ra, $t1)
+		sendParameters(38, $t0, NUMBER_COLOR)
+		jal drawNumbers
+		popFromStack($ra, $t1)
+		
+		pushInStack($ra)
+		sendParameters(39, $t1, NUMBER_COLOR)
+		jal drawNumbers
+		popFromStack($ra)
+
+	jr $ra
+
+
 	#arguments: clearTubeSlots
 	createBasePhase:
 		bne $a0, CLEAR_SLOTS, notClearTubeSlots

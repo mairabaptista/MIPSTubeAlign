@@ -91,3 +91,9 @@
 	slotPathWin:	.space			162			# 54 * 3 bits
 	
 	currentPhase:	.word			1
+
+#Display moves memory
+
+	movesDisplay: 	.space 			3			#Display move
+	
+

@@ -159,6 +159,7 @@
 	
 	#arguments: No parameters
 	toggleTube:
+
 		la $t1 ,slotMapping
 		lw $t2, cursorTop
 		lw $t3, cursorLeft
@@ -182,7 +183,13 @@
 		
 		beq $t5, 0, finishDraw
 		
-		playSound(TOGGLE_TUBE_SOUND, KEEP_VOLUME, NOT_LOOP_SOUND)	
+		playSound(TOGGLE_TUBE_SOUND, KEEP_VOLUME, NOT_LOOP_SOUND)
+
+		pushInStack($ra, $t1, $t2, $t3)
+		pushInStack($t4, $t5)
+		jal updateMovesDisplay
+		popFromStack($t4, $t5)
+		popFromStack($ra, $t1, $t2, $t3)
 		
 		beq $t5, HORIZONTAL_TUBE, toVertical
 		beq $t5, VERTICAL_TUBE, toHorizontal
@@ -273,10 +280,13 @@
 			popFromStack($ra, $t4)
 						
 		finishDraw:	
-			
+
 			pushInStack($ra)
 			jal verifyWin
 			popFromStack($ra)
+
+
+
 	jr $ra
 	
 	#arguments: No parameters
@@ -544,3 +554,149 @@
 
 			j readInputLoop
 		jr $ra    
+
+
+
+	#TODO: VERIFICAR SE ESSE CÓDIGO FICARÁ AQUI
+	#arguments: ten in $a0, unity $a1
+	initializeMovesDisplayMemory:
+
+		move $t0, $a0
+		move $t1, $a1
+
+		la $t3, movesDisplay
+
+		sb $t0, 0($t3)
+		addi $t3, $t3, 1
+		sb $t1, 0($t3)	
+
+	jr $ra
+
+	updateMovesDisplay:
+
+		la $t3, movesDisplay
+		
+		addi $t3, $t3, 1
+		lb $t0, 0 ($t3)
+
+		beqz $t0, updateTenTag
+
+			pushInStack($ra, $t0, $t3)
+			sendParameters(0)
+			jal updateUnity
+			popFromStack($ra, $t0, $t3)
+
+			j finishUpdateDisplay
+
+		updateTenTag:
+
+			subi $t3, $t3, 1
+			lb $t0, 0 ($t3)
+
+			beqz $t0, finishUpdateDisplay 
+
+			pushInStack($ra, $t0, $t3)
+			sendParameters(0)
+			jal updateTen
+			popFromStack($ra, $t0, $t3)
+
+
+		finishUpdateDisplay:
+
+	jr $ra
+
+
+	#arguments: updateToNine in $a0
+	updateUnity:
+
+		move $t4, $a0
+
+		la $t3, movesDisplay
+		
+		addi $t3, $t3, 1
+		lb $t0, 0 ($t3)
+
+		pushInStack($ra, $t0, $t3, $t4)
+		sendParameters(39, $t0, TOP_SCREEN_COLOR)
+		jal drawNumbers
+		popFromStack($ra, $t0, $t3, $t4)
+
+		beq $t4, 1, updateUnityToNine 
+
+		subi $t0, $t0, 1
+
+		pushInStack($ra, $t0, $t3, $t4)
+		sendParameters(39, $t0, NUMBER_COLOR)
+		jal drawNumbers
+		popFromStack($ra, $t0, $t3, $t4)
+
+		sb $t0, 0 ($t3)
+
+		j finishUpdateUnity
+
+		updateUnityToNine:
+
+		pushInStack($ra, $t0, $t3, $t4)
+		sendParameters(39, 9, NUMBER_COLOR)
+		jal drawNumbers
+		popFromStack($ra, $t0, $t3, $t4)
+
+		li $t0, 9
+		sb $t0, 0 ($t3)
+
+		finishUpdateUnity:
+
+	jr $ra
+
+
+	#arguments: updateToNine in $a0
+	updateTen:
+
+		move $t4, $a0
+
+		la $t3, movesDisplay
+		
+		lb $t0, 0 ($t3)
+
+		pushInStack($ra, $t0, $t3, $t4)
+		sendParameters(38, $t0, TOP_SCREEN_COLOR)
+		jal drawNumbers
+		popFromStack($ra, $t0, $t3, $t4)
+
+
+		beq $t4, 1, updateTenToNine
+
+			beq $t0, 0, tenIsZero
+
+				pushInStack($ra, $t0, $t3, $t4)
+				sendParameters(1)
+				jal updateUnity
+				popFromStack($ra, $t0, $t3, $t4)
+
+				subi $t0, $t0, 1
+
+				pushInStack($ra, $t0, $t3, $t4)
+				sendParameters(38, $t0, NUMBER_COLOR)
+				jal drawNumbers
+				popFromStack($ra, $t0, $t3, $t4)
+		
+				sb $t0, 0 ($t3)
+
+			tenIsZero:  
+
+			j finishUpdateTen
+
+		updateTenToNine:
+
+			pushInStack($ra, $t0, $t3, $t4)
+			sendParameters(38, 9, NUMBER_COLOR)
+			jal drawNumbers
+			popFromStack($ra, $t0, $t3, $t4)
+
+			li $t0, 9
+			sb $t0, 0 ($t3)
+
+
+		finishUpdateTen:
+
+	jr $ra

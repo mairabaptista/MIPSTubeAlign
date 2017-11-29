@@ -49,37 +49,10 @@
 		jal fillBackgroundColor
 		sendParameters(NOT_CLEAR_SLOTS)
 		jal createFirstPhase
-	
-		sendParameters(1, 0)
-		jal drawNumbers
 		
-		sendParameters(2, 1)
-		jal drawNumbers
-		
-		sendParameters(3, 2)
-		jal drawNumbers
-		
-		sendParameters(4, 3)
-		jal drawNumbers
-		
-		sendParameters(5, 4)
-		jal drawNumbers
-		
-		sendParameters(6, 5)
-		jal drawNumbers
-		
-		sendParameters(7, 6)
-		jal drawNumbers
-		
-		sendParameters(8, 7)
-		jal drawNumbers
-		
-		sendParameters(9, 8)
-		jal drawNumbers
-		
-		sendParameters(10, 9)
-		jal drawNumbers
-		
+		sendParameters(9, 9)
+		jal crateMovesDisplay		
+
 		# Draw Moves
 		sendParameters(32, 77)		
 		jal drawLetters
@@ -93,8 +66,8 @@
 		sendParameters(35, 69)		
 		jal drawLetters
 		
-		sendParameters(36, 83)		
-		jal drawLetters		
+		sendParameters(36, 83)	
+		jal drawLetters	
 		
 		#beq $s7, -1, updateBitmapAndCache
 		
@@ -105,7 +78,7 @@
 		#	setBitmapCache(FIRST_PHASE_CACHE)
 		#
 		#before_refresh_cache:
-		
+				
 		jal readInput
 						
 		finishGame:	
