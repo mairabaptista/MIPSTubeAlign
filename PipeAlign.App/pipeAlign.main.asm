@@ -37,9 +37,9 @@
 		#jal createMenu
 		#startGame:
 		
-		#getBitmapCache(FIRST_PHASE_CACHE)
+		getBitmapCache(FIRST_PHASE_CACHE)
 						
-		#move $s7, $v0	
+		move $s7, $v0	
 		
 		playSound(IN_GAME_SOUND, -3, LOOP_SOUND)																												
 		
@@ -80,15 +80,15 @@
 		jal drawNumbers
 		
 
-		#beq $s7, -1, updateBitmapAndCache
+		beq $s7, -1, updateBitmapAndCache
 		
-		#j before_refresh_cache
+		j before_refresh_cache
 		
-		#updateBitmapAndCache:
-		#	refreshBitmap()
-		#	setBitmapCache(FIRST_PHASE_CACHE)
+		updateBitmapAndCache:
+			refreshBitmap()
+			setBitmapCache(FIRST_PHASE_CACHE)
 		
-		#before_refresh_cache:	
+		before_refresh_cache:	
 						
 		#sendParameters(40, 65)		
 		#jal drawLetters
