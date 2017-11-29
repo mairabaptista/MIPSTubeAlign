@@ -34,8 +34,8 @@
 	.globl main
 
 	main:
-		jal createMenu
-		jr $v0
+		#jal createMenu
+		#jr $v0
 		
 		startGame:
 		
