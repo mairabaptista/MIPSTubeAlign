@@ -88,43 +88,23 @@
 		#	refreshBitmap()
 		#	setBitmapCache(FIRST_PHASE_CACHE)
 		
-		#before_refresh_cache:	
-						
-		sendParameters(29, 65)		
+		#before_refresh_cache:						
+		
+		
+		sendParameters(32, 77)		
 		jal drawLetters
 		
-		sendParameters(30, 67)		
-		jal drawLetters	
-		
-		sendParameters(31, 69)		
+		sendParameters(33, 79)		
 		jal drawLetters
 		
-		sendParameters(32, 71)		
+		sendParameters(34, 86)		
 		jal drawLetters
 		
-		sendParameters(33, 73)		
+		sendParameters(35, 69)		
 		jal drawLetters
 		
-		sendParameters(34, 76)		
-		jal drawLetters
-		
-		sendParameters(35, 77)		
-		jal drawLetters
-		
-		sendParameters(37, 79)		
-		jal drawLetters
-		
-		sendParameters(38, 80)		
+		sendParameters(36, 83)		
 		jal drawLetters		
-		
-		sendParameters(39, 82)		
-		jal drawLetters		
-		
-		sendParameters(40, 83)		
-		jal drawLetters		
-		
-		sendParameters(41, 84)		
-		jal drawLetters
 		
 		jal readInput
 						
