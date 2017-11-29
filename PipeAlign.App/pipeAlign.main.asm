@@ -61,6 +61,21 @@
 		
 		#before_refresh_cache:	
 
+		sendParameters(32, 77)		
+		jal drawLetters
+		
+		sendParameters(33, 79)		
+		jal drawLetters
+		
+		sendParameters(34, 86)		
+		jal drawLetters
+		
+		sendParameters(35, 69)		
+		jal drawLetters
+		
+		sendParameters(36, 83)		
+		jal drawLetters	
+
 		jal readInput
 						
 		#finishGame:	
