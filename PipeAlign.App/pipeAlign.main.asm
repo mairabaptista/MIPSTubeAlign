@@ -60,8 +60,7 @@
 		#	setBitmapCache(FIRST_PHASE_CACHE)
 		
 		#before_refresh_cache:	
-					
-		
+
 		jal readInput
 						
 		#finishGame:	
