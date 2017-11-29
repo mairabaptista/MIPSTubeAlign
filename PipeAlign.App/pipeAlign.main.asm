@@ -22,7 +22,7 @@
 .include "Factories/pipeAlign.gamePhasesFactory.asm"
 .include "Factories/pipeAlign.waterFactory.asm"
 .include "Factories/pipeAlign.numberFactory.asm"
-#.include "Factories/pipeAlign.menuFactory.asm"
+.include "Factories/pipeAlign.menuFactory.asm"
 
 .include "Service/pipeAlign.displayService.asm"
 .include "Service/pipeAlign.drawingService.asm"
@@ -34,8 +34,10 @@
 	.globl main
 
 	main:
-		#jal createMenu
-		#startGame:
+		jal createMenu
+		jr $v0
+		
+		startGame:
 		
 		#getBitmapCache(FIRST_PHASE_CACHE)
 						
@@ -47,7 +49,6 @@
 		jal fillBackgroundColor
 		sendParameters(NOT_CLEAR_SLOTS)
 		jal createFirstPhase
-
 	
 		sendParameters(1, 0)
 		jal drawNumbers
@@ -79,18 +80,7 @@
 		sendParameters(10, 9)
 		jal drawNumbers
 		
-
-		#beq $s7, -1, updateBitmapAndCache
-		
-		#j before_refresh_cache
-		
-		#updateBitmapAndCache:
-		#	refreshBitmap()
-		#	setBitmapCache(FIRST_PHASE_CACHE)
-		
-		#before_refresh_cache:						
-		
-		
+		# Draw Moves
 		sendParameters(32, 77)		
 		jal drawLetters
 		
@@ -106,8 +96,18 @@
 		sendParameters(36, 83)		
 		jal drawLetters		
 		
+		#beq $s7, -1, updateBitmapAndCache
+		
+		#j before_refresh_cache
+		
+		#updateBitmapAndCache:
+		#	refreshBitmap()
+		#	setBitmapCache(FIRST_PHASE_CACHE)
+		#
+		#before_refresh_cache:
+		
 		jal readInput
 						
-		#finishGame:	
+		finishGame:	
 
 	return_EXIT_SUCCESS

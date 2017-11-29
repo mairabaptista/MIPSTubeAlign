@@ -21,16 +21,21 @@
 	.eqv TOP_SCREEN_SLOT_WIDTH				12
 	.eqv TOP_SCREEN_COLOR 					0xc4ccdf
 	.eqv BORDER_TOP_COLOR 					0x68798e	
+	
+# Menu Colors
+	.eqv MENU_BACKGROUND_COLOR 			0x339999
 
 # Input Data
 	.eqv BASE_INPUT_ADDRESS			0xffff0004
 	.eqv LETTER_W					119
 	.eqv LETTER_X					120
-	.eqv LETTER_A					97
+	.eqv LETTER_A					97	
 	.eqv LETTER_D					100
+	.eqv LETTER_E					101
 	.eqv LETTER_S					115
 	.eqv LETTER_K					107
 	.eqv LETTER_L					108
+	.eqv LETTER_P					112
 	.eqv SPACE_KEY					32
 	.eqv ESC_KEY					27
 
