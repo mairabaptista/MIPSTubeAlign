@@ -90,11 +90,8 @@
 		
 		before_refresh_cache:	
 						
-		sendParameters(28, 65)		
+		sendParameters(29, 65)		
 		jal drawLetters
-		
-		sendParameters(29, 66)		
-		jal drawLetters	
 		
 		sendParameters(30, 67)		
 		jal drawLetters	
