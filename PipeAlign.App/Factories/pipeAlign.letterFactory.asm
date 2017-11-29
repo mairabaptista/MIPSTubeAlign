@@ -13,16 +13,185 @@
 
         move $t0, $v0
         move $t1, $v1
-        add $t0, $t0, 3     #margin 
+        add $t0, $t0, 3     #margin  
 
-        pushInStack($ra, $t0, $t1)
-        pushInStack($a0, $a1)
-        sendParameters($t0, $t1)
-        jal getPositionFromBlock
-        popFromStack($a0, $a1)
-        popFromStack($ra, $t0, $t1)   
-        move $t7, $v0 
+        drawTopMainDiagonal:
 
+            beq $a1, 65, drawBottomMainDiagonal
+            beq $a1, 67, drawBottomMainDiagonal
+            beq $a1, 69, drawBottomMainDiagonal
+            beq $a1, 71, drawBottomMainDiagonal
+            beq $a1, 73, drawBottomMainDiagonal
+            beq $a1, 76, drawBottomMainDiagonal
+            beq $a1, 78, drawBottomMainDiagonal
+            beq $a1, 79, drawBottomMainDiagonal
+            beq $a1, 80, drawBottomMainDiagonal
+            beq $a1, 82, drawBottomMainDiagonal
+            beq $a1, 83, drawBottomMainDiagonal
+            beq $a1, 84, drawBottomMainDiagonal
+
+            add $t2, $t1, 1
+
+            pushInStack($ra, $t0, $t1)
+            pushInStack($a0, $a1)
+            sendParameters($t0, $t2)
+            jal getPositionFromBlock
+            popFromStack($a0, $a1)
+            popFromStack($ra, $t0, $t1)   
+
+            move $t7, $v0 
+            pushInStack($ra, $t0, $t1)
+            pushInStack($a0, $a1)
+            addi $t2, $zero, 4 
+            sendParameters($t7, $t2, MAIN_DIAGONAL, BORDER_COLOR)
+            jal drawContinuosBlocks
+            popFromStack($a0, $a1)
+            popFromStack($ra, $t0, $t1)
+
+
+            add $t2, $t0, 1
+            add $t3, $t1, 1
+            pushInStack($ra, $t0, $t1)
+            pushInStack($a0, $a1)
+            sendParameters($t2, $t3)
+            jal getPositionFromBlock
+            popFromStack($a0, $a1)
+            popFromStack($ra, $t0, $t1)
+
+            move $t7, $v0 
+
+            pushInStack($ra, $t0, $t1)
+            pushInStack($a0, $a1)
+            addi $t2, $zero, 4 
+            sendParameters($t7, $t2, MAIN_DIAGONAL, BORDER_COLOR)
+            jal drawContinuosBlocks
+            popFromStack($a0, $a1)
+            popFromStack($ra, $t0, $t1)
+
+        drawBottomMainDiagonal:
+
+            beq $a1, 65, drawTopSecondaryDiagonal
+            beq $a1, 67, drawTopSecondaryDiagonal
+            beq $a1, 69, drawTopSecondaryDiagonal
+            beq $a1, 71, drawTopSecondaryDiagonal
+            beq $a1, 73, drawTopSecondaryDiagonal
+            beq $a1, 76, drawTopSecondaryDiagonal
+            beq $a1, 77, drawTopSecondaryDiagonal
+            beq $a1, 78, drawTopSecondaryDiagonal
+            beq $a1, 79, drawTopSecondaryDiagonal
+            beq $a1, 80, drawTopSecondaryDiagonal            
+            beq $a1, 83, drawTopSecondaryDiagonal
+            beq $a1, 84, drawTopSecondaryDiagonal
+
+            add $t2, $t1, 3
+            add $t3, $t0, 5
+
+            pushInStack($ra, $t0, $t1)
+            pushInStack($a0, $a1)
+            sendParameters($t3, $t2)
+            jal getPositionFromBlock
+            popFromStack($a0, $a1)
+            popFromStack($ra, $t0, $t1)   
+
+            move $t7, $v0 
+            pushInStack($ra, $t0, $t1)
+            pushInStack($a0, $a1)
+            addi $t2, $zero, 6 
+            sendParameters($t7, $t2, MAIN_DIAGONAL, BORDER_COLOR)
+            jal drawContinuosBlocks
+            popFromStack($a0, $a1)
+            popFromStack($ra, $t0, $t1)          
+
+            add $t2, $t1, 3
+            add $t3, $t0, 6
+
+            pushInStack($ra, $t0, $t1)
+            pushInStack($a0, $a1)
+            sendParameters($t3, $t2)
+            jal getPositionFromBlock
+            popFromStack($a0, $a1)
+            popFromStack($ra, $t0, $t1)   
+
+            move $t7, $v0 
+            pushInStack($ra, $t0, $t1)
+            pushInStack($a0, $a1)
+            addi $t2, $zero, 6 
+            sendParameters($t7, $t2, MAIN_DIAGONAL, BORDER_COLOR)
+            jal drawContinuosBlocks
+            popFromStack($a0, $a1)
+            popFromStack($ra, $t0, $t1)
+
+
+            add $t2, $t0, 7
+            add $t3, $t1, 3
+            pushInStack($ra, $t0, $t1)
+            pushInStack($a0, $a1)
+            sendParameters($t2, $t3)
+            jal getPositionFromBlock
+            popFromStack($a0, $a1)
+            popFromStack($ra, $t0, $t1)
+
+            move $t7, $v0 
+
+            pushInStack($ra, $t0, $t1)
+            pushInStack($a0, $a1)
+            addi $t2, $zero, 5 
+            sendParameters($t7, $t2, MAIN_DIAGONAL, BORDER_COLOR)
+            jal drawContinuosBlocks
+            popFromStack($a0, $a1)
+            popFromStack($ra, $t0, $t1)
+
+        drawTopSecondaryDiagonal:
+
+            beq $a1, 65, drawMiddleTopVerticalLine
+            beq $a1, 67, drawMiddleTopVerticalLine
+            beq $a1, 69, drawMiddleTopVerticalLine
+            beq $a1, 71, drawMiddleTopVerticalLine
+            beq $a1, 73, drawMiddleTopVerticalLine
+            beq $a1, 76, drawMiddleTopVerticalLine
+            beq $a1, 78, drawMiddleTopVerticalLine
+            beq $a1, 79, drawMiddleTopVerticalLine
+            beq $a1, 80, drawMiddleTopVerticalLine
+            beq $a1, 82, drawMiddleTopVerticalLine
+            beq $a1, 83, drawMiddleTopVerticalLine
+            beq $a1, 84, drawTopSecondaryDiagonal
+
+            add $t2, $t1, 7
+            pushInStack($ra, $t0, $t1)
+            pushInStack($a0, $a1)
+            sendParameters($t0, $t2)
+            jal getPositionFromBlock
+            popFromStack($a0, $a1)
+            popFromStack($ra, $t0, $t1)
+    
+            move $t7, $v0 
+    
+            pushInStack($ra, $t0, $t1)
+            pushInStack($a0, $a1)
+            addi $t2, $zero, 4 
+            sendParameters($t7, $t2, SECONDARY_DIAGONAL, BORDER_COLOR)
+            jal drawContinuosBlocks
+            popFromStack($a0, $a1)
+            popFromStack($ra, $t0, $t1)
+    
+            add $t2, $t1, 7
+            add $t3, $t0, 1
+            pushInStack($ra, $t0, $t1)
+            pushInStack($a0, $a1)
+            sendParameters($t3, $t2)
+            jal getPositionFromBlock
+            popFromStack($a0, $a1)
+            popFromStack($ra, $t0, $t1)
+    
+            move $t7, $v0 
+    
+            pushInStack($ra, $t0, $t1)
+            pushInStack($a0, $a1)
+            addi $t2, $zero, 4 
+            sendParameters($t7, $t2, SECONDARY_DIAGONAL, BORDER_COLOR)
+            jal drawContinuosBlocks
+            popFromStack($a0, $a1)
+            popFromStack($ra, $t0, $t1)
 
         
         drawMiddleTopVerticalLine:
@@ -117,7 +286,6 @@
             beq $a1, 77, drawBottomHorizontalLine
             beq $a1, 78, drawBottomHorizontalLine
             beq $a1, 79, drawBottomHorizontalLine
-            beq $a1, 82, drawBottomHorizontalLine
             beq $a1, 84, drawBottomHorizontalLine
 
             add $t3, $t1, 7
@@ -218,7 +386,7 @@
             sendParameters($t3, $t2, $t5, $t4, BORDER_COLOR, FILLED)
             jal drawRectangle
             popFromStack($a0, $a1)
-            popFromStack($ra, $t0, $t1)    
+            popFromStack($ra, $t0, $t1) 
 
         finish_drawing_letter:
             refreshBitmap

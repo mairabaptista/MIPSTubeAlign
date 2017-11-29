@@ -111,9 +111,6 @@
 		sendParameters(35, 77)		
 		jal drawLetters
 		
-		sendParameters(36, 78)		
-		jal drawLetters
-		
 		sendParameters(37, 79)		
 		jal drawLetters
 		
