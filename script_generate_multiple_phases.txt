@@ -1,6 +1,6 @@
 var allTubes = [
-	[0,5,3,4,0,0,0,0,0,6,1,5,5,5,4,0,4,0,2,2,0,4,5,2,3,5,0,5,3,4,4,5,0,5,3,0,0,6,1,6,3,2,4,3,0,5,2,4,1,6,0,0,2,0],  // phase 2
-	[0,5,3,4,0,0,0,0,0,6,1,5,5,5,4,0,4,0,2,2,0,4,5,2,3,5,0,5,3,4,4,5,0,5,3,0,0,6,1,6,3,2,4,3,0,5,2,4,1,6,0,0,2,0]	// phase 3 ...
+	{	tube: [0,5,3,4,0,0,0,0,0,6,1,5,5,5,4,0,4,0,2,2,0,4,5,2,3,5,0,5,3,4,4,5,0,5,3,0,0,6,1,6,3,2,4,3,0,5,2,4,1,6,0,0,2,0], moves: 99},	 // phase 2
+	{	tube: [0,5,3,4,0,0,0,0,0,6,1,5,5,5,4,0,4,0,2,2,0,4,5,2,3,5,0,5,3,4,4,5,0,5,3,0,0,6,1,6,3,2,4,3,0,5,2,4,1,6,0,0,2,0], moves: 90}		// phase 3 ...
 ];
 
 var getNamePhase = function(phase){	
@@ -73,7 +73,7 @@ var createPhase = function(phase, moves, tubesArray){
 var finalOutput = "";
 
 for (var i = 0; i < allTubes.length; i++){
-	finalOutput += createPhase((i+2), 99, allTubes[i]);
+	finalOutput += createPhase((i+2), allTubes[i].moves, allTubes[i].tube);
 }
 
 copy(finalOutput);
