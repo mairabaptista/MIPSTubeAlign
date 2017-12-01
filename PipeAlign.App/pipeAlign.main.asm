@@ -23,6 +23,7 @@
 .include "Factories/pipeAlign.waterFactory.asm"
 .include "Factories/pipeAlign.numberFactory.asm"
 .include "Factories/pipeAlign.menuFactory.asm"
+#.include "Factories/pipeAlign.startScreenFactory.asm"
 
 .include "Service/pipeAlign.displayService.asm"
 .include "Service/pipeAlign.drawingService.asm"
@@ -34,50 +35,31 @@
 	.globl main
 
 	main:
-		#jal createMenu
-		#jr $v0
+		jal createMenu
+		jr $v0
 		
 		startGame:
 		
-		#getBitmapCache(FIRST_PHASE_CACHE)
+		getBitmapCache(FIRST_PHASE_CACHE)
 						
-		#move $s7, $v0	
+		move $s7, $v0	
 		
-		#playSound(IN_GAME_SOUND, -3, LOOP_SOUND)																												
+		playSound(IN_GAME_SOUND, -3, LOOP_SOUND)																												
 		
 		sendParameters(BACKGROUND_COLOR)
 		jal fillBackgroundColor
 		sendParameters(NOT_CLEAR_SLOTS)
 		jal createFirstPhase
 		
-		sendParameters(9, 9)
-		jal crateMovesDisplay		
-
-		# Draw Moves
-		sendParameters(32, 77)		
-		jal drawLetters
+		beq $s7, -1, updateBitmapAndCache
 		
-		sendParameters(33, 79)		
-		jal drawLetters
+		j before_refresh_cache
 		
-		sendParameters(34, 86)		
-		jal drawLetters
+		updateBitmapAndCache:
+			refreshBitmap()
+			setBitmapCache(FIRST_PHASE_CACHE)
 		
-		sendParameters(35, 69)		
-		jal drawLetters
-		
-		sendParameters(36, 83)	
-		jal drawLetters	
-		
-		#beq $s7, -1, updateBitmapAndCache
-		
-		#j before_refresh_cache
-		
-		#updateBitmapAndCache:
-		#	refreshBitmap()
-		#	setBitmapCache(FIRST_PHASE_CACHE)
-		#
-		#before_refresh_cache:
+		before_refresh_cache:
 				
 		jal readInput
 						
