@@ -124,35 +124,29 @@
 		jal drawRectangle
 		popFromStack($ra)
 
-		#drawNumbers
-		pushInStack($ra)
-		sendParameters(9, 9)
-		jal crateMovesDisplay		
-		popFromStack($ra)
-
 		# Draw Moves
 		pushInStack($ra)
-		sendParameters(32, 77)		
+		sendParameters(32, 77, BLACK_COLOR)		
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)
-		sendParameters(33, 79)		
+		sendParameters(33, 79, BLACK_COLOR)		
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)		
-		sendParameters(34, 86)		
+		sendParameters(34, 86, BLACK_COLOR)		
 		jal drawLetters
 		popFromStack($ra)
 		
 		pushInStack($ra)
-		sendParameters(35, 69)		
+		sendParameters(35, 69, BLACK_COLOR)		
 		jal drawLetters
 		popFromStack($ra)
 		
 		pushInStack($ra)
-		sendParameters(36, 83)	
+		sendParameters(36, 83, BLACK_COLOR)	
 		jal drawLetters
 		popFromStack($ra)
 
@@ -168,6 +162,12 @@
 		pushInStack($ra)
 		sendParameters($a0)
 		jal createBasePhase
+		popFromStack($ra)
+		
+		#drawNumbers
+		pushInStack($ra)
+		sendParameters(9, 9)
+		jal crateMovesDisplay		
 		popFromStack($ra)
 		
 		pushInStack($ra)
@@ -344,6 +344,12 @@
 		
 		pushInStack($ra)		
 		jal createBasePhase
+		popFromStack($ra)
+		
+		#drawNumbers
+		pushInStack($ra)
+		sendParameters(9, 0)
+		jal crateMovesDisplay		
 		popFromStack($ra)
 		
 		pushInStack($ra)

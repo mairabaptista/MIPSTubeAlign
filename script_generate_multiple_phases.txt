@@ -1,0 +1,79 @@
+var allTubes = [
+	[0,5,3,4,0,0,0,0,0,6,1,5,5,5,4,0,4,0,2,2,0,4,5,2,3,5,0,5,3,4,4,5,0,5,3,0,0,6,1,6,3,2,4,3,0,5,2,4,1,6,0,0,2,0],  // phase 2
+	[0,5,3,4,0,0,0,0,0,6,1,5,5,5,4,0,4,0,2,2,0,4,5,2,3,5,0,5,3,4,4,5,0,5,3,0,0,6,1,6,3,2,4,3,0,5,2,4,1,6,0,0,2,0]	// phase 3 ...
+];
+
+var getNamePhase = function(phase){	
+	switch(phase){
+		case 1: return "FIRST";
+		case 2: return "SECOND";
+		case 3: return "THIRD";
+		case 4: return "FOURTH";
+		case 5: return "FIFTH";
+		case 6: return "SIXTH";
+		case 7: return "SEVENTH";
+		case 8: return "EIGHTH";
+		case 9: return "NINTH";
+		case 10: return "TENTH";
+	}
+};
+
+var getFormattedMoves = function(moves){	
+	return parseInt(moves/10) + ", " + moves % 10;
+};
+
+var createPhase = function(phase, moves, tubesArray){
+	var output = "";
+
+	var phaseTxt = getNamePhase(phase);
+	
+	output+="\n\tcreate" + phaseTxt.charAt(0) + phaseTxt.substring(1).toLowerCase() + "Phase:\n";
+	output += "\t\tgetBitmapCache(" + phaseTxt + "_PHASE_CACHE)\n"
+	output += "\n\t\tmove $s6, $v0\n";		
+	output += "\n\t\tbeq $s6, -1, clear_slots_" + phaseTxt.toLowerCase() + "_phase\n";		
+	output += "\n\t\tsendParameters(NOT_CLEAR_SLOTS)\n";		
+	output += "\n\t\tj before_clear_slots_" + phaseTxt.toLowerCase() + "_phase\n";
+	output += "\n\t\tclear_slots_" + phaseTxt.toLowerCase() + "_phase:\n";
+	output += "\t\t\tsendParameters(CLEAR_SLOTS)\n";
+	output += "\n\t\tbefore_clear_slots_" + phaseTxt.toLowerCase() + "_phase:\n";
+	output += "\n\t\tpushInStack($ra)\n";
+	output += "\t\tjal createBasePhase"
+	output += "\n\t\tpopFromStack($ra)\n";
+	output += "\n\t\tpushInStack($ra)\n";
+	output += "\t\tsendParameters("+getFormattedMoves(moves)+")\n";	
+	output += "\t\tjal crateMovesDisplay\n"
+	output += "\t\tpopFromStack($ra)\n";
+	
+	for (var i = 0; i < tubesArray.length; i++){
+		if (tubesArray[i] == 0) continue;	
+		
+		output += "\n\t\tpushInStack($ra)\n";
+		output += "\t\tsendParameters("+(i+1)+")\n";	
+		
+		if (tubesArray[i] == 1) output += "\t\tjal drawHorizontalTube\n";
+		if (tubesArray[i] == 2) output += "\t\tjal drawVerticalTube\n";
+		if (tubesArray[i] == 3) output += "\t\tjal drawFirstTubeElbow\n";
+		if (tubesArray[i] == 4) output += "\t\tjal drawSecondTubeElbow\n";
+		if (tubesArray[i] == 5) output += "\t\tjal drawThirdTubeElbow\n";
+		if (tubesArray[i] == 6) output += "\t\tjal drawFourthTubeElbow\n";
+		
+		output += "\t\tpopFromStack($ra)\n";		
+	}
+	
+	output += "\n\t\tbeq $s6, -1, updateBitmapAndCache_" + phaseTxt.toLowerCase() + "_phase\n";
+	output += "\n\t\tjr $ra\n";
+	output += "\n\t\tupdateBitmapAndCache_" + phaseTxt.toLowerCase() + "_phase:\n";
+	output += "\t\t\trefreshBitmap()\n";
+	output += "\t\t\tsetBitmapCache(" + phaseTxt + "_PHASE_CACHE)\n";
+	output += "\tjr $ra\n";
+	
+	return output;
+};
+
+var finalOutput = "";
+
+for (var i = 0; i < allTubes.length; i++){
+	finalOutput += createPhase((i+2), 99, allTubes[i]);
+}
+
+copy(finalOutput);
