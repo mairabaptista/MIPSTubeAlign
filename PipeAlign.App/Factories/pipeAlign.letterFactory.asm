@@ -2,7 +2,6 @@
 
 
 .text 
-
     #arguments: top screen slot number in $a0, letter code in ascii $a1
     drawLetters:
         beq $a1, 32 finish_drawing_letter
@@ -121,7 +120,6 @@
             jal drawContinuosBlocks
             popFromStack($a0, $a1)
             popFromStack($ra, $t0, $t1)
-
 
             add $t2, $t0, 7
             add $t3, $t1, 8
@@ -585,7 +583,5 @@
             popFromStack($a0, $a1)
             popFromStack($ra, $t0, $t1) 
 
-        finish_drawing_letter:
-            refreshBitmap
-        
+        finish_drawing_letter:           
     jr $ra

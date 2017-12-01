@@ -8,18 +8,11 @@
 		beqz $v0, before_cache_menu
 						
 		move $t0, $v0
-					
-		#Fill background color
-		#pushInStack($ra, $t0)
-		#sendParameters(MENU_BACKGROUND_COLOR)
-		#jal fillBackgroundColor	
-		#popFromStack($ra, $t0)
-
+		
 		#Print start screen
 		#pushInStack($ra, $t0)
 		#jal createStartScreen
 		#popFromStack($ra, $t0)
-
 		
 		#Draw border
 		pushInStack($ra, $t0)
