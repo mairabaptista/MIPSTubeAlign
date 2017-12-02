@@ -282,6 +282,11 @@
 			pushInStack($ra)
 			jal verifyWin
 			popFromStack($ra)
+
+			pushInStack($ra)
+			jal verifyLose
+			popFromStack($ra)
+
 	jr $ra
 	
 	#arguments: No parameters
@@ -696,5 +701,59 @@
 
 
 		finishUpdateTen:
+
+	jr $ra
+
+	verifyLose:
+
+		la $t3, movesDisplay
+
+		lb $t0, 0($t3)
+		addi $t3, $t3, 1
+		lb $t1, 0($t3)
+
+
+		bnez $t0, notLose
+		bnez $t1, notLose
+
+		pushInStack($ra)
+		jal drawGameOverScreen
+		popFromStack($ra)
+
+		li $v0, 32
+		li $a0, 8000
+		syscall
+
+		pushInStack($ra)
+		jal clearTheGameVariables
+
+		notLose:
+
+	jr $ra
+
+
+	clearTheGameVariables:
+
+		#CLEAR SLOT MAPPING (TYPE OF TUBES IN PHASE)
+		pushInStack($ra)
+		jal initializeSlotMapping
+		popFromStack($ra)
+
+		#RESET CURSOR
+		li $t0, CURSOR_TOP_DEFAULT
+		li $t1, CURSOR_LEFT_DEFAULT
+			
+		sw $t0, cursorTop
+		sw $t1, cursorLeft
+
+		#STOP IN GAME SOUND
+		stopSound(IN_GAME_SOUND)
+
+		#CLEAR CURRENT PHASE COUNTER
+		la $t2, currentPhase
+		li $t3, 1
+		sw $t3, 0($t2)
+
+		la $ra, main
 
 	jr $ra

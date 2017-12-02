@@ -13,6 +13,8 @@
 		jal drawGameOverPhrase
 		popFromStack($ra)
 
+		refreshBitmap()
+
 	jr $ra
 
 	
