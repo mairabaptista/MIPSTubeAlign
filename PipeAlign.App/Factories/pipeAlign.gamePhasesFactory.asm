@@ -163,10 +163,10 @@
 		popFromStack($ra)
 	jr $ra
 	
-	#arguments: clearTubeSlots
+	#arguments: clearTubeSlots, cacheResponse
 	createFirstPhase:
 		pushInStack($ra)
-		sendParameters($a0)
+		sendParameters($a0, $a1)
 		jal createBasePhase
 		popFromStack($ra)
 		

@@ -1,7 +1,7 @@
 .data
 
 
-.text 
+.text
 
 	#arguments: top screen slot number in $a0, number in $a1, color in $a2
 	drawNumbers:
