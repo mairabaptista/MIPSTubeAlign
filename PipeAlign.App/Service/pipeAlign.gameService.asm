@@ -575,27 +575,34 @@
 	jr $ra
 
 	updateMovesDisplay:
-
 		la $t3, movesDisplay
 		
 		addi $t3, $t3, 1
 		lb $t0, 0 ($t3)
-
-
+		
 		beqz $t0, updateTenTag
 
-			pushInStack($ra, $t0, $t3)
-			sendParameters(0)
-			jal updateUnity
-			popFromStack($ra, $t0, $t3)
+		pushInStack($ra, $t0, $t3)
+		sendParameters(0)
+		jal updateUnity
+		popFromStack($ra, $t0, $t3)
+			
+		beq $t0, 1, verify_ten_out_time
 
+		j finishUpdateDisplay
+		
+		verify_ten_out_time:
+			la $t3, movesDisplay
+			lb $t1, 0 ($t3)			
+			bne $t1, 1, finishUpdateDisplay		
+				
+			playSound(OUT_OF_TIME, KEEP_VOLUME, NOT_LOOP_SOUND)
 			j finishUpdateDisplay
 
 		updateTenTag:
-
 			subi $t3, $t3, 1
 			lb $t0, 0 ($t3)
-
+			
 			beqz $t0, finishUpdateDisplay
 
 			pushInStack($ra, $t0, $t3)
@@ -603,9 +610,7 @@
 			jal updateTen
 			popFromStack($ra, $t0, $t3)
 
-		
 		finishUpdateDisplay:
-
 	jr $ra
 
 
@@ -703,6 +708,7 @@
 		finishUpdateTen:
 
 	jr $ra
+
 
 	verifyLose:
 

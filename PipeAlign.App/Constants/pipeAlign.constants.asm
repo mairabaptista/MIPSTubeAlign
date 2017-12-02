@@ -23,7 +23,8 @@
 	.eqv BORDER_TOP_COLOR 					0x68798e	
 	
 # Menu Colors
-	.eqv MENU_BACKGROUND_COLOR 			0x339999
+	.eqv MENU_BACKGROUND_COLOR 			0x292b58
+	
 
 # Input Data
 	.eqv BASE_INPUT_ADDRESS			0xffff0004

@@ -16,6 +16,8 @@
         move $t0, $v0
         move $t1, $v1
         add $t0, $t0, 3     #margin  
+        
+        beq $a1, 58, drawTwoPoints
 
         drawBottomLeftMainDiagonal:
 
@@ -585,6 +587,34 @@
             jal drawRectangle
             popFromStack($a0, $a1, $t6)
             popFromStack($ra, $t0, $t1) 
+           	
+           	j finish_drawing_letter
+             
+          drawTwoPoints:
+          	add $t2, $t0, 2
+          	add $t3, $t1, 2
+          	
+          	add $t4, $t2, 2
+          	add $t5, $t3, 2
+          	
+          	pushInStack($ra, $t0, $t1)
+            pushInStack($a0, $a1, $t6)
+            pushInStack($t2, $t3, $t4, $t5)
+            sendParameters($t2, $t3, $t4, $t5, $t6, FILLED)
+            jal drawRectangle
+            popFromStack($t2, $t3, $t4, $t5)
+            popFromStack($a0, $a1, $t6)
+            popFromStack($ra, $t0, $t1)
+            
+            add $t2, $t2, 5          	          	
+          	add $t4, $t4, 5
+                    	
+          	pushInStack($ra, $t0, $t1)
+            pushInStack($a0, $a1, $t6)
+            sendParameters($t2, $t3, $t4, $t5, $t6, FILLED)
+            jal drawRectangle
+            popFromStack($a0, $a1, $t6)
+            popFromStack($ra, $t0, $t1)
 
         finish_drawing_letter:           
     jr $ra

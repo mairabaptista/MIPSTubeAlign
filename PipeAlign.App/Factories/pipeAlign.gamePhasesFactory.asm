@@ -176,6 +176,12 @@
 		sendParameters(1, 1, 17, 512, TOP_SCREEN_COLOR, FILLED)
 		jal drawRectangle
 		popFromStack($ra)
+		
+		# Draw two points
+		pushInStack($ra)
+		sendParameters(37, 58, BLACK_COLOR)		
+		jal drawLetters
+		popFromStack($ra)
 
 		# Draw Moves
 		pushInStack($ra)
@@ -237,7 +243,6 @@
 		popFromStack($ra)
 	jr $ra
 	
-
 	#arguments: clearTubeSlots, hasCache
 	createFirstPhase:
 		pushInStack($ra, $a1)
@@ -245,10 +250,10 @@
 		jal createBasePhase
 		popFromStack($ra, $a1)
 
-		pushInStack($ra)
+		pushInStack($ra, $a1)
 		sendParameters(10, 1, BLACK_COLOR)
 		jal drawNumbers
-		popFromStack($ra)
+		popFromStack($ra, $a1)
 		
 		#drawNumbers
 		pushInStack($ra, $a1)
@@ -412,7 +417,6 @@
 		popFromStack($ra, $a1)
 	jr $ra
 	
-
 	createSecondPhase:
 		getBitmapCache(SECOND_PHASE_CACHE)
 
