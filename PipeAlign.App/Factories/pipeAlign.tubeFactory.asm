@@ -89,8 +89,7 @@
         popFromStack($ra, $t0, $t1)
 	jr $ra
 
-drawFinalTube:
-
+	drawFinalTube:
 		pushInStack($ra)
         sendParameters(45)
 	    jal getBlockFromSlot
@@ -144,10 +143,7 @@ drawFinalTube:
         jal drawLeftPipeConnectorStripes
         popFromStack($ra, $t0, $t1)
 
-
-       		
 	jr $ra
-
 	
 	#arguments: SlotNumber
 	drawVerticalTube:
@@ -204,8 +200,24 @@ drawFinalTube:
 		pushInStack($ra, $t0, $t1)		
 		sendParameters($t0, $t1)
 		jal drawBottomPipeConnectorStripes
-		popFromStack($ra, $t0, $t1)
-						
+		popFromStack($ra, $t0, $t1)						
+	jr $ra
+	
+	#arguments: SlotNumber, hasCache (0 has cache, -1 not)
+	createVerticalTube:
+		bnez $a1, draw_vertical_tube_no_cache
+		
+		pushInStack($ra, $a0, $a1)
+		sendParameters($a0, VERTICAL_TUBE)
+		jal setTubeType
+		popFromStack($ra, $a0, $a1)
+		
+		jr $ra
+		
+		draw_vertical_tube_no_cache:
+			pushInStack($ra)
+			jal drawVerticalTube
+			popFromStack($ra)					
 	jr $ra
 	
 	#arguments: SlotNumber
@@ -262,8 +274,24 @@ drawFinalTube:
 		pushInStack($ra, $t0, $t1)
 		sendParameters($t0, $t1)
 		jal drawLeftPipeConnectorStripes
-		popFromStack($ra, $t0, $t1)
-																																																																																																																																																	
+		popFromStack($ra, $t0, $t1)																																																																																																																																																	
+	jr $ra
+	
+	#arguments: SlotNumber, hasCache (0 has cache, -1 not)
+	createHorizontalTube:
+		bnez $a1, draw_horizontal_tube_no_cache
+		
+		pushInStack($ra, $a0, $a1)
+		sendParameters($a0, HORIZONTAL_TUBE)
+		jal setTubeType
+		popFromStack($ra, $a0, $a1)
+		
+		jr $ra
+		
+		draw_horizontal_tube_no_cache:
+			pushInStack($ra)
+			jal drawHorizontalTube
+			popFromStack($ra)					
 	jr $ra
 	
 	# arguments: SlotNumber
@@ -308,8 +336,24 @@ drawFinalTube:
        	 	pushInStack($ra, $t0, $t1)
         	sendParameters($t0, $t1)
         	jal drawLeftPipeConnectorStripes
-        	popFromStack($ra, $t0, $t1)	
-        	        
+        	popFromStack($ra, $t0, $t1)	        	        
+	jr $ra
+	
+	#arguments: SlotNumber, hasCache (0 has cache, -1 not)
+	createFirstTubeElbow:
+		bnez $a1, draw_first_tube_elbow_no_cache
+		
+		pushInStack($ra, $a0, $a1)
+		sendParameters($a0, FIRST_TUBE_ELBOW)
+		jal setTubeType
+		popFromStack($ra, $a0, $a1)
+		
+		jr $ra
+		
+		draw_first_tube_elbow_no_cache:
+			pushInStack($ra)
+			jal drawFirstTubeElbow
+			popFromStack($ra)					
 	jr $ra
 	
 	# arguments: SlotNumber
@@ -354,8 +398,24 @@ drawFinalTube:
         	pushInStack($ra, $t0, $t1)
         	sendParameters($t0, $t1)
         	jal drawRightPipeConnectorStripes
-        	popFromStack($ra, $t0, $t1)
-        		
+        	popFromStack($ra, $t0, $t1)        		
+	jr $ra
+	
+	#arguments: SlotNumber, hasCache (0 has cache, -1 not)
+	createSecondTubeElbow:
+		bnez $a1, draw_second_tube_elbow_no_cache
+		
+		pushInStack($ra, $a0, $a1)
+		sendParameters($a0, SECOND_TUBE_ELBOW)
+		jal setTubeType
+		popFromStack($ra, $a0, $a1)
+		
+		jr $ra
+		
+		draw_second_tube_elbow_no_cache:
+			pushInStack($ra)
+			jal drawSecondTubeElbow
+			popFromStack($ra)					
 	jr $ra
 	
 	# arguments: SlotNumber
@@ -400,8 +460,24 @@ drawFinalTube:
         	pushInStack($ra, $t0, $t1)
         	sendParameters($t0, $t1)
         	jal drawLeftPipeConnectorStripes
-        	popFromStack($ra, $t0, $t1)
+        	popFromStack($ra, $t0, $t1)		
+	jr $ra
+	
+	#arguments: SlotNumber, hasCache (0 has cache, -1 not)
+	createThirdTubeElbow:
+		bnez $a1, draw_third_tube_elbow_no_cache
 		
+		pushInStack($ra, $a0, $a1)
+		sendParameters($a0, THIRD_TUBE_ELBOW)
+		jal setTubeType
+		popFromStack($ra, $a0, $a1)
+		
+		jr $ra
+		
+		draw_third_tube_elbow_no_cache:
+			pushInStack($ra)
+			jal drawThirdTubeElbow
+			popFromStack($ra)					
 	jr $ra
 	
 	# arguments: SlotNumber
@@ -447,6 +523,24 @@ drawFinalTube:
         	sendParameters($t0, $t1)
         	jal drawRightPipeConnectorStripes
         	popFromStack($ra, $t0, $t1)		
+	jr $ra
+	
+	
+	#arguments: SlotNumber, hasCache (0 has cache, -1 not)
+	createFourthTubeElbow:
+		bnez $a1, draw_fourth_tube_elbow_no_cache
+		
+		pushInStack($ra, $a0, $a1)
+		sendParameters($a0, FOURTH_TUBE_ELBOW)
+		jal setTubeType
+		popFromStack($ra, $a0, $a1)
+		
+		jr $ra
+		
+		draw_fourth_tube_elbow_no_cache:
+			pushInStack($ra)
+			jal drawFourthTubeElbow
+			popFromStack($ra)					
 	jr $ra
 	
 	#arguments: initial slot line number in $a0, initial slot column number in $a1

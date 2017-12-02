@@ -44,12 +44,19 @@
 		getBitmapCache(FIRST_PHASE_CACHE)
 						
 		move $s7, $v0	
+
+		playSound(IN_GAME_SOUND, -3, LOOP_SOUND)
 		
-		playSound(IN_GAME_SOUND, -3, LOOP_SOUND)																												
+		beq $s7, -1, update_background																								
 		
-		sendParameters(BACKGROUND_COLOR)
-		jal fillBackgroundColor
-		sendParameters(NOT_CLEAR_SLOTS)
+		j before_update_background
+		
+		update_background:
+			sendParameters(BACKGROUND_COLOR)
+			jal fillBackgroundColor				
+		before_update_background:
+		
+		sendParameters(NOT_CLEAR_SLOTS, $s7)
 		jal createFirstPhase
 		
 		beq $s7, -1, updateBitmapAndCache

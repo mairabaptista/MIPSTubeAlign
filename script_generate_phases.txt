@@ -5,17 +5,17 @@ var output = "";
 for (var i = 0; i < tubes.length; i++){
 	if (tubes[i] == 0) continue;
 	
-	output += "\n\t\tpushInStack($ra)\n";
-	output += "\t\tsendParameters("+(i+1)+")\n";	
+	output += "\n\t\tpushInStack($ra, $a1)\n";
+	output += "\t\tsendParameters("+(i+1)+", $a1)\n";	
 	
-	if (tubes[i] == 1) output += "\t\tjal drawHorizontalTube\n";
-	if (tubes[i] == 2) output += "\t\tjal drawVerticalTube\n";
-	if (tubes[i] == 3) output += "\t\tjal drawFirstTubeElbow\n";
-	if (tubes[i] == 4) output += "\t\tjal drawSecondTubeElbow\n";
-	if (tubes[i] == 5) output += "\t\tjal drawThirdTubeElbow\n";
-	if (tubes[i] == 6) output += "\t\tjal drawFourthTubeElbow\n";
+	if (tubes[i] == 1) output += "\t\tjal createHorizontalTube\n";
+	if (tubes[i] == 2) output += "\t\tjal createVerticalTube\n";
+	if (tubes[i] == 3) output += "\t\tjal createFirstTubeElbow\n";
+	if (tubes[i] == 4) output += "\t\tjal createSecondTubeElbow\n";
+	if (tubes[i] == 5) output += "\t\tjal createThirdTubeElbow\n";
+	if (tubes[i] == 6) output += "\t\tjal createFourthTubeElbow\n";
 	
-	output += "\t\tpopFromStack($ra)\n";		
+	output += "\t\tpopFromStack($ra, $a1)\n";		
 }
 
 copy(output);
