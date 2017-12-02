@@ -6,6 +6,7 @@
 # LOSE_SOUND			5
 # OUT_OF_TIME			6
 
+0=simp.wav
 1=crash.wav
 2=toggle.wav
 3=resident_cursor.wav

@@ -45,6 +45,7 @@
 						
 		move $s7, $v0	
 
+		stopSound(MENU_SOUND)
 		playSound(IN_GAME_SOUND, -3, LOOP_SOUND)
 		
 		beq $s7, -1, update_background																								
