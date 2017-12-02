@@ -176,6 +176,12 @@
 		sendParameters(1, 1, 17, 512, TOP_SCREEN_COLOR, FILLED)
 		jal drawRectangle
 		popFromStack($ra)
+		
+		# Draw two points
+		pushInStack($ra)
+		sendParameters(37, 58, BLACK_COLOR)		
+		jal drawLetters
+		popFromStack($ra)
 
 		# Draw Moves
 		pushInStack($ra)
