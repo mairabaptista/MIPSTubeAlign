@@ -72,7 +72,7 @@
 	
 # Game Constants
 
-	.eqv MAX_PHASES					2
+	.eqv MAX_PHASES					10
 	.eqv TRANSITION_PHASE_DELAY		500
 	
 	.eqv NOT_CLEAR_SLOTS			0
