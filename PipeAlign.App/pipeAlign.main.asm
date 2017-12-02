@@ -23,7 +23,7 @@
 .include "Factories/pipeAlign.waterFactory.asm"
 .include "Factories/pipeAlign.numberFactory.asm"
 .include "Factories/pipeAlign.menuFactory.asm"
-#.include "Factories/pipeAlign.startScreenFactory.asm"
+.include "Factories/pipeAlign.startScreenFactory.asm"
 
 .include "Service/pipeAlign.displayService.asm"
 .include "Service/pipeAlign.drawingService.asm"
