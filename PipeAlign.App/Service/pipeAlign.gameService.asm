@@ -726,8 +726,11 @@
 		jal drawGameOverScreen
 		popFromStack($ra)
 
+		stopSound(IN_GAME_SOUND)
+		playSound(LOSE_SOUND, 5, NOT_LOOP_SOUND)
+
 		li $v0, 32
-		li $a0, 8000
+		li $a0, 6000
 		syscall
 
 		pushInStack($ra)

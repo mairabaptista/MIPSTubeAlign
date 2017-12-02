@@ -16,7 +16,6 @@
 	.eqv MOVE_CURSOR_SOUND		3
 	.eqv WIN_SOUND				4
 	.eqv LOSE_SOUND				5
-	.eqv OUT_OF_TIME			6
-	
+	.eqv OUT_OF_TIME			6	
 	
 	

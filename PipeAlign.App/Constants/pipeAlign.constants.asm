@@ -24,6 +24,7 @@
 	
 # Menu Colors
 	.eqv MENU_BACKGROUND_COLOR 			0x292b58
+	.eqv MENU_LETTER_COLOR				0xf05a68
 	
 
 # Input Data
@@ -63,13 +64,14 @@
 	.eqv CONNECT_INITIAL_TUBE	0x777f91
 	.eqv BORDER_COLOR			0x000000
 
-# Menu Colors
-	.eqv MENU_LETTER_COLOR		0xe2ffdf
-
 # Game over  Colors
 	.eqv GAME_OVER_LETTER_COLOR 	0xe2ffdf
 	.eqv GAME_OVER_BACKGROUD_COLOR	0x292b58
 	.eqv DINOSAUR_COLOR				0xe2ffdf
+
+#Dinosaur
+
+	.eqv EYE_DINOSAUR			0x292b58
 
 #Water constants
 
