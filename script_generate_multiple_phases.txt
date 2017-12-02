@@ -55,14 +55,14 @@ var createPhase = function(phase, moves, tubesArray){
 		if (tubesArray[i] == 0) continue;	
 		
 		output += "\n\t\tpushInStack($ra)\n";
-		output += "\t\tsendParameters("+(i+1)+")\n";	
+		output += "\t\tsendParameters("+(i+1)+", $s6)\n";	
 		
-		if (tubesArray[i] == 1) output += "\t\tjal drawHorizontalTube\n";
-		if (tubesArray[i] == 2) output += "\t\tjal drawVerticalTube\n";
-		if (tubesArray[i] == 3) output += "\t\tjal drawFirstTubeElbow\n";
-		if (tubesArray[i] == 4) output += "\t\tjal drawSecondTubeElbow\n";
-		if (tubesArray[i] == 5) output += "\t\tjal drawThirdTubeElbow\n";
-		if (tubesArray[i] == 6) output += "\t\tjal drawFourthTubeElbow\n";
+		if (tubesArray[i] == 1) output += "\t\tjal createHorizontalTube\n";
+		if (tubesArray[i] == 2) output += "\t\tjal createVerticalTube\n";
+		if (tubesArray[i] == 3) output += "\t\tjal createFirstTubeElbow\n";
+		if (tubesArray[i] == 4) output += "\t\tjal createSecondTubeElbow\n";
+		if (tubesArray[i] == 5) output += "\t\tjal createThirdTubeElbow\n";
+		if (tubesArray[i] == 6) output += "\t\tjal createFourthTubeElbow\n";
 		
 		output += "\t\tpopFromStack($ra)\n";		
 	}
