@@ -159,7 +159,6 @@
 	
 	#arguments: No parameters
 	toggleTube:
-
 		la $t1 ,slotMapping
 		lw $t2, cursorTop
 		lw $t3, cursorLeft
@@ -280,13 +279,9 @@
 			popFromStack($ra, $t4)
 						
 		finishDraw:	
-
 			pushInStack($ra)
 			jal verifyWin
 			popFromStack($ra)
-
-
-
 	jr $ra
 	
 	#arguments: No parameters
@@ -480,7 +475,9 @@
 				move $t2, $t3				
 			j loop_verify
 			
-			win:
+			win:				
+				playSound(WIN_SOUND, KEEP_VOLUME, NOT_LOOP_SOUND)
+			
 				pushInStack($ra)
 				sendParameters(BACKGROUND_COLOR)				
 				jal createCursor	
@@ -557,7 +554,7 @@
 
 
 
-	#TODO: VERIFICAR SE ESSE CÓDIGO FICARÁ AQUI
+	#TODO: VERIFICAR SE ESSE CÓDIGO FICAR�? AQUI
 	#arguments: ten in $a0, unity $a1
 	initializeMovesDisplayMemory:
 

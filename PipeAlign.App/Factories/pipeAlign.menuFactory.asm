@@ -8,18 +8,11 @@
 		beqz $v0, before_cache_menu
 						
 		move $t0, $v0
-					
-		#Fill background color
-		#pushInStack($ra, $t0)
-		#sendParameters(MENU_BACKGROUND_COLOR)
-		#jal fillBackgroundColor	
-		#popFromStack($ra, $t0)
-
+		
 		#Print start screen
 		#pushInStack($ra, $t0)
 		#jal createStartScreen
 		#popFromStack($ra, $t0)
-
 		
 		#Draw border
 		pushInStack($ra, $t0)
@@ -57,110 +50,108 @@
 	jr $ra
 			
 	print_PRESS_P_TO_START:		
-		
 		pushInStack($ra)
-		sendParameters(516, 80)
+		sendParameters(516, 80, MENU_LETTER_COLOR)
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)
-		sendParameters(517, 82)
+		sendParameters(517, 82, MENU_LETTER_COLOR)
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)
-		sendParameters(518, 69)
+		sendParameters(518, 69, MENU_LETTER_COLOR)
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)
-		sendParameters(519, 83)
+		sendParameters(519, 83, MENU_LETTER_COLOR)
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)
-		sendParameters(520, 83)
+		sendParameters(520, 83, MENU_LETTER_COLOR)
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)
-		sendParameters(521, 32)
+		sendParameters(521, 32, MENU_LETTER_COLOR)
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)
-		sendParameters(522, 80)
+		sendParameters(522, 80, MENU_LETTER_COLOR)
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)
-		sendParameters(523, 32)
+		sendParameters(523, 32, MENU_LETTER_COLOR)
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)
-		sendParameters(524, 84)
+		sendParameters(524, 84, MENU_LETTER_COLOR)
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)
-		sendParameters(525, 79)
+		sendParameters(525, 79, MENU_LETTER_COLOR)
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)
-		sendParameters(526, 32)
+		sendParameters(526, 32, MENU_LETTER_COLOR)
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)
-		sendParameters(527, 83)
+		sendParameters(527, 83, MENU_LETTER_COLOR)
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)
-		sendParameters(528, 84)
+		sendParameters(528, 84, MENU_LETTER_COLOR)
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)
-		sendParameters(529, 65)
+		sendParameters(529, 65, MENU_LETTER_COLOR)
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)
-		sendParameters(530, 82)
+		sendParameters(530, 82, MENU_LETTER_COLOR)
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)
-		sendParameters(531, 84)
+		sendParameters(531, 84, MENU_LETTER_COLOR)
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)
-		sendParameters(532, 32)
+		sendParameters(532, 32, MENU_LETTER_COLOR)
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)
-		sendParameters(533, 71)
+		sendParameters(533, 71, MENU_LETTER_COLOR)
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)
-		sendParameters(534, 65)
+		sendParameters(534, 65, MENU_LETTER_COLOR)
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)
-		sendParameters(535, 77)
+		sendParameters(535, 77, MENU_LETTER_COLOR)
 		jal drawLetters
 		popFromStack($ra)
 
 		pushInStack($ra)
-		sendParameters(536, 69)
+		sendParameters(536, 69, MENU_LETTER_COLOR)
 		jal drawLetters
 		popFromStack($ra)
-	
 	jr $ra

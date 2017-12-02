@@ -62,6 +62,9 @@
 	.eqv CONNECT_INITIAL_TUBE	0x777f91
 	.eqv BORDER_COLOR			0x000000
 
+# Menu Colors
+	.eqv MENU_LETTER_COLOR		0xe2ffdf
+
 #Water constants
 
 	.eqv WATER_COLOR			0x0d9bf6
@@ -69,7 +72,7 @@
 	
 # Game Constants
 
-	.eqv MAX_PHASES					2
+	.eqv MAX_PHASES					10
 	.eqv TRANSITION_PHASE_DELAY		500
 	
 	.eqv NOT_CLEAR_SLOTS			0

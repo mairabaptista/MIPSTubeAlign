@@ -153,8 +153,7 @@
             beq $a1, 8, finish_drawing_number
 
 
-        finish_drawing_number:
-            refreshBitmap()
+        finish_drawing_number:            
 
 	jr $ra
 

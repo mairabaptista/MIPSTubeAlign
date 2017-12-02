@@ -202,8 +202,7 @@
 		popFromStack($ra, $t0, $t1)
 		
 		add $v0, $v0, SLOT_HEIGHT
-		add $v1, $v1, SLOT_WIDTH		
-		subi $v1, $v1, 1
+		add $v1, $v1, SLOT_WIDTH
 		
 		pushInStack($ra)
 		sendParameters($t0, $t1, $v0, $v1, BACKGROUND_COLOR, FILLED)

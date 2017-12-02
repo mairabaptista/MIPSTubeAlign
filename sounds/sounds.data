@@ -4,7 +4,11 @@
 # MOVE_CURSOR_SOUND		3
 # WIN_SOUND				4
 # LOSE_SOUND			5
+# OUT_OF_TIME			6
 
 1=crash.wav
 2=toggle.wav
-3=resVol.wav
+3=resident_cursor.wav
+4=smw_message_block_vol.wav
+5=smw_lost_a_life.wav
+6=smb_warning.wav
