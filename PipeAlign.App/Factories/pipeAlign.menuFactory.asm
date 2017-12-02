@@ -10,9 +10,9 @@
 		move $t0, $v0
 		
 		#Print start screen
-		#pushInStack($ra, $t0)
-		#jal createStartScreen
-		#popFromStack($ra, $t0)
+		pushInStack($ra, $t0)
+		jal createStartScreen
+		popFromStack($ra, $t0)
 		
 		#Draw border
 		pushInStack($ra, $t0)
