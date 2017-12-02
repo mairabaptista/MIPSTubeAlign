@@ -1,7 +1,7 @@
-var text = "PRESS P TO START GAME";
-var initialSlot = 12;
-var jumpLines = 12;
-var color = "MENU_LETTER_COLOR";
+var text = "LEVEL";
+var initialSlot = 5;
+var jumpLines = 0;
+var color = "BLACK_COLOR";
 
 var slotsInLine = 42;
 var relativeSlot = initialSlot + (slotsInLine * jumpLines)

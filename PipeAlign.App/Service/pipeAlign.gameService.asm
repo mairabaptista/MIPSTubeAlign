@@ -576,6 +576,7 @@
 		addi $t3, $t3, 1
 		lb $t0, 0 ($t3)
 
+
 		beqz $t0, updateTenTag
 
 			pushInStack($ra, $t0, $t3)
@@ -590,14 +591,14 @@
 			subi $t3, $t3, 1
 			lb $t0, 0 ($t3)
 
-			beqz $t0, finishUpdateDisplay 
+			beqz $t0, finishUpdateDisplay
 
 			pushInStack($ra, $t0, $t3)
 			sendParameters(0)
 			jal updateTen
 			popFromStack($ra, $t0, $t3)
 
-
+		
 		finishUpdateDisplay:
 
 	jr $ra

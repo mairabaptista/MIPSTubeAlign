@@ -65,6 +65,11 @@
 # Menu Colors
 	.eqv MENU_LETTER_COLOR		0xe2ffdf
 
+# Game over  Colors
+	.eqv GAME_OVER_LETTER_COLOR 	0xe2ffdf
+	.eqv GAME_OVER_BACKGROUD_COLOR	0x292b58
+	.eqv DINOSAUR_COLOR				0xe2ffdf
+
 #Water constants
 
 	.eqv WATER_COLOR			0x0d9bf6

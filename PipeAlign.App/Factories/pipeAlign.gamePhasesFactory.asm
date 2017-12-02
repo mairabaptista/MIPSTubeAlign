@@ -205,6 +205,33 @@
 		jal drawLetters
 		popFromStack($ra)
 
+		#Draw level		
+		pushInStack($ra)
+		sendParameters(5, 76, BLACK_COLOR)
+		jal drawLetters
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(6, 69, BLACK_COLOR)
+		jal drawLetters
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(7, 86, BLACK_COLOR)
+		jal drawLetters
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(8, 69, BLACK_COLOR)
+		jal drawLetters
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(9, 76, BLACK_COLOR)
+		jal drawLetters
+		popFromStack($ra)
+
+
 		#Draw phase border
 		pushInStack($ra)
 		sendParameters(1, 1, 256, 512, BLACK_COLOR, NOT_FILLED)
@@ -212,10 +239,10 @@
 		popFromStack($ra)
 	jr $ra
 	
-	#arguments: clearTubeSlots, cacheResponse
+	#arguments: clearTubeSlots
 	createFirstPhase:
 		pushInStack($ra)
-		sendParameters($a0, $a1)
+		sendParameters($a0)
 		jal createBasePhase
 		popFromStack($ra)
 		
@@ -223,6 +250,11 @@
 		pushInStack($ra)
 		sendParameters(4, 6)
 		jal crateMovesDisplay		
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(10, 1, BLACK_COLOR)
+		jal drawNumbers
 		popFromStack($ra)
 		
 		pushInStack($ra)
@@ -381,6 +413,7 @@
 		popFromStack($ra)
 	jr $ra
 	
+
 	createSecondPhase:
 		getBitmapCache(SECOND_PHASE_CACHE)
 
@@ -402,6 +435,10 @@
 		popFromStack($ra)
 
 		pushInStack($ra)
+		sendParameters(10, 2, BLACK_COLOR)
+		jal drawNumbers
+		popFromStack($ra)
+
 		sendParameters(6, 4)
 		jal crateMovesDisplay
 		popFromStack($ra)
@@ -621,6 +658,10 @@
 		popFromStack($ra)
 
 		pushInStack($ra)
+		sendParameters(10, 3, BLACK_COLOR)
+		jal drawNumbers
+		popFromStack($ra)
+
 		sendParameters(4, 2)
 		jal crateMovesDisplay
 		popFromStack($ra)
@@ -835,6 +876,10 @@
 		popFromStack($ra)
 
 		pushInStack($ra)
+		sendParameters(10, 4, BLACK_COLOR)
+		jal drawNumbers
+		popFromStack($ra)
+
 		sendParameters(4, 8)
 		jal crateMovesDisplay
 		popFromStack($ra)
@@ -1054,6 +1099,10 @@
 		popFromStack($ra)
 
 		pushInStack($ra)
+		sendParameters(10, 5, BLACK_COLOR)
+		jal drawNumbers
+		popFromStack($ra)
+
 		sendParameters(5, 2)
 		jal crateMovesDisplay
 		popFromStack($ra)
@@ -1268,6 +1317,10 @@
 		popFromStack($ra)
 
 		pushInStack($ra)
+		sendParameters(10, 6, BLACK_COLOR)
+		jal drawNumbers
+		popFromStack($ra)
+
 		sendParameters(3, 6)
 		jal crateMovesDisplay
 		popFromStack($ra)
@@ -1487,6 +1540,10 @@
 		popFromStack($ra)
 
 		pushInStack($ra)
+		sendParameters(10, 7, BLACK_COLOR)
+		jal drawNumbers
+		popFromStack($ra)
+
 		sendParameters(6, 2)
 		jal crateMovesDisplay
 		popFromStack($ra)
@@ -1731,6 +1788,10 @@
 		popFromStack($ra)
 
 		pushInStack($ra)
+		sendParameters(10, 8, BLACK_COLOR)
+		jal drawNumbers
+		popFromStack($ra)
+
 		sendParameters(6, 0)
 		jal crateMovesDisplay
 		popFromStack($ra)
@@ -1975,6 +2036,10 @@
 		popFromStack($ra)
 
 		pushInStack($ra)
+		sendParameters(10, 9, BLACK_COLOR)
+		jal drawNumbers
+		popFromStack($ra)
+
 		sendParameters(6, 0)
 		jal crateMovesDisplay
 		popFromStack($ra)
@@ -2219,6 +2284,16 @@
 		popFromStack($ra)
 
 		pushInStack($ra)
+		sendParameters(10, 1, BLACK_COLOR)
+		jal drawNumbers
+		popFromStack($ra)
+
+
+		pushInStack($ra)
+		sendParameters(11, 0, BLACK_COLOR)
+		jal drawNumbers
+		popFromStack($ra)
+
 		sendParameters(6, 6)
 		jal crateMovesDisplay
 		popFromStack($ra)
