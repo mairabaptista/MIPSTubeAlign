@@ -5,6 +5,7 @@
 # WIN_SOUND				4
 # LOSE_SOUND			5
 # OUT_OF_TIME			6
+# VICTORY_GAME_SOUND	7
 
 0=simp.wav
 1=crash.wav
@@ -13,4 +14,4 @@
 4=smw_message_block_vol.wav
 5=game_over.wav
 6=smb_warning_vol.wav
-7=smb_warning_vol.wav
+7=galvao.wav

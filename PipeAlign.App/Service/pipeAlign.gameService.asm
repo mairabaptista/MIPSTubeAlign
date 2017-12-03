@@ -490,18 +490,18 @@
 
 				pushInStack($ra)
 				jal drawWaterWinningPipes
-				popFromStack($ra)
-								
-				pushInStack($ra)
-				jal createNextPhase
-				popFromStack($ra)
-
+				popFromStack($ra)								
+		
 				la $t0, currentPhase
 				lw $t1, 0($t0)
 
 				beq $t1, MAX_PHASES, winnerScreen
 
-				j clearTheGameVariables
+				pushInStack($ra)
+				jal createNextPhase
+				popFromStack($ra)
+
+				j finish_verify
 
 				winnerScreen:
 
@@ -510,10 +510,10 @@
 				popFromStack($ra)
 
 				stopSound(IN_GAME_SOUND)
-				playSound(VICTORY_GAME_SOUND, 5, NOT_LOOP_SOUND)
+				playSound(VICTORY_GAME_SOUND, 2, NOT_LOOP_SOUND)
 
 				li $v0, 32
-				li $a0, 6000
+				li $a0, 35500
 				syscall
 
 				pushInStack($ra)
@@ -735,15 +735,12 @@
 
 	jr $ra
 
-
 	verifyLose:
-
 		la $t3, movesDisplay
 
 		lb $t0, 0($t3)
 		addi $t3, $t3, 1
 		lb $t1, 0($t3)
-
 
 		bnez $t0, notLose
 		bnez $t1, notLose
