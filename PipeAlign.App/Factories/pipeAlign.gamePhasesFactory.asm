@@ -23,7 +23,12 @@
 		beq $a0, 8, create_eighth_phase
 		beq $a0, 9, create_ninth_phase
 		beq $a0, 10, create_tenth_phase
-		
+		beq $a0, 11, create_eleven_phase
+		beq $a0, 12, create_twelve_phase
+		beq $a0, 13, create_thirteen_phase
+		beq $a0, 14, create_fourteen_phase
+		beq $a0, 15, create_fifteen_phase
+
 		j finish_create
 		
 		create_first_phase:				
@@ -84,8 +89,33 @@
 		create_tenth_phase:			
 			pushInStack($ra)
 			jal createTenthPhase
-			popFromStack($ra)				
-		
+			popFromStack($ra)	
+
+		create_eleven_phase:			
+			pushInStack($ra)
+			jal createElevenPhase
+			popFromStack($ra)
+
+		create_twelve_phase:
+			pushInStack($ra)
+			jal createTwelvePhase
+			popFromStack($ra)
+
+		create_thirteen_phase:
+			pushInStack($ra)
+			jal createThirteenPhase
+			popFromStack($ra)
+
+		create_fourteen_phase:
+			pushInStack($ra)
+			jal createFourteenPhase
+			popFromStack($ra)
+
+		create_fifteen_phase:
+			pushInStack($ra)
+			jal createFifteenPhase
+			popFromStack($ra)
+
 		finish_create:
 	jr $ra
 	
@@ -416,7 +446,6 @@
 		jal createSecondTubeElbow
 		popFromStack($ra, $a1)
 	jr $ra
-	
 	
 	createSecondPhase:
 		getBitmapCache(SECOND_PHASE_CACHE)
@@ -2291,7 +2320,7 @@
 		sendParameters(10, 1, BLACK_COLOR)
 		jal drawNumbers
 		popFromStack($ra)
-		
+
 		pushInStack($ra)
 		sendParameters(11, 0, BLACK_COLOR)
 		jal drawNumbers
@@ -2518,4 +2547,1374 @@
 		updateBitmapAndCache_tenth_phase:
 			refreshBitmap()
 			setBitmapCache(TENTH_PHASE_CACHE)
+	jr $ra
+
+	createElevenPhase:
+		getBitmapCache(ELEVEN_PHASE_CACHE)
+
+		move $s6, $v0
+
+		beq $s6, -1, clear_slots_eleven_phase
+
+		sendParameters(NOT_CLEAR_SLOTS)
+
+		j before_clear_slots_eleven_phase
+
+		clear_slots_eleven_phase:
+			sendParameters(CLEAR_SLOTS)
+
+		before_clear_slots_eleven_phase:
+
+		pushInStack($ra)
+		jal createBasePhase
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(10, 1, BLACK_COLOR)
+		jal drawNumbers
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(11, 1, BLACK_COLOR)
+		jal drawNumbers
+		popFromStack($ra)
+
+		sendParameters(5, 8)
+		jal crateMovesDisplay
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(2, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(3, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(4, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(5, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(10, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(11, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(12, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(13, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(14, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(15, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(16, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(19, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(20, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(21, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(22, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(23, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(24, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(25, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(26, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(28, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(29, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(30, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(31, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(32, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(33, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(34, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(35, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(37, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(38, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(39, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(40, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(41, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(42, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(43, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(44, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(46, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(47, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(48, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(49, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(50, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(51, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(52, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(53, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		beq $s6, -1, updateBitmapAndCache_eleven_phase
+
+		jr $ra
+
+		updateBitmapAndCache_eleven_phase:
+			refreshBitmap()
+			setBitmapCache(ELEVEN_PHASE_CACHE)
+	jr $ra
+
+	createTwelvePhase:
+		getBitmapCache(TWELVE_PHASE_CACHE)
+
+		move $s6, $v0
+
+		beq $s6, -1, clear_slots_twelve_phase
+
+		sendParameters(NOT_CLEAR_SLOTS)
+
+		j before_clear_slots_twelve_phase
+
+		clear_slots_twelve_phase:
+			sendParameters(CLEAR_SLOTS)
+
+		before_clear_slots_twelve_phase:
+
+		pushInStack($ra)
+		jal createBasePhase
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(10, 1, BLACK_COLOR)
+		jal drawNumbers
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(11, 2, BLACK_COLOR)
+		jal drawNumbers
+		popFromStack($ra)
+
+		sendParameters(4, 8)
+		jal crateMovesDisplay
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(2, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(3, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(4, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(5, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(6, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(7, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(8, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(10, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(11, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(12, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(13, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(14, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(15, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(16, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(17, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(19, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(20, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(21, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(22, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(23, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(24, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(25, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(26, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(28, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(29, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(30, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(31, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(32, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(33, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(34, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(35, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(37, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(38, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(39, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(40, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(41, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(42, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(43, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(44, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(46, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(47, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(48, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(49, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(50, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(51, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(52, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(53, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		beq $s6, -1, updateBitmapAndCache_twelve_phase
+
+		jr $ra
+
+		updateBitmapAndCache_twelve_phase:
+			refreshBitmap()
+			setBitmapCache(TWELVE_PHASE_CACHE)
+	jr $ra
+
+	createThirteenPhase:
+		getBitmapCache(THIRTEEN_PHASE_CACHE)
+
+		move $s6, $v0
+
+		beq $s6, -1, clear_slots_thirteen_phase
+
+		sendParameters(NOT_CLEAR_SLOTS)
+
+		j before_clear_slots_thirteen_phase
+
+		clear_slots_thirteen_phase:
+			sendParameters(CLEAR_SLOTS)
+
+		before_clear_slots_thirteen_phase:
+
+		pushInStack($ra)
+		jal createBasePhase
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(10, 1, BLACK_COLOR)
+		jal drawNumbers
+		popFromStack($ra)
+		
+		pushInStack($ra)
+		sendParameters(11, 3, BLACK_COLOR)
+		jal drawNumbers
+		popFromStack($ra)
+
+		sendParameters(6, 6)
+		jal crateMovesDisplay
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(2, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(3, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(4, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(5, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(6, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(7, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(8, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(10, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(11, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(12, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(13, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(14, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(15, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(16, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(17, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(19, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(20, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(21, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(22, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(23, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(24, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(25, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(26, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(28, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(29, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(30, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(31, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(32, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(33, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(34, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(35, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(37, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(38, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(39, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(40, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(41, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(42, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(43, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(44, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(46, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(47, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(48, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(49, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(50, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(51, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(52, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(53, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		beq $s6, -1, updateBitmapAndCache_thirteen_phase
+
+		jr $ra
+
+		updateBitmapAndCache_thirteen_phase:
+			refreshBitmap()
+			setBitmapCache(THIRTEEN_PHASE_CACHE)
+	jr $ra
+
+		createFourteenPhase:
+		getBitmapCache(FOURTEEN_PHASE_CACHE)
+
+		move $s6, $v0
+
+		beq $s6, -1, clear_slots_fourteen_phase
+
+		sendParameters(NOT_CLEAR_SLOTS)
+
+		j before_clear_slots_fourteen_phase
+
+		clear_slots_fourteen_phase:
+			sendParameters(CLEAR_SLOTS)
+
+		before_clear_slots_fourteen_phase:
+
+		pushInStack($ra)
+		jal createBasePhase
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(10, 1, BLACK_COLOR)
+		jal drawNumbers
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(11, 4, BLACK_COLOR)
+		jal drawNumbers
+		popFromStack($ra)
+
+		sendParameters(5, 8)
+		jal crateMovesDisplay
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(2, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(3, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(4, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(5, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(6, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(7, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(8, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(10, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(11, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(12, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(13, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(14, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(15, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(16, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(17, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(19, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(20, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(21, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(22, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(23, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(24, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(25, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(26, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(28, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(29, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(30, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(31, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(32, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(33, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(34, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(35, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(37, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(38, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(39, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(40, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(41, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(42, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(43, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(44, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(46, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(47, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(48, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(49, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(50, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(51, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(52, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(53, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		beq $s6, -1, updateBitmapAndCache_fourteen_phase
+
+		jr $ra
+
+		updateBitmapAndCache_fourteen_phase:
+			refreshBitmap()
+			setBitmapCache(FOURTEEN_PHASE_CACHE)
+	jr $ra
+
+	createFifteenPhase:
+		getBitmapCache(FIFTEEN_PHASE_CACHE)
+
+		move $s6, $v0
+
+		beq $s6, -1, clear_slots_fifteen_phase
+
+		sendParameters(NOT_CLEAR_SLOTS)
+
+		j before_clear_slots_fifteen_phase
+
+		clear_slots_fifteen_phase:
+			sendParameters(CLEAR_SLOTS)
+
+		before_clear_slots_fifteen_phase:
+
+		pushInStack($ra)
+		jal createBasePhase
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(10, 1, BLACK_COLOR)
+		jal drawNumbers
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(11, 5, BLACK_COLOR)
+		jal drawNumbers
+		popFromStack($ra)
+
+		sendParameters(5, 6)
+		jal crateMovesDisplay
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(2, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(3, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(4, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(5, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(6, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(7, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(8, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(10, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(11, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(12, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(13, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(14, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(15, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(16, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(17, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(19, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(20, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(21, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(22, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(23, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(24, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(25, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(26, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(28, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(29, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(30, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(31, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(32, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(33, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(34, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(35, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(37, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(38, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(39, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(40, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(41, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(42, $s6)
+		jal createFirstTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(43, $s6)
+		jal createFourthTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(44, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(46, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(47, $s6)
+		jal createVerticalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(48, $s6)
+		jal createSecondTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(49, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(50, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(51, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(52, $s6)
+		jal createHorizontalTube
+		popFromStack($ra)
+
+		pushInStack($ra)
+		sendParameters(53, $s6)
+		jal createThirdTubeElbow
+		popFromStack($ra)
+
+		beq $s6, -1, updateBitmapAndCache_fifteen_phase
+
+		jr $ra
+
+		updateBitmapAndCache_fifteen_phase:
+			refreshBitmap()
+			setBitmapCache(FIFTEEN_PHASE_CACHE)
 	jr $ra

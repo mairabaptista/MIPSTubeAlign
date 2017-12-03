@@ -84,7 +84,7 @@
 	
 # Game Constants
 
-	.eqv MAX_PHASES					10
+	.eqv MAX_PHASES					15
 	.eqv TRANSITION_PHASE_DELAY		500
 	
 	.eqv NOT_CLEAR_SLOTS			0
@@ -105,7 +105,7 @@
 	slotMapping:	.space			54 			#It is the memory space where the slots are mapped so that we know what kind of pipe is in each slot
 	slotPathWin:	.space			162			# 54 * 3 bits
 	
-	currentPhase:	.word			1
+	currentPhase:	.word			13
 
 #Display moves memory
 
