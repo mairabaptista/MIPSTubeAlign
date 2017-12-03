@@ -257,7 +257,7 @@
 		
 		#drawNumbers
 		pushInStack($ra, $a1)
-		sendParameters(4, 6)
+		sendParameters(3, 8)
 		jal crateMovesDisplay		
 		popFromStack($ra, $a1)
 				
@@ -417,6 +417,7 @@
 		popFromStack($ra, $a1)
 	jr $ra
 	
+	
 	createSecondPhase:
 		getBitmapCache(SECOND_PHASE_CACHE)
 
@@ -442,7 +443,7 @@
 		jal drawNumbers
 		popFromStack($ra)
 
-		sendParameters(6, 4)
+		sendParameters(3, 8)
 		jal crateMovesDisplay
 		popFromStack($ra)
 
@@ -665,7 +666,7 @@
 		jal drawNumbers
 		popFromStack($ra)
 
-		sendParameters(4, 2)
+		sendParameters(3, 1)
 		jal crateMovesDisplay
 		popFromStack($ra)
 
@@ -883,7 +884,7 @@
 		jal drawNumbers
 		popFromStack($ra)
 
-		sendParameters(4, 8)
+		sendParameters(2, 9)
 		jal crateMovesDisplay
 		popFromStack($ra)
 
@@ -1106,7 +1107,7 @@
 		jal drawNumbers
 		popFromStack($ra)
 
-		sendParameters(5, 2)
+		sendParameters(4, 2)
 		jal crateMovesDisplay
 		popFromStack($ra)
 
@@ -1324,7 +1325,7 @@
 		jal drawNumbers
 		popFromStack($ra)
 
-		sendParameters(3, 6)
+		sendParameters(3, 3)
 		jal crateMovesDisplay
 		popFromStack($ra)
 
@@ -1547,7 +1548,7 @@
 		jal drawNumbers
 		popFromStack($ra)
 
-		sendParameters(6, 2)
+		sendParameters(3, 8)
 		jal crateMovesDisplay
 		popFromStack($ra)
 
@@ -1795,7 +1796,7 @@
 		jal drawNumbers
 		popFromStack($ra)
 
-		sendParameters(6, 0)
+		sendParameters(3, 7)
 		jal crateMovesDisplay
 		popFromStack($ra)
 
@@ -2043,7 +2044,7 @@
 		jal drawNumbers
 		popFromStack($ra)
 
-		sendParameters(6, 0)
+		sendParameters(3, 8)
 		jal crateMovesDisplay
 		popFromStack($ra)
 
@@ -2290,14 +2291,13 @@
 		sendParameters(10, 1, BLACK_COLOR)
 		jal drawNumbers
 		popFromStack($ra)
-
-
+		
 		pushInStack($ra)
 		sendParameters(11, 0, BLACK_COLOR)
 		jal drawNumbers
 		popFromStack($ra)
 
-		sendParameters(6, 6)
+		sendParameters(4, 1)
 		jal crateMovesDisplay
 		popFromStack($ra)
 
