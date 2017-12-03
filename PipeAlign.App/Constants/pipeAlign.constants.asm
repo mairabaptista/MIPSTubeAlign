@@ -80,7 +80,7 @@
 #Water constants
 
 	.eqv WATER_COLOR			0x0d9bf6
-	.eqv WATER_TIME_OUT			10
+	.eqv WATER_TIME_OUT			7
 	
 # Game Constants
 
