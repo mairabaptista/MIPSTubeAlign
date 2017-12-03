@@ -494,7 +494,33 @@
 								
 				pushInStack($ra)
 				jal createNextPhase
-				popFromStack($ra)			
+				popFromStack($ra)
+
+				la $t0, currentPhase
+				lw $t1, 0($t0)
+
+				beq $t1, MAX_PHASES, winnerScreen
+
+				j clearTheGameVariables
+
+				winnerScreen:
+
+				pushInStack($ra)
+				jal drawWinnerScreen
+				popFromStack($ra)
+
+				stopSound(IN_GAME_SOUND)
+				playSound(VICTORY_GAME_SOUND, 5, NOT_LOOP_SOUND)
+
+				li $v0, 32
+				li $a0, 6000
+				syscall
+
+				pushInStack($ra)
+				jal clearTheGameVariables
+
+				pushInStack($ra)
+
 			finish_verify:
 	jr $ra
 	

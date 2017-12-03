@@ -69,6 +69,10 @@
 	.eqv GAME_OVER_BACKGROUD_COLOR	0x292b58
 	.eqv DINOSAUR_COLOR				0xe2ffdf
 
+#Win Colors
+	
+	.eqv WINNER_BACKGROUD_COLOR				0x292b58
+
 #Dinosaur
 
 	.eqv EYE_DINOSAUR			0x292b58
@@ -80,7 +84,7 @@
 	
 # Game Constants
 
-	.eqv MAX_PHASES					10
+	.eqv MAX_PHASES					1
 	.eqv TRANSITION_PHASE_DELAY		500
 	
 	.eqv NOT_CLEAR_SLOTS			0
@@ -89,7 +93,7 @@
 # Number constants
 
 	.eqv NUMBER_COLOR				0x000000
-	
+
 #Memory game service
 
 	cursorTop:		.word 			22			#TODO: Create description

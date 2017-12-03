@@ -1,7 +1,7 @@
-var text = "LEVEL";
-var initialSlot = 5;
-var jumpLines = 0;
-var color = "BLACK_COLOR";
+var text = "GREAT";
+var initialSlot = 18;
+var jumpLines = 5;
+var color = "WHITE_COLOR";
 
 var slotsInLine = 42;
 var relativeSlot = initialSlot + (slotsInLine * jumpLines)
