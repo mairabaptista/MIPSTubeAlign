@@ -23,7 +23,7 @@
 	.eqv BORDER_TOP_COLOR 					0x68798e	
 	
 # Menu Colors
-	.eqv MENU_BACKGROUND_COLOR 			0x292b58
+	.eqv MENU_BACKGROUND_COLOR 			0x33344f
 	.eqv MENU_LETTER_COLOR				0xf05a68
 	
 

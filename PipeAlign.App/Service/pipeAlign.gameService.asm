@@ -750,6 +750,7 @@
 		popFromStack($ra)
 
 		stopSound(IN_GAME_SOUND)
+		stopSound(OUT_OF_TIME)
 		playSound(LOSE_SOUND, 5, NOT_LOOP_SOUND)
 
 		li $v0, 32
