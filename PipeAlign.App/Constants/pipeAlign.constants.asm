@@ -105,7 +105,7 @@
 	slotMapping:	.space			54 			#It is the memory space where the slots are mapped so that we know what kind of pipe is in each slot
 	slotPathWin:	.space			162			# 54 * 3 bits
 	
-	currentPhase:	.word			13
+	currentPhase:	.word			1
 
 #Display moves memory
 
