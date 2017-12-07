@@ -17,9 +17,9 @@ public class SyscallRefreshBitmap extends AbstractSyscall
     @Override
     public void simulate(ProgramStatement statement) throws ProcessingException
     {
-	for (int i = 0; i < rows; i++)
-	{
-	    System.arraycopy(aux[i], 0, grid[i], 0, columns);
-	}
+	   for (int i = 0; i < rows; i++)
+	   {
+	       System.arraycopy(aux[i], 0, grid[i], 0, columns);
+	   }
     }
 }
