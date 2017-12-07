@@ -26,6 +26,7 @@
 .include "Factories/pipeAlign.gameOverFactory.asm"
 .include "Factories/pipeAlign.victoryFactory.asm"
 #.include "Factories/pipeAlign.startScreenFactory.asm"
+#.include "Factories/pipeAlign.victoryScreenFactory.asm"
 
 .include "Service/pipeAlign.displayService.asm"
 .include "Service/pipeAlign.drawingService.asm"
